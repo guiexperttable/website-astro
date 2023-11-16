@@ -4,19 +4,23 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 import Glogo from "./glogo.astro";
 
+const { splashMode } = Astro.props<boolean>;
 const navItems: Array<NavItem> = [
-  { title: "Features", url: "#features" },
-  { title: "Compatibility", url: "#compatibility" },
-  { title: "Showcase", url: "#showcase" },
-  { title: "Imprint", url: "#imprint" },
+  { title: "Features", url: "/features/" },
+  { title: "Compatibility", url: "/compatibility/" },
+  { title: "Showcase", url: "/showcase/" },
+  { title: "Imprint", url: "/imprint/" },
 ];
 ---
 
 <header
   id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
->
-  <a class="flex items-center gap-3 hover:!text-default" href="#">
+  class:list={[
+    'absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white',
+    { 'fixed-header': !splashMode },
+    { 'splashMode': splashMode }
+  ]}>
+  <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">GUI Expert</h1>
     <Glogo size="24" name="logomark" />
     GUI Expert Table
@@ -81,11 +85,14 @@ const navItems: Array<NavItem> = [
   </div>
 </header>
 
+<div class:list={['h-[5rem]', { 'hidden': splashMode }]}></div>
+
 <script>
   import MicroModal from "micromodal";
   import invariant from "tiny-invariant";
 
   const menuModalId = "menu-modal";
+
 
   const header = document.querySelector("#page-header") as HTMLElement;
   const page = document.documentElement;
@@ -98,6 +105,8 @@ const navItems: Array<NavItem> = [
   invariant(openNavButton, "openNavButton should not be null");
   invariant(closeNavButton, "closeNavButton should not be null");
 
+  const splash = header.classList.contains('splashMode');
+
   const openMenu = () => {
     MicroModal.show(menuModalId, { disableScroll: true });
   };
@@ -109,10 +118,12 @@ const navItems: Array<NavItem> = [
   openNavButton.addEventListener("click", openMenu);
   closeNavButton.addEventListener("click", closeMenu);
 
-  document.addEventListener("scroll", () => {
-    const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-    header.classList.toggle("fixed-header", d < 0);
-  });
+  if (splash) {
+    document.addEventListener("scroll", () => {
+      const d = page.clientHeight - page.scrollTop - header.offsetHeight;
+      header.classList.toggle("fixed-header", d < 0);
+    });
+ }
 
   menu.addEventListener("click", (event) => {
     if ((event.target as HTMLElement).tagName === "A") {
