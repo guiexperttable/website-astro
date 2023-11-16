@@ -1,0 +1,52 @@
+---
+import CompatibilityList from "~/components/compatibility-list.astro";
+import ContentSection from "~/components/content-section.astro";
+import type { CompatibilityItem } from "~/types";
+
+const frameworks: Array<CompatibilityItem> = [
+  {
+    title: "React",
+    icon: "frameworks/react",
+    url: "https://reactjs.org/",
+  },
+  {
+    title: "Preact",
+    icon: "frameworks/preact",
+    url: "https://preactjs.com/",
+  },
+  {
+    title: "Svelte",
+    icon: "frameworks/svelte",
+    url: "https://svelte.dev/",
+  },
+  {
+    title: "Vue",
+    icon: "frameworks/vue",
+    url: "https://vuejs.org/",
+  },
+  {
+    title: "Solid",
+    icon: "frameworks/solid",
+    url: "https://www.solidjs.com/",
+  },
+  {
+    title: "WebComponent",
+    icon: "frameworks/lit",
+    url: "https://lit.dev/",
+  },
+];
+
+---
+
+<ContentSection title="Compatibility" id="compatibility">
+  <Fragment slot="lead">
+    "GUI Expert Table" is written in TypeScript and works very well with plain JavaScript.
+    It is <span class="text-primary">framework-agnostic</span> and designed to seamlessly integrate with
+    the major frameworks:
+  </Fragment>
+  <CompatibilityList
+    items={frameworks}
+    title="Frameworks"
+    url="https://gui.expert/getstarted"
+  />
+</ContentSection>
