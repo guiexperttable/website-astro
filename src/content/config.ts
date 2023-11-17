@@ -1,5 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
+
 const showcase = defineCollection({
   type: "data",
   schema: ({ image }) =>
@@ -11,6 +12,10 @@ const showcase = defineCollection({
     }),
 });
 
+
+// siehe  https://dev.to/obinnaspeaks/how-to-use-content-collection-in-astro-43j2
+
+
 export const collections = {
-  showcase,
+  showcase
 };

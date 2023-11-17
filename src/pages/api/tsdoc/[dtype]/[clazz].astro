@@ -1,0 +1,34 @@
+---
+
+import { getCollection } from "astro:content";
+import doctype from '../../../../content/docs/doctype.json';
+
+const xxxx = await getCollection(
+  "docs",
+  // ({ data }) => data,
+);
+
+export async function getStaticPaths() {
+  return [
+    { params: { dtype:'interfaces', clazz:'TableModelIf.html' }},
+    // ...
+  ];
+}
+
+const { dtype, clazz } = Astro.params;
+
+const data = xxxx[0].data.children.map(c=> {
+  return {
+    name:c.name,
+    variant:c.variant
+  }
+});
+const debugStr = JSON.stringify(data, null, 2)
+---
+
+<h1>2</h1>
+
+<p>dtype: {dtype}</p>
+<p>clazz: {clazz}</p>
+
+<pre>{debugStr}</pre>
