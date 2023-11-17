@@ -4,11 +4,16 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 import Glogo from "./glogo.astro";
 
+
+
 const { splashMode } = Astro.props<boolean>;
 const navItems: Array<NavItem> = [
   { title: "Features", url: "/features/" },
   { title: "Get Started", url: "/compatibility/" },
   { title: "Showcase", url: "/showcase/" },
+  { title: "Doc", url: "/doc/" },
+  { title: "Api", url: "/api/" },
+  { title: "License", url: "/license/" },
   { title: "Imprint", url: "/imprint/" },
 ];
 ---
@@ -23,7 +28,7 @@ const navItems: Array<NavItem> = [
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">GUI Expert</h1>
     <Glogo size="24" name="logomark" />
-    GUI Expert Table
+    <span class="gradient-text"><b>Gui</b>Expert Table</span>
   </a>
   <div>
     <div class="flex items-center gap-6">
@@ -58,13 +63,12 @@ const navItems: Array<NavItem> = [
               id="close-nav-button"
               type="button"
               class="btn"
-              aria-label="Close navigation"
-            >
+              aria-label="Close navigation">
               <Icon pack="mdi" name="close" class="h-8" />
             </button>
           </header>
           <div class="flex justify-center">
-            <Icon name="logomark" class="h-16" />
+            <Glogo name="logomark" size="96" />
           </div>
           <nav>
             <ul class="flex flex-col">
