@@ -1,0 +1,167 @@
+---
+import ContentSection from "~/components/content-section.astro";
+---
+
+<ContentSection title="Documentation" id="documentation">
+
+  <div class="max-w-8xl space-y-2 pl-4 pr-4">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3">
+
+      <div>
+        <h2 class="mb-8 font-bold">TableModels</h2>
+        <p class="mb-4" >
+          The table model is the most important part. It defines the structure of the table: row count, column count, value
+          in a cell, etc.
+        </p>
+        <ul class="list-disc ml-8 mb-8">
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/interfaces','TableModelIf.html']"
+                color="primary"
+                mat-button>
+              
+              TableModelIf
+            </button>
+          </li>
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','TableModel.html']"
+                color="primary"
+                mat-button>
+              
+              TableModel
+            </button>
+          </li>
+
+          <li>
+            <button [routerLink]="['/api/tsdoc/types','AreaIdent.html']" color="primary" mat-button>
+              
+              AreaIdent
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/interfaces','AreaModelIf.html']" color="primary" mat-button>
+              
+              AreaModelIf
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/classes','AbstractAreaModel.html']" color="primary" mat-button>
+              
+              AbstractAreaModel
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/classes','AreaModelArrayOfArrays.html']" color="primary" mat-button>
+              
+              AreaModelArrayOfArrays
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/classes','AreaModelObjectyArray.html']" color="primary" mat-button>
+              
+              AreaModelObjectyArray
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/classes','AreaModelTree.html']" color="primary" mat-button>
+              
+              AreaModelTree
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-8 font-bold">TableFactory</h2>
+        <p class="mb-4" >
+          Helper class for creating table models out of data structures.
+        </p>
+        <ul class="list-disc ml-8 mb-8">
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','TableFactory.html']"
+                color="primary"
+                mat-button>
+              
+              TableFactory
+            </button>
+          </li>
+
+          <h2 class="mb-8 font-bold">TreeFactory</h2>
+          <li>
+          <span>
+            An object array (T[]) can be grouped into a tree structure by this method.
+            All objects will be replaced by a
+            <a [routerLink]="['/api/tsdoc','classes','TreeFactory.html']" href="#">TreeRow&lt;T&gt;</a>
+          </span>
+            <a
+                color="primary" href="/assets/docs/classes/TreeFactory.html#buildTreeRows"
+                mat-button
+                target="_blank">
+              
+              buildTreeRows</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-8 font-bold">ETC</h2>
+        <p class="mb-4" >
+          Some useful classes:
+        </p>
+        <ul class="list-disc ml-8 mb-8">
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','TableOptions.html']"
+                color="primary"
+                mat-button>
+              
+              TableOptions
+            </button>
+          </li>
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','TableApi.html']"
+                color="primary"
+                mat-button>
+              
+              TableApi
+            </button>
+          </li>
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','ColumnDef.html']"
+                color="primary"
+                mat-button>
+              
+              ColumnDef
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/interfaces','CellRendererIf.html']" color="primary" mat-button>
+              
+              CellRendererIf
+            </button>
+          </li>
+          <li>
+            <button
+                [routerLink]="['/api/tsdoc/classes','SelectionModel.html']"
+                color="primary"
+                mat-button>
+              
+              SelectionModel
+            </button>
+          </li>
+          <li>
+            <button [routerLink]="['/api/tsdoc/interfaces','SelectionModelIf.html']" color="primary" mat-button>
+              
+              SelectionModelIf
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</ContentSection>
