@@ -22,19 +22,13 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
           The core library is agnostic, it's written in plain typescript. This helps us to create a lot of table
           components for all common frameworks:</p>
         <ul class="list-disc ml-8 mb-8">
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/angular-table" target="_blank">guiexpert/angular-table</a>
-          </li>
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/react-table" target="_blank">guiexpert/react-table</a>
-          </li>
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/preact-table" target="_blank">guiexpert/preact-table</a>
-          </li>
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/solid-table" target="_blank">guiexpert/solid-table</a>
-          </li>
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/svelte-table" target="_blank">guiexpert/svelte-table</a>
-          </li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/angular-table" target="_blank">guiexpert/angular-table</a></li>
           <li><a href="https://www.npmjs.com/package/&#64;guiexpert/vue3-table" target="_blank">guiexpert/vue3-table</a></li>
-          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/webcomponent-table" target="_blank">guiexpert/webcomponent-table</a>
-          </li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/react-table" target="_blank">guiexpert/react-table</a></li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/preact-table" target="_blank">guiexpert/preact-table</a></li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/solid-table" target="_blank">guiexpert/solid-table</a></li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/svelte-table" target="_blank">guiexpert/svelte-table</a></li>
+          <li><a href="https://www.npmjs.com/package/&#64;guiexpert/webcomponent-table" target="_blank">guiexpert/webcomponent-table</a></li>
         </ul>
         <p class="mb-4" >
           If you think that important framework support is missing, send us a short message. ;-)
@@ -43,7 +37,7 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
       </div>
 
       <div>
-        <p class="mb-4"  class="initial-letter">
+        <p class="mb-4">
           Our philosophy is to think in models. A simple table mostly has a simple data structure.
           An array of arrays or an array of objects. This is not our meaning of a table model.
           For our library: a table model gives the information on how many rows and
@@ -51,7 +45,7 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
           what the column span of a cell is, what the CSS classes are, and so on.
           A model is a concrete class of this interface <a href="/api/tsdoc/interfaces/TableModelIf.html">TableModelIf</a>.
         </p>
-        <p class="mb-4"  class="initial-letter">
+        <p class="mb-4">
           A lot of requirements of a table body also exist for the header or footer.
           Also for a header, it's important to know the CSS classes or to know the 'colspan' value of a header cell and so
           on.
@@ -68,7 +62,7 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
       </div>
 
       <div>
-        <p class="mb-4"  class="initial-letter">
+        <p class="mb-4">
           The table can respond to user inputs: it's possible to define an edit renderer so that the user can change cell
           values.
           It's possible to filter table rows, re-order or resize the columns (by drag and drop), and so on.
