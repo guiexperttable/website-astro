@@ -1,7 +1,7 @@
 ---
 import doctype from '../../../../content/docs/doctype.json';
 
-
+// TODO later
 export async function getStaticPaths() {
   const data = doctype.children.map(c => {
     return {
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   ];
 }
 
-console.info(JSON.stringify(await getStaticPaths(), null, 2));
+// console.info(JSON.stringify(await getStaticPaths(), null, 2));
 
 
 const {dtype, clazz} = Astro.params;

@@ -13,9 +13,6 @@ const showcase = defineCollection({
 });
 
 
-// siehe  https://dev.to/obinnaspeaks/how-to-use-content-collection-in-astro-43j2
-
-
 export const collections = {
   showcase
 };
