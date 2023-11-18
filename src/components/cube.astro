@@ -1,5 +1,5 @@
 ---
-import treeImage from "~/assets/screens/tree.png";
+
 ---
 
 <section class="transparent ge-display-none-lt-sm">
@@ -7,16 +7,7 @@ import treeImage from "~/assets/screens/tree.png";
     <div class="cube">
       <div class="side back"></div>
       <div class="side left"></div>
-      <div class="side front">
-        <!--Image
-            class="h-full w-full bg-cover object-cover"
-            src={treeImage}
-            width={600}
-            height={400}
-            alt="'nix'"
-        /-->
-
-      </div>
+      <div class="side front"></div>
       <div class="side right"></div>
     </div>
   </div>
@@ -25,7 +16,44 @@ import treeImage from "~/assets/screens/tree.png";
 <section class="transparent ge-display-none-lt-sm"></section>
 <section class="transparent ge-display-none-lt-sm"></section>
 
+
+<div class="hero-text ge-display-none-lt-sm">
+  <div class="headline-hero-super gradient-text text-center font-extrabold tracking-tight text-6xl"></div>
+</div>
+
+
 <style>
+    body {
+        --ge-welcome-rotate: 0deg;
+        --ge-welcome-img-width-number: 400;
+        --ge-welcome-img-width: calc(var(--ge-welcome-img-width-number) * 1px);
+        --ge-welcome-img-height: calc(var(--ge-welcome-img-width-number) / 2 * 1px);
+        --ge-welcome-img-transform: var(--ge-welcome-img-height);
+        --ge-welcome-img-transform-neg: calc(-1 * var(--ge-welcome-img-width-number) / 2 * 1px);
+        --ge-headline-hero-super-content: " ";
+        --ge-headline-hero-super-display: grid;
+        --ge-hero-text-color: #fff;
+        --ge-hero-action-opacity: 0;
+        --ge-welcome-zoom: 1;
+        --ge-header-border-bottom: #282F3D;
+        --ge-welcome-opacity:1;
+    }
+
+    .hero-text {
+        position: fixed;
+        top: max(80px, calc(50vh - var(--ge-welcome-img-height)/2 - 220px));
+        left: calc(50vw - 400px);
+        transition: all 0.3s;
+        height: 100px;
+        width: 800px;
+        place-items: center;
+        background: transparent;
+        display: var(--ge-headline-hero-super-display);
+    }
+    .hero-text .headline-hero-super::after {
+        content: var(--ge-headline-hero-super-content);
+    }
+
     .transparent {
         background-color: transparent;
     }
@@ -33,8 +61,6 @@ import treeImage from "~/assets/screens/tree.png";
     section {
         min-height: 100vh;
     }
-
-
 
     .scene {
         z-index: -3;
@@ -113,10 +139,6 @@ import treeImage from "~/assets/screens/tree.png";
     .hidden-3 {
         display: none;
     }
-
-    section.transparent {
-        background: transparent;
-    }
 </style>
 
 <script>
@@ -155,11 +177,6 @@ import treeImage from "~/assets/screens/tree.png";
     const r0 = (scrollTop - offsetHeight) * 360 / (4 * offsetHeight);
     const r1 = Math.max(-270, Math.min(270, r0));
 
-    // console.info('scrollTop', scrollTop)
-    // console.info('scrollHeight', scrollHeight)
-    // console.info('offsetHeight', offsetHeight)
-    // console.info(r1)
-
     // scroll circle indicator:
     const dashBoardOffset = (283 * (1.001 - (scrollTop / (scrollHeight - offsetHeight))));
 
@@ -175,13 +192,8 @@ import treeImage from "~/assets/screens/tree.png";
 
     const displayScrollDown = (scrollTop > scrollHeight - offsetHeight * 1.9) ? "none" : "block";
     const displayScrollDownElse = (displayScrollDown === "block") ? "none" : "block";
-
-    const oklchPerc = 100 - Math.min(100, Math.max(scrollTop / offsetHeight, 0)) * 100;
-    const heroTextColor = `oklch(${oklchPerc}% 0 0)`; // oklch(100% 0 0) = #fff,  oklch(0% 0 0) = #000
-
     const heroActionOpacity = Math.round(scrollTop / offsetHeight);
 
-    nativeElement.style.setProperty("--ge-hero-text-color", `${heroTextColor}`);
     nativeElement.style.setProperty("--ge-stroke-dashoffset", `${dashBoardOffset}`); // for progress-circle-bar
     nativeElement.style.setProperty("--ge-welcome-rotate", `${-r1}deg`); // rotateY for cube
     nativeElement.style.setProperty("--ge-welcome-zoom", `${zoom}`); // zooming into cube -> section 'Features'
@@ -193,10 +205,10 @@ import treeImage from "~/assets/screens/tree.png";
     nativeElement.style.setProperty("--ge-headline-hero-super-display", displayHeroText); // Display property of hero title
 
     // Rotation of feature images:
-    const rotH = 0.5 + ((scrollTop + offsetHeight / 2) % offsetHeight) / offsetHeight;
-    const rotDeg = -(rotH * 180 - 180);
-    const rotateY = `${rotDeg}deg`;
-    nativeElement.style.setProperty("--ge-welcome-rotate-feature-img", rotateY);
+    // const rotH = 0.5 + ((scrollTop + offsetHeight / 2) % offsetHeight) / offsetHeight;
+    // const rotDeg = -(rotH * 180 - 180);
+    // const rotateY = `${rotDeg}deg`;
+    // nativeElement.style.setProperty("--ge-welcome-rotate-feature-img", rotateY);
   }
 
   onScroll();

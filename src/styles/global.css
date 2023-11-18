@@ -1,21 +1,6 @@
 /* TODO: consider creating <Button> and <GradientText> components */
 
-body {
-  --ge-welcome-rotate: 0deg;
-  --ge-welcome-img-width-number: 500;
-  --ge-welcome-img-width: calc(var(--ge-welcome-img-width-number) * 1px);
-  --ge-welcome-img-height: calc(var(--ge-welcome-img-width-number) / 2 * 1px);
-  --ge-welcome-img-transform: var(--ge-welcome-img-height);
-  --ge-welcome-img-transform-neg: calc(-1 * var(--ge-welcome-img-width-number) / 2 * 1px);
-  --ge-headline-hero-super-content: " ";
-  --ge-headline-hero-super-display: grid;
-  --ge-hero-text-color: #fff;
-  --ge-hero-action-opacity: 0;
-  --ge-welcome-zoom: 1;
-  --ge-header-border-bottom: #eee;
-  --ge-welcome-opacity:1;
-//--ge-header-border-bottom: #111827;
-}
+
 
 a,
 .btn {
