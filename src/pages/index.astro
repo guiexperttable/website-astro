@@ -8,17 +8,23 @@ import Showcase from "~/components/showcase.astro";
 import Splash from "~/components/splash.astro";
 import Header from "../components/header.astro";
 import Imprint from "../components/imprint.astro";
+import Cube from "../components/cube.astro";
 ---
 <IndexLayout title="GUI Expert Welcome" >
+
   <Header splashMode={true} />
   <Splash />
-  <div class="space-y-24 px-8 py-32">
+
+  <div class="space-y-24 px-8 py-32" id="container">
+    <Cube />
     <Intro />
     <Features />
     <Compatibility />
     <Showcase />
     <Imprint />
   </div>
+
   <Footer />
+
 </IndexLayout>
 
