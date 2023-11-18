@@ -34,21 +34,7 @@ import treeImage from "~/assets/screens/tree.png";
         min-height: 100vh;
     }
 
-    html {
-        --ge-welcome-rotate: 0deg;
-        --ge-welcome-img-width-number: 500;
-        --ge-welcome-img-width: calc(var(--ge-welcome-img-width-number) * 1px);
-        --ge-welcome-img-height: calc(var(--ge-welcome-img-width-number) / 2 * 1px);
-        --ge-welcome-img-transform: var(--ge-welcome-img-height);
-        --ge-welcome-img-transform-neg: calc(-1 * var(--ge-welcome-img-width-number) / 2 * 1px);
-        --ge-headline-hero-super-content: " ";
-        --ge-headline-hero-super-display: grid;
-        --ge-hero-text-color: #fff;
-        --ge-hero-action-opacity: 0;
-        --ge-welcome-zoom: 1;
-        --ge-header-border-bottom: #eee;
-    //--ge-header-border-bottom: #111827;
-    }
+
 
     .scene {
         z-index: -3;
@@ -135,7 +121,8 @@ import treeImage from "~/assets/screens/tree.png";
 
 <script>
 
-  const nativeElement = document.getElementById('container');
+  const nativeElement = document.querySelector('body');
+  const scrollContainer = window;
   const headlines = [
     "",
     "Excellent performance",
@@ -144,7 +131,7 @@ import treeImage from "~/assets/screens/tree.png";
     "Open Source"
   ];
 
-  document.querySelector('body').addEventListener("scroll", () => onScroll(), false);
+  scrollContainer.addEventListener("scroll", () => onScroll(), false);
 
   nativeElement.style.setProperty("--ge-welcome-scrolldown-display", `block`);
   nativeElement.style.setProperty("--ge-welcome-scrolldown-display-else", `none`);
@@ -160,14 +147,18 @@ import treeImage from "~/assets/screens/tree.png";
   }
 
   function calcCssPropertiesAfterScrolling() {
-    console.info('calcCssPropertiesAfterScrolling...')
     const offsetHeight = nativeElement.clientHeight;
     const scrollHeight = nativeElement.scrollHeight;
-    const scrollTop = nativeElement.scrollTop;
+    const scrollTop = nativeElement.parentElement.scrollTop;
 
     // Rotation:
     const r0 = (scrollTop - offsetHeight) * 360 / (4 * offsetHeight);
     const r1 = Math.max(-270, Math.min(270, r0));
+
+    // console.info('scrollTop', scrollTop)
+    // console.info('scrollHeight', scrollHeight)
+    // console.info('offsetHeight', offsetHeight)
+    // console.info(r1)
 
     // scroll circle indicator:
     const dashBoardOffset = (283 * (1.001 - (scrollTop / (scrollHeight - offsetHeight))));
