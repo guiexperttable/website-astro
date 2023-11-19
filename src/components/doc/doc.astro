@@ -43,14 +43,14 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
           For our library: a table model gives the information on how many rows and
           how many columns the table has, what the value of a cell is,
           what the column span of a cell is, what the CSS classes are, and so on.
-          A model is a concrete class of this interface <a href="/api/tsdoc/interfaces/TableModelIf.html">TableModelIf</a>.
+          A model is a concrete class of this interface <a target="_blank" href="/api/interfaces/TableModelIf.html">TableModelIf</a>.
         </p>
         <p class="mb-4">
           A lot of requirements of a table body also exist for the header or footer.
           Also for a header, it's important to know the CSS classes or to know the 'colspan' value of a header cell and so
           on.
           Because of this, we decided to create three sub-models: our table has three areas (header, body, footer),
-          so our table model has three (sub) area models (see: <a href="/api/tsdoc/interfaces/AreaModelIf.html">AreaModelIf</a>).
+          so our table model has three (sub) area models (see: <a target="_blank" href="/api/interfaces/AreaModelIf.html">AreaModelIf</a>).
           This gives you the most flexibility for designing fancy tables.
           You can write an implementation of the table model by hand or you can use one of the flexible factory methods.
           We try to make this table component very flexible and easy to use.
@@ -68,7 +68,7 @@ import DiagramTableModel from "~/components/doc/diagram-table-model.astro";
           It's possible to filter table rows, re-order or resize the columns (by drag and drop), and so on.
           This is all easy to use because it's handled by default.
           All features of this table can be configured by an option property
-          (see <a href="/api/tsdoc/classes/TableOptions.html">TableOptions</a>).
+          (see <a target="_blank" href="/api/classes/TableOptions.html">TableOptions</a>).
         </p>
         <p class="mb-4" >
           We have tons of demo code for helping you by starting with this component.
