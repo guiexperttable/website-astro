@@ -1,14 +1,33 @@
 ---
-
+import {Image} from "astro:assets";
+import treeImage from "../assets/screens/tree.png";
+import editImage from "../assets/screens/edit.png";
+import themecreatorImage from "../assets/screens/themecreator.png";
+import heatmapImage from "../assets/screens/heatmap.png";
 ---
 
 <section class="transparent ge-display-none-lt-sm">
   <div class="scene">
     <div class="cube">
-      <div class="side back"></div>
-      <div class="side left"></div>
-      <div class="side front"></div>
-      <div class="side right"></div>
+      <Image
+          class="side back bg-cover transition-all"
+          src={themecreatorImage}
+          alt={`A screenshot of theme creator`}/>
+
+      <Image
+          class="side left bg-cover object-cover transition-all"
+          src={heatmapImage}
+          alt={`A screenshot of heat map`}/>
+
+      <Image
+          class="side front bg-cover object-cover transition-all"
+          src={treeImage}
+          alt={`A screenshot of tree table`}/>
+
+      <Image
+          class="side right bg-cover bg-top transition-all"
+          src={editImage}
+          alt={`A screenshot of table editing`}/>
     </div>
   </div>
 </section>
@@ -106,22 +125,18 @@
 
     .scene .cube .side.front {
         transform: translateZ(var(--ge-welcome-img-transform));
-        background-image: url(/screens/tree.png);
     }
 
     .scene .cube .side.right {
         transform: translateX(var(--ge-welcome-img-transform)) rotateY(90deg);
-        background-image: url(/screens/edit.png);
     }
 
     .scene .cube .side.back {
         transform: translateZ(var(--ge-welcome-img-transform-neg)) rotateX(180deg) rotateZ(180deg);
-        background-image: url(/screens/themecreator.png);
     }
 
     .scene .cube .side.left {
         transform: translateX(var(--ge-welcome-img-transform-neg)) rotateY(90deg) scaleX(-1);
-        background-image: url(/screens/heatmap.png);
     }
 
 
