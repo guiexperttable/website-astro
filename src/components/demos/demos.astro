@@ -1,0 +1,78 @@
+---
+import '../../styles/ge-table.css';
+
+import {
+  EventAdapter,
+  SimpleDomService,
+  TableFactory,
+  TableOptions,
+  TableScope } from "@guiexpert/table";
+
+import ContentSection from "~/components/content-section.astro";
+const id = Math.random().toString(36).slice(2, 11);
+const headerData = [ ["Column 1", "Column 2", "Column 3"] ];
+const bodyData = [];
+for (let i=0; i<100; i++) {
+  bodyData.push(["This is a very", "simple", "demo."]);
+}
+const tableModel = TableFactory.createTableModel({
+  headerData,
+  bodyData,
+  overridingColumnWidth: 110
+});
+const simpleDomService = new SimpleDomService();
+const tableOptions = new TableOptions();
+const eventAdapter = new EventAdapter();
+---
+TODO does not work.  WIP
+test:
+<!--<ContentSection title="Demos" id="demos">-->
+  <div class={id}></div>
+<!--</ContentSection>-->
+
+<script is:inline define:vars={{id}}>
+  // import {TableScope } from "@guiexpert/table";
+
+  const ele = document.querySelector(`.${id}`);
+  console.log(ele);
+/*
+  import {
+    EventAdapter,
+    SimpleDomService,
+    TableFactory,
+    TableOptions,
+    TableScope } from "@guiexpert/table";
+
+  const ele = document.querySelector(".get-table") as HTMLDivElement;
+
+
+  const headerData = [ ["Column 1", "Column 2", "Column 3"] ];
+
+  const bodyData = [];
+  for (let i=0; i<100; i++) {
+    bodyData.push(["This is a very", "simple", "demo."]);
+  }
+
+  const tableModel = TableFactory.createTableModel({
+    headerData,
+    bodyData,
+    overridingColumnWidth: 110
+  });
+  const tableScope = new TableScope(
+    ele, tableModel, new SimpleDomService(), new TableOptions(), new EventAdapter()
+  );
+  tableScope.firstInit();
+  */
+  // const tableModel = {tableModel};
+  // const simpleDomService = {simpleDomService};
+  // const tableOptions = {tableOptions};
+  // const eventAdapter = {eventAdapter};
+
+  if (ele) {
+    new TableScope(ele, tableModel, new SimpleDomService(), new TableOptions(), new EventAdapter()).firstInit();
+  }
+</script>
+
+<style>
+
+</style>
