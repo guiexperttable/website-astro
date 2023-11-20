@@ -11,6 +11,11 @@ export default defineConfig({
   vite: {
     ssr: {
       external: ["svgo"],
+      noExternal:['@astrojs/prism']
     },
+  },
+  markdown: {
+    // Can be 'shiki' (default), 'prism' or false to disable highlighting
+    syntaxHighlight: 'prism',
   },
 });
