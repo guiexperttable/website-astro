@@ -1,0 +1,14 @@
+---
+import DemoHeader  from '../components/demos/demo-header.astro';
+import IndexLayout from "./IndexLayout.astro";
+import Header from "../components/header.astro";
+const { title = 'Demos', name } = Astro.props;
+---
+
+<IndexLayout title={title}>
+  <Header splashMode={false} />
+
+  <DemoHeader name={name} title={title}/>
+  <slot />
+
+</IndexLayout>

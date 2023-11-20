@@ -1,0 +1,43 @@
+---
+import {Icon} from "astro-icon";
+const {name} = Astro.props;
+const {title} = Astro.props;
+---
+<div class="flex w-full items-center justify-between border-b border-transparent px-8 py-4">
+  <nav class="hidden sm:block ">
+    <ul class="flex items-center gap-6 ">
+      <li>
+        {title}
+      </li>
+      <li>
+        <a
+            class="text-sm"
+            href={'/demos/'+name+'/run'}>Run
+        </a>
+      </li>
+      <li>
+        <a
+            class="text-sm"
+            href={'/demos/'+name+'/info'}>Description
+        </a>
+      </li>
+
+      <li>
+        <a
+            class="text-sm flex w-full items-center"
+            href="/demos">
+            <Icon pack="mdi" name="reply" class="h-8" /> Back
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+
+
+
+<noscript>
+  <style>
+
+  </style>
+</noscript>
