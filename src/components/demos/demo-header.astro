@@ -1,12 +1,13 @@
 ---
 import {Icon} from "astro-icon";
+
 const {name} = Astro.props;
 const {title} = Astro.props;
 ---
-<div class="flex w-full items-center justify-between border-b border-transparent px-8 py-4">
+<div class="flex w-full items-center justify-between border-b border-transparent px-8 py-4 brd">
   <nav class="hidden sm:block ">
     <ul class="flex items-center gap-6 ">
-      <li>
+      <li class="gradient-text">
         {title}
       </li>
       <li>
@@ -36,8 +37,9 @@ const {title} = Astro.props;
 
 
 
-<noscript>
-  <style>
-
-  </style>
-</noscript>
+<style>
+    .brd {
+        @apply bottom-auto top-0;
+        @apply border-default bg-default text-default;
+    }
+</style>
