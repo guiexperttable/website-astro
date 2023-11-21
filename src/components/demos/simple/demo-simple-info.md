@@ -1,6 +1,6 @@
 ---
 title: Marc 2
-layout: ../../../layouts/TsCodeLayout.astro
+layout: ../../../layouts/DemoCodeLayout.astro
 ---
 
 Dies ist ein Test.
@@ -33,4 +33,27 @@ export class SelfwrittenAreaModel extends AbstractAreaModel<number> {
   }
 
 }
+```
+
+
+
+
+To avoid extending your Markdown config from MDX, set [the `extendMarkdownConfig` option](/en/guides/integrations-guide/mdx/#extendmarkdownconfig) (enabled by default) to `false`:
+
+```ts title="astro.config.mjs"
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+
+export default defineConfig({
+  markdown: {
+    remarkPlugins: [remarkPlugin],
+  },
+  integrations: [
+    mdx({
+      // Markdown config now ignored
+      extendMarkdownConfig: false,
+      // No `remarkPlugins` applied
+    })
+  ]
+});
 ```

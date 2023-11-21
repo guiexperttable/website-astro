@@ -10,8 +10,6 @@ const { title = 'Demos', name } = Astro.props;
 
   <DemoHeader name={name} title={title}/>
 
-  <div class="p-6">
-    <slot />
-  </div>
+  <slot />
 
 </IndexLayout>
