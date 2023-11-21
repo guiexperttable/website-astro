@@ -1,10 +1,13 @@
 ---
 import DemoLayout from '../../../layouts/DemoLayout.astro';
 import Info from "../../../components/demos/arrayofarrays/info.md";
+
+const pathes = Astro.url.pathname.split('/');
+const name = pathes[pathes.length-2];
 ---
 
-<DemoLayout name="simple" title="Simple array of arrays">
-  <div class="p-6">
+<DemoLayout name={name} title="Array of arrays">
+  <div class="px-8">
     <Info/>
   </div>
 </DemoLayout>

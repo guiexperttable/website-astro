@@ -1,5 +1,4 @@
 ---
-title: Marc 2
 layout: ../../../layouts/DemoCodeLayout.astro
 ---
 

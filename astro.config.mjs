@@ -11,6 +11,7 @@ const astroExpressiveCodeOptions = {
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   site: "https://astro-moon-landing.netlify.app/",
   integrations: [
     tailwind(),
