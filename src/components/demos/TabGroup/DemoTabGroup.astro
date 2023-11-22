@@ -10,13 +10,13 @@ const {name} = Astro.props;
 <div class="TabGroup no-flex text-sm">
   <a
       data-astro-prefetch="viewport"
-      href={'/demos/' + name + '/run'}
+      href={'/showcase/' + name + '/run'}
       class={segments.includes('run') ? 'active' : ''}>
     Run
   </a>
   <a
       data-astro-prefetch="viewport"
-      href={'/demos/' + name + '/info'}
+      href={'/showcase/' + name + '/info'}
       class={segments.includes('info') ? 'active' : ''}>
     Description
   </a>
