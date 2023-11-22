@@ -9,6 +9,9 @@ You can find it on stackblitz:
 <a href="https://stackblitz.com/edit/stackblitz-guiexpert-tableplain-js-simple" target="_blank">stackblitz-guiexpert-tableplain-js-simple</a>.
 
 
+# Installation
+
+## Via npm
 Add the following NPM package to your existing plain js project
 (run this in your project root directory):
 
@@ -16,6 +19,60 @@ Add the following NPM package to your existing plain js project
 npm install --save @guiexpert/table
 ```
 
+## Without npm
+
+If you have a project without NPM, you can directly include the guiexpert module by manually downloading the necessary 
+files and adding them to your project directory. 
+Typically, you can download the required files from the official website or the repository of the guiexpert module.
+
+After downloading, you can copy the files into your project directory and then use appropriate script 
+tags in your HTML file to utilize the guiexpert module.
+
+
+Here’s a basic example:
+
+- Download the required guiexpert files and save them in your project folder.
+- Use &lt;script> tags in your HTML file to include the guiexpert files.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My GUIExpert Project</title>
+    <!-- Add other meta tags, CSS files, etc. here -->
+</head>
+<body>
+    <!-- The rest of your HTML structure -->
+
+    <!-- Script tags to include guiexpert -->
+    <script src="Path/To/guiexpert.js"></script>
+    <link
+        href="Path/To/guiexpert.css"
+        rel="stylesheet"
+    />
+    <!-- Alternate: use a CDN: 
+    <link
+        href="https://cdn.jsdelivr.net/gh/guiexperttable/ge-table@main/libs/table/css/main.css"
+        rel="stylesheet"
+    />
+    -->
+    <!-- Other script tags for your application logic -->
+
+
+</body>
+</html>
+```
+
+Replace "Path/To/guiexpert.js" with the actual path to your downloaded guiexpert.js file.
+
+Keep in mind that this may depend on any dependencies that guiexpert itself might have. 
+You might also need to manually download and include other files or libraries if they are required by guiexpert.
+
+Also, note that using NPM typically makes managing dependencies easier and simplifies integrating modules into projects. 
+Manual inclusion might require more effort to ensure everything works correctly and stays up to date.
+
+
+# Template
 
 Add an empty <b>&lt;div></b> element to your html code:
 
