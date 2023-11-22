@@ -1,8 +1,18 @@
 ---
 import IndexLayout from '../../layouts/IndexLayout.astro';
 import Header from "../../components/header.astro";
+import PlainJS from "../../components/getstarted/plainjs.md";
+import GetStartedSection from "../../components/getstarted/get-started-section.astro";
+
+const title = 'Get stated (React)';
 ---
-<IndexLayout title="Get stated (React)">
+<IndexLayout title={title}>
   <Header splashMode={false} />
-  TODO React
+
+  <GetStartedSection title="Get started" id="getstarted">
+    <Fragment slot="lead">
+      React
+    </Fragment>
+    <PlainJS title={title}/>
+  </GetStartedSection>
 </IndexLayout>
