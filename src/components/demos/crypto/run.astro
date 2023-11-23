@@ -1,0 +1,158 @@
+---
+import '../../../styles/ge-table.css';
+import bodyData from '../../../assets/demo/crypto-top-100.json';
+const id = 'div'+Math.random().toString(36).slice(2, 11);
+---
+
+<div
+    style="height: calc(100vh - 128px)"
+    class={id}></div>
+
+
+<script is:inline define:vars={{id, bodyData}} type="module">
+
+  import {
+    TableFactory,
+    TableScope,
+    EventAdapter,
+    TableOptions,
+    SimpleDomService,
+    SelectionModel,
+    ColumnDef,
+    px100,
+    px120,
+    px140,
+    px160,
+    px200,
+    px60,
+  } from '/scripts/index.js'
+
+  const selectionModel = new SelectionModel("row", "multi");
+
+  const formatterUsd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+  const formatter = new Intl.NumberFormat("en-US");
+
+  const volumn24hRenderer = {
+    render: (
+      cellDiv,
+      rowIndex,
+      _columnIndex,
+      _areaIdent,
+      areaModel,
+      _cellValue,
+      domService) => {
+      const coin = areaModel.getRowByIndex(rowIndex);
+      if (coin) {
+        const usd = formatterUsd.format(coin.volUsd);
+        const btc = formatter.format(coin.volBtc);
+        cellDiv.innerHTML = `
+          <div style="line-height: 1.2;padding: 10px 0 0 10px;">
+            ${usd}<br>
+            ${btc} BTC
+          </div>
+      `;
+      }
+      return undefined;
+    }
+  };
+
+  // Table options:
+  const tableOptions = {
+    ...new TableOptions(),
+    hoverColumnVisible: false,
+    verticalBorderVisible: false,
+    defaultRowHeights: {
+      header: 34,
+      body: 50,
+      footer: 0
+    },
+    // TODO externalFilterFunction: this.filterFn.bind(this),
+    getSelectionModel: () => selectionModel
+  };
+  const tableModel = createTableModel(bodyData, tableOptions);
+
+  new TableScope(
+    document.querySelector('.'+id),
+    tableModel,
+    new SimpleDomService(),
+    tableOptions,
+    new EventAdapter()
+  ).firstInit();
+
+
+  function createTableModel(rows, tableOptions) {
+    // Column model:
+    // const changePercentageRenderer = new ChangePercentageRenderer();
+    // const usdRenderer = new UsdRenderer();
+    // const nameAndSymbolRenderer = new NameAndSymbolRenderer();
+    // const volumn24hRenderer = new Volumn24hRenderer();
+    // const circulatingSupplyRenderer = new CirculatingSupplyRenderer(120);
+    // const coinIconRenderer = new CoinIconRenderer(120);
+
+    const columnDefs = [
+      ColumnDef.create({
+        property: "symbol",
+        headerLabel: "",
+        width: px60,
+        bodyClasses: ["ge-table-text-align-left"],
+        //bodyRenderer: coinIconRenderer
+      }),
+      ColumnDef.create({
+        property: "symbol",
+        headerLabel: "Name",
+        width: px120,
+        bodyClasses: ["ge-table-text-align-left"],
+        headerClasses: ["ge-table-text-align-left"],
+        //bodyRenderer: nameAndSymbolRenderer
+      }),
+      // new ColumnDef("symbol", "Symbol", px60),
+      ColumnDef.create({
+        property: "priceInUsd",
+        headerLabel: "Price $",
+        width: px100,
+        bodyClasses: ["ge-table-text-align-right"],
+        headerClasses: ["ge-table-text-align-right"]
+      }),
+      new ColumnDef("change1h", "1h %", px100, undefined, /*ColumnDef.bodyRenderer(changePercentageRenderer)*/),
+      new ColumnDef("change24h", "24h %", px100, undefined, /*ColumnDef.bodyRenderer(changePercentageRenderer)*/),
+      new ColumnDef("change7d", "7d %", px100, undefined, /*ColumnDef.bodyRenderer(changePercentageRenderer)*/),
+      ColumnDef.create({
+        property: "marketCapUsd",
+        headerLabel: "Market Cap",
+        width: px160,
+        bodyClasses: ["ge-table-text-align-right"],
+        headerClasses: ["ge-table-text-align-right"],
+        //bodyRenderer: usdRenderer
+      }),
+      ColumnDef.create({
+        headerLabel: "Volumne (24h)",
+        width: px200,
+        bodyClasses: ["ge-table-text-align-right"],
+        headerClasses: ["ge-table-text-align-right"],
+        bodyRenderer: volumn24hRenderer
+      }),
+      ColumnDef.create({
+        property: "circulatingSupply",
+        headerLabel: "Circulating Supply",
+        width: px140,
+        //bodyRenderer: circulatingSupplyRenderer,
+        bodyClasses: ["ge-table-text-align-right"],
+        headerClasses: ["ge-table-text-align-right"]
+      })
+    ];
+    columnDefs.forEach(cd => cd.sortable = () => true);
+
+    return TableFactory.createTableModel({
+      rows,
+      columnDefs,
+      tableOptions
+    });
+  }
+
+</script>
+
+<style>
+  div {
+    font-size:14px;
+  }
+</style>
