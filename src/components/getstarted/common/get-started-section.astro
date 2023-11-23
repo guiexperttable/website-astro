@@ -1,4 +1,5 @@
 ---
+import GetStartedFooter from './get-started-footer.astro'
 export interface Props {
   id: string;
   title: string;
@@ -26,6 +27,8 @@ const { title, id, noLead } = Astro.props;
     <slot />
   </div>
 
+
+  <GetStartedFooter />
 </section>
 
 <style>

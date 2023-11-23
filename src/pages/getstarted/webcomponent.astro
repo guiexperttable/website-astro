@@ -1,10 +1,10 @@
 ---
 import IndexLayout from '../../layouts/IndexLayout.astro';
 import Header from "../../components/header.astro";
-import PlainJS from "../../components/getstarted/plainjs.md";
-import GetStartedSection from "../../components/getstarted/get-started-section.astro";
+import Webcomponent from "../../components/getstarted/webcomponent.md";
+import GetStartedSection from "../../components/getstarted/common/get-started-section.astro";
 
-const title = 'Get stated (Web Component)';
+const title = 'Get stated (web component)';
 ---
 <IndexLayout title={title}>
   <Header splashMode={false} />
@@ -13,6 +13,6 @@ const title = 'Get stated (Web Component)';
     <Fragment slot="lead">
       Web Component
     </Fragment>
-    <PlainJS title={title}/>
+    <Webcomponent title={title}/>
   </GetStartedSection>
 </IndexLayout>

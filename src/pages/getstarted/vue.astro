@@ -1,8 +1,8 @@
 ---
 import IndexLayout from '../../layouts/IndexLayout.astro';
 import Header from "../../components/header.astro";
-import PlainJS from "../../components/getstarted/plainjs.md";
-import GetStartedSection from "../../components/getstarted/get-started-section.astro";
+import Vue from "../../components/getstarted/vue.md";
+import GetStartedSection from "../../components/getstarted/common/get-started-section.astro";
 
 const title = 'Get stated (Vue)';
 ---
@@ -13,6 +13,6 @@ const title = 'Get stated (Vue)';
     <Fragment slot="lead">
       Vue
     </Fragment>
-    <PlainJS title={title}/>
+    <Vue title={title}/>
   </GetStartedSection>
 </IndexLayout>

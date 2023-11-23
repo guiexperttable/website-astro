@@ -10,7 +10,7 @@ You can find it on stackblitz:
 
 # Installation
 
-Add the following NPM package to your existing plain js project
+Add the following NPM package to your existing angular project
 (run this in your project root directory):
 
 ```shell
@@ -31,7 +31,7 @@ Import the (standalone) table component in your angular module (or in your angul
 
 ## Add global table CSS
 
-To add the global guiexpert CSS file in an Angular project, 
+To add the global guiexpert CSS file in your Angular project, 
 you can include the file in the styles array within the angular.json file.
 
 - Open the `angular.json` file of your project.

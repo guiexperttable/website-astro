@@ -1,8 +1,8 @@
 ---
 import IndexLayout from '../../layouts/IndexLayout.astro';
 import Header from "../../components/header.astro";
-import PlainJS from "../../components/getstarted/plainjs.md";
-import GetStartedSection from "../../components/getstarted/get-started-section.astro";
+import Preact from "../../components/getstarted/preact.md";
+import GetStartedSection from "../../components/getstarted/common/get-started-section.astro";
 
 const title = 'Get stated (Preact)';
 ---
@@ -13,6 +13,6 @@ const title = 'Get stated (Preact)';
     <Fragment slot="lead">
       Preact
     </Fragment>
-    <PlainJS title={title}/>
+    <Preact title={title}/>
   </GetStartedSection>
 </IndexLayout>

@@ -1,8 +1,8 @@
 ---
 import IndexLayout from '../../layouts/IndexLayout.astro';
 import Header from "../../components/header.astro";
-import PlainJS from "../../components/getstarted/plainjs.md";
-import GetStartedSection from "../../components/getstarted/get-started-section.astro";
+import React from "../../components/getstarted/react.md";
+import GetStartedSection from "../../components/getstarted/common/get-started-section.astro";
 
 const title = 'Get stated (React)';
 ---
@@ -13,6 +13,6 @@ const title = 'Get stated (React)';
     <Fragment slot="lead">
       React
     </Fragment>
-    <PlainJS title={title}/>
+    <React title={title}/>
   </GetStartedSection>
 </IndexLayout>
