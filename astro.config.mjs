@@ -14,8 +14,11 @@ const astroExpressiveCodeOptions = {
 export default defineConfig({
   prefetch: true,
   site: "https://gui.expert/",
-  integrations: [tailwind(),
-  astroExpressiveCode(astroExpressiveCodeOptions), sitemap()],
+  integrations: [
+    tailwind(),
+    astroExpressiveCode(astroExpressiveCodeOptions),
+    sitemap()
+  ],
   vite: {
     ssr: {
       external: ["svgo"],
