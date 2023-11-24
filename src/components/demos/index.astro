@@ -3,6 +3,9 @@ import simpleImage from "../../assets/screens/simple.png";
 import arrayOfArrays from "../../assets/screens/thumbs/arrayofarrays.png";
 import cryptoImage from "../../assets/screens/thumbs/crypto.png";
 import orderImage from "../../assets/screens/thumbs/order.png";
+import heatmapImage from "../../assets/screens/thumbs/heatmap.png";
+import seattleHeatmapImage from "../../assets/screens/thumbs/seattleheatmap.png";
+import timetableImage from "../../assets/screens/thumbs/timetable.png";
 import {Image} from "astro:assets";
 import ContentSection from "../content-section.astro";
 import DemoCard from "./demo-card.astro";
@@ -99,46 +102,33 @@ import DemoCard from "./demo-card.astro";
 
       <div>
         <DemoCard
-            title="Simple Table: Array of Arrays"
-            img={simpleImage}
-            url="/showcase/arrayofarrays/run">
+            title="Heatmap"
+            img={heatmapImage}
+            url="/showcase/heatmap1/run">
           <p>
-            An array of arrays data structure can be easily converted in a
-            <a
-                class="text-primary"
-                target="_blabk"
-                href="/api/classes/TableModel.html">TableModel
-            </a>
-            with help of TableFactory
-            <a
-                class="text-primary"
-                href="/api/classes/TableFactory.html#createTableModel"
-                target="blank">.createTableModel()
-            </a>
-            {'.'}
+            xxxxx
           </p>
         </DemoCard>
       </div>
 
       <div>
         <DemoCard
-            title="Simple Table: Array of Arrays"
-            img={simpleImage}
-            url="/showcase/arrayofarrays/run">
+            title="Seattle Heatmap"
+            img={seattleHeatmapImage}
+            url="/showcase/heatmap2/run">
           <p>
-            An array of arrays data structure can be easily converted in a
-            <a
-                class="text-primary"
-                target="_blabk"
-                href="/api/classes/TableModel.html">TableModel
-            </a>
-            with help of TableFactory
-            <a
-                class="text-primary"
-                href="/api/classes/TableFactory.html#createTableModel"
-                target="blank">.createTableModel()
-            </a>
-            {'.'}
+            xxxxx
+          </p>
+        </DemoCard>
+      </div>
+
+      <div>
+        <DemoCard
+            title="Time Table: row- and colspan"
+            img={timetableImage}
+            url="/showcase/timetable/run">
+          <p>
+            xxxx
           </p>
         </DemoCard>
       </div>
