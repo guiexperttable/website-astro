@@ -20,9 +20,10 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
       href={url}>
     <figure class="relative h-full w-full overflow-hidden">
       <Image
-          class="h-full w-full bg-cover object-none transition-all duration-300 group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
+          class="h-full w-full bg-cover object-fit transition-all duration-300 group-hover:scale-110 group-hover:opacity-20 group-focus:scale-110 group-focus:opacity-20"
           src={img}
-          widths={widths}
+          width={767}
+          height={412}
           sizes={sizes}
           alt={`A screenshot of ${img.url}`}/>
       <figcaption class="absolute inset-0">

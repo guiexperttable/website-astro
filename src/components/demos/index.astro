@@ -1,5 +1,7 @@
 ---
 import simpleImage from "../../assets/screens/simple.png";
+import arrayOfArrays from "../../assets/screens/thumbs/arrayofarrays.png";
+import cryptoImage from "../../assets/screens/thumbs/crypto.png";
 import {Image} from "astro:assets";
 import ContentSection from "../content-section.astro";
 import DemoCard from "./demo-card.astro";
@@ -27,7 +29,7 @@ import DemoCard from "./demo-card.astro";
       <div>
         <DemoCard
             title="Simple Table: Array of Arrays"
-            img={simpleImage}
+            img={arrayOfArrays}
             url="/showcase/arrayofarrays/run">
           <p>
             An array of arrays data structure can be easily converted in a
@@ -50,9 +52,9 @@ import DemoCard from "./demo-card.astro";
 
       <div>
         <DemoCard
-            title="Simple Table: Array of Arrays"
-            img={simpleImage}
-            url="/showcase/arrayofarrays/run">
+            title="Cryptos"
+            img={cryptoImage}
+            url="/showcase/crypto/run">
           <p>
             An array of arrays data structure can be easily converted in a
             <a
