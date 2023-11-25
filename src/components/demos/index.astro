@@ -6,6 +6,7 @@ import orderImage from "../../assets/screens/thumbs/order.png";
 import heatmapImage from "../../assets/screens/thumbs/heatmap.png";
 import seattleHeatmapImage from "../../assets/screens/thumbs/seattleheatmap.png";
 import timetableImage from "../../assets/screens/thumbs/timetable.png";
+import treetableImage from "../../assets/screens/thumbs/treetable.png";
 import {Image} from "astro:assets";
 import ContentSection from "../content-section.astro";
 import DemoCard from "./demo-card.astro";
@@ -114,11 +115,22 @@ import DemoCard from "./demo-card.astro";
 
       <div>
         <DemoCard
-            title="Simple Table: Array of Arrays"
-            img={simpleImage}
-            url="/showcase/arrayofarrays/run">
+            title="Tree table"
+            img={treetableImage}
+            url="/showcase/treetable/run">
           <p>
-            xxxxx
+            Tree table, fixed columns, editable
+          </p>
+        </DemoCard>
+      </div>
+
+      <div>
+        <DemoCard
+            title="Tree Table"
+            img={simpleImage}
+            url="/showcase/treetablecheckbox/run">
+          <p>
+            treetablecheckbox
           </p>
         </DemoCard>
       </div>
