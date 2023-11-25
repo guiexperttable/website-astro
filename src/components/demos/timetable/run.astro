@@ -13,7 +13,7 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
     define:vars={{id}}
     type="module">
 
-  import { TableScope, EventAdapter, SimpleDomService } from '/scripts/index.js'
+  import { TableScope, EventAdapter, SimpleDomService } from '/scripts/table/index.js'
   import {createTimeTableModel, tableOptions, COL_IDX_UPDATED_AT} from "/scripts/demo-table-models/index.js";
 
   const tableModel = createTimeTableModel();
