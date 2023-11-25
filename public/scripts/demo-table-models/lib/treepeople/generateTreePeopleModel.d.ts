@@ -1,7 +1,6 @@
 import { ColumnDefIf, SelectionModel, TableModelAndOptionsIf, TreeRow } from '../../../../table/src/index.ts';
 import { PersonIf } from "./person.if";
-export declare const selectionModel: SelectionModel;
-export declare function createTreePeopleTableOptions(): {
+export declare function createTreePeopleTableOptions(addDemoSelection?: boolean): {
     hoverColumnVisible: boolean;
     defaultRowHeights: {
         header: number;
@@ -45,5 +44,5 @@ export declare function createTreePeopleTableOptions(): {
     getEditRenderer?: import('../../../../table/src/index.ts').GetEditRenderer | undefined;
     getFocusModel?: import('../../../../table/src/index.ts').GetT<import('../../../../table/src/index.ts').FocusModelIf> | undefined;
 };
-export declare function createcreateTreePeopleColumnDefs(): ColumnDefIf[];
-export declare function createTreePeopleModelAndOptions(): TableModelAndOptionsIf;
+export declare function createTreePeopleColumnDefs(): ColumnDefIf[];
+export declare function createTreePeopleModelAndOptions(addDemoSelection?: boolean): TableModelAndOptionsIf;

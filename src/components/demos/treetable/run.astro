@@ -15,7 +15,7 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
   import { TableScope, EventAdapter, SimpleDomService } from '/scripts/table/index.js'
   import {createTreePeopleModelAndOptions} from "/scripts/demo-table-models/index.js";
 
-  const {tableModel, tableOptions} = createTreePeopleModelAndOptions();
+  const {tableModel, tableOptions} = createTreePeopleModelAndOptions(true);
   const ele = document.querySelector('.' + id);
 
   console.info(tableOptions);

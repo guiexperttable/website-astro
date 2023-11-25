@@ -1,5 +1,5 @@
-import { TreeRow } from "../data/common/tree-row";
+import { TreeRowIf } from "../data/common/tree-row-if";
 export declare class TreeRowService {
-    flattenTree<T>(rows: TreeRow<T>[], ret?: TreeRow<T>[]): TreeRow<T>[];
-    isVisible(row: TreeRow<any>): boolean;
+    flattenTree<T>(rows: TreeRowIf<T>[], ret?: TreeRowIf<T>[]): TreeRowIf<T>[];
+    isVisible(row: TreeRowIf<any>): boolean;
 }

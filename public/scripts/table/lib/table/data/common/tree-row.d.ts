@@ -7,5 +7,6 @@ export declare class TreeRow<T> implements TreeRowIf<T> {
     deep: number;
     checked: boolean;
     keep: boolean;
+    type: 'TreeRow' | '';
     constructor(data: T, expanded: boolean, children: TreeRowIf<T>[] | undefined, parent: TreeRowIf<T> | undefined, deep?: number, checked?: boolean, keep?: boolean);
 }
