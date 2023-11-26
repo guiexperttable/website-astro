@@ -1,11 +1,11 @@
 function O(h) {
-  return h.type === "TreeRow";
+  return h && h.type === "TreeRow";
 }
 function z(h) {
-  return h.type === "AreaModelTree";
+  return h && h.type === "AreaModelTree";
 }
 function be(h) {
-  return h.type === "CheckboxColumnDef";
+  return h && h.type === "CheckboxColumnDef";
 }
 class X {
   constructor(e = -1, t = -1, o = -1, i = -1, s, r, l, n = 0, d = 0, a = 0, c = "") {
