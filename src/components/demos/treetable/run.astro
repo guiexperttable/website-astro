@@ -18,9 +18,6 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
   const {tableModel, tableOptions} = createTreePeopleModelAndOptions(true);
   const ele = document.querySelector('.' + id);
 
-  console.info(tableOptions);
-  console.info(tableModel);
-
   const tableScope = new TableScope(
     ele,
     tableModel,
