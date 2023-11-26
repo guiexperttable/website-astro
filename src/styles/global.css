@@ -45,3 +45,10 @@ header:not(.fixed-header) .logo-fill-color-3 {
 .ge-negative-text-color {
   color: #ea3943;
 }
+
+.demo-content-div a {
+  text-decoration: underline;
+}
+.demo-content-div p {
+  margin: 20px 0;
+}
