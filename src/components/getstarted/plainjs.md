@@ -120,7 +120,7 @@ import {
 
 Create a table model. Select ('querySelector') the <b>&lt;div></b> element and create a table scope.
 Finally, call <b>firstInit()</b> at least once.
-On the right side, you will see the plain TS version.
+Below, you will see the plain TS version.
 For plain JS, remove <b>': TableModelIf'</b>.
 
 ```ts
