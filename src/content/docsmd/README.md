@@ -43,7 +43,7 @@ This is the UI-agnostic table component for your next web app. 😊
 - [Documentation](https://gui.expert/doc)
 - [API](https://gui.expert/api)
 
-## Get Started
+## Get started
 
 Add the following NPM package to your existing plain JS project (run this in your project root directory):
 
