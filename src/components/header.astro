@@ -4,9 +4,13 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 import Glogo from "./glogo.astro";
 
+interface Props {
+  splashMode: boolean;
+  smallGap?: boolean;
+}
 
+const { splashMode = false, smallGap = true } = Astro.props<Props>;
 
-const { splashMode } = Astro.props<boolean>;
 const navItems: Array<NavItem> = [
   { title: "Features", url: "/features/" },
   { title: "Get Started", url: "/getstarted/" },
@@ -89,7 +93,12 @@ const navItems: Array<NavItem> = [
   </div>
 </header>
 
-<div class:list={['h-[100px]', { 'hidden': splashMode }]}></div>
+<div class:list={['', {
+  'hidden': splashMode,
+  'h-[64px]': smallGap,
+  'h-[100px]': !smallGap,
+}]}></div>
+
 
 <script>
   import MicroModal from "micromodal";
