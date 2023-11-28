@@ -8,13 +8,14 @@ export interface Props {
   subTitle: string;
   price: string;
   actionLeft: string;
+  primary: boolean;
 }
 
-const { title, subTitle = '', price, actionLeft = '' } = Astro.props;
+const { title, subTitle = '', price, actionLeft = '', primary = false } = Astro.props;
 ---
 
 
-<div class="card perpetual single light free glow-effect">
+<div class:list={[ {'primary': primary}, 'card perpetual single light free glow-effect' ]} >
   <div class="header">
     <div class="icon pl-2">
       <Icon
@@ -66,6 +67,9 @@ const { title, subTitle = '', price, actionLeft = '' } = Astro.props;
         min-width: 400px;
         min-height: 550px;
         @apply border-default text-default bg-offset;
+    }
+    .card.primary {
+        background-color: #6366f116;
     }
 
     .card .header {

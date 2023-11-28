@@ -20,14 +20,15 @@ import Glogo from "./glogo.astro";
         <p>All features</p>
         <p>Source available</p>
         <p>Community support</p>
-        <a slot="action" href="javascript:void(0)" onclick="alert('Thanks!')">Free</a>
+        <a slot="action" href="javascript:void(0)" onclick="document.querySelector('dialog').showModal()">Free</a>
       </PricingCard>
 
       <PricingCard
           title="Commercial License"
           subTitle="Single Application"
           price="999 $"
-          actionLeft="It will be free in 2023.">
+          actionLeft="It will be free in 2023."
+          primary={true}>
         <p>Single Application</p>
         <p>One App (one subdomain)</p>
         <p>Perpetual license</p>
@@ -73,3 +74,14 @@ import Glogo from "./glogo.astro";
 
 
 </ContentSection>
+
+<dialog class="max-w-lg content-center p-6 justify-center">
+  <p>Individuals and non-commercial users can freely use and modify this software library
+    under the terms of the open source license.</p>
+  <form method="dialog" class="grid content-center items-center justify-center p-6">
+    <button
+        class="underline"
+        onclick="document.querySelector('dialog').close()">Thanks</button>
+  </form>
+</dialog>
+
