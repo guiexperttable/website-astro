@@ -10,7 +10,7 @@ const idInput = 'input' + Math.random().toString(36).slice(2, 11);
 
 <div class="filter-div">
   <label>Filter:
-    <input type="text" name="filter" autofocus class={idInput}/>
+    <input type="text" name="filter" autofocus class:list={[ idInput, 'max-w-[100px]']}/>
   </label>
 </div>
 
