@@ -18,7 +18,7 @@ const { title, id, noLead } = Astro.props;
     </h2>
   </div>
 
-  <p class:list={[ { hidden: noLead },  'max-w-xl text-center font-extrabold text-2xl' ]}>
+  <p class:list={[ { hidden: noLead },  'max-sm:pl-4 max-sm:pr-4 max-w-xl text-center font-extrabold text-2xl' ]}>
     <slot name="lead" />
   </p>
   <slot />
