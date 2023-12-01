@@ -1,0 +1,67 @@
+---
+import '../../../styles/ge-table.css';
+import {CssVars} from "@guiexpert/table";
+const id = 'div' + Math.random().toString(36).slice(2, 11);
+const themes = CssVars.themes; // ['light', 'combat', 'paper', 'blackboard'];
+const cssVars = CssVars.vars;
+---
+
+<div class="px-8">
+  <ul class="flex items-center gap-6 text-base">
+    {themes.map((theme) => (
+        <li>
+          <a
+              href="javascript:void(0)"
+              class="theme-action"
+              data-theme={theme}>{theme}</a>
+        </li>
+    ))}
+  </ul>
+
+
+  <div
+      style="height: calc(100vh - 300px); width: calc(100vw - 200px)"
+      class:list={[id, 'treetable-demo']}></div>
+
+</div>
+
+
+<script
+    is:inline
+    define:vars={{id, themes, cssVars}}
+    type="module">
+
+  import {TableScope, EventAdapter, SimpleDomService} from '/scripts/table/index.js'
+  import {createTreePeopleModelAndOptions} from "/scripts/demo-table-models/index.js";
+
+  const {tableModel, tableOptions} = createTreePeopleModelAndOptions(true);
+  const ele = document.querySelector('.' + id);
+
+  const tableScope = new TableScope(
+    ele,
+    tableModel,
+    new SimpleDomService(),
+    tableOptions,
+    new EventAdapter()
+  );
+  tableScope.firstInit();
+
+  document
+    .querySelectorAll('.theme-action')
+    .forEach(ele => {
+      ele.addEventListener("click", () => {
+        setTheme(ele.dataset.theme)
+      });
+    });
+
+  function setTheme(theme) {
+    console.info(theme);
+  }
+
+</script>
+
+<style>
+    div {
+        font-size: 14px;
+    }
+</style>
