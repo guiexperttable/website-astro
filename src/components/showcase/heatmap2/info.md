@@ -145,4 +145,4 @@ export function createHeatMapSeattleModel(): TableModelIf {
 }
 ```
 
-Full demo code: [heatmap2/run.astro](https://github.com/guiexperttable/website-astro/blob/main/src/components/demos/heatmap2/run.astro)
+Full demo code: [heatmap2/run.astro](https://github.com/guiexperttable/website-astro/blob/main/src/components/showcase/heatmap2/run.astro)
