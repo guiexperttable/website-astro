@@ -1,5 +1,5 @@
 ---
-import '../../../styles/ge-table.css';
+
 const id = 'div' + Math.random().toString(36).slice(2, 11);
 const idInput = 'input' + Math.random().toString(36).slice(2, 11);
 ---
@@ -98,8 +98,8 @@ const idInput = 'input' + Math.random().toString(36).slice(2, 11);
         font-weight: bold;
     }
 
-    .order-table-div .ge-table-row-odd {
-        background-color: #FAFBFF;
+    html[data-theme= "light"] .order-table-div .ge-table-row-odd {
+        background-color: #FAFBFF55;
     }
 
     .order-table-div .ge-star-rating-div {
