@@ -11,7 +11,7 @@ import idFilterImage from "../../assets/screens/thumbs/idfilter.png";
 import lafImage from "../../assets/screens/thumbs/laf.png";
 import {Image} from "astro:assets";
 import ContentSection from "../content-section.astro";
-import DemoCard from "./demo-card.astro";
+import ShowcaseCard from "./common/ShowcaseCard.astro";
 ---
 
 <ContentSection
@@ -34,7 +34,7 @@ import DemoCard from "./demo-card.astro";
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Array of Arrays"
             img={arrayOfArrays}
             url="/showcase/arrayofarrays/run">
@@ -56,97 +56,97 @@ import DemoCard from "./demo-card.astro";
             {'.'}
             -->
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Cryptos"
             img={cryptoImage}
             url="/showcase/crypto/run">
           <p>
             Array of object, custom renderer, row sorting, column re-ordering.
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Order Table with filter"
             img={orderImage}
             url="/showcase/order/run">
           <p>
             Array of object, custom renderer, row sorting, column re-ordering, row filtering.
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Heatmap"
             img={heatmapImage}
             url="/showcase/heatmap1/run">
           <p>
             Custom renderer
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Seattle Heatmap"
             img={seattleHeatmapImage}
             url="/showcase/heatmap2/run">
           <p>
             Custom renderer
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Time Table: row- and colspan"
             img={timetableImage}
             url="/showcase/timetable/run">
           <p>
             Rowspan and colspan in header and body area, two fixed columns, real time updates, resizable column widths.
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Tree table"
             img={treetableImage}
             url="/showcase/treetable/run">
           <p>
             Tree table, fixed columns, editable, multi selection area
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Slider filter"
             img={idFilterImage}
             url="/showcase/idfilter/run">
           <p>
             Table filter
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
 
 
       <div>
-        <DemoCard
+        <ShowcaseCard
             title="Look & Feel"
             img={lafImage}
             url="/showcase/laf/run">
           <p>
             Look & Feel demo shows how to set CSS variables via JS
           </p>
-        </DemoCard>
+        </ShowcaseCard>
       </div>
     </div>
 
