@@ -9,6 +9,7 @@ import timetableImage from "../../assets/screens/thumbs/timetable.png";
 import treetableImage from "../../assets/screens/thumbs/treetable.png";
 import idFilterImage from "../../assets/screens/thumbs/idfilter.png";
 import lafImage from "../../assets/screens/thumbs/laf.png";
+import mouseeventsImage from "../../assets/screens/thumbs/mouseevents.png";
 import {Image} from "astro:assets";
 import ContentSection from "../content-section.astro";
 import ShowcaseCard from "./common/ShowcaseCard.astro";
@@ -145,6 +146,20 @@ import ShowcaseCard from "./common/ShowcaseCard.astro";
             url="/showcase/laf/run">
           <p>
             Look & Feel demo shows how to set CSS variables via JS
+          </p>
+        </ShowcaseCard>
+      </div>
+
+
+
+
+      <div>
+        <ShowcaseCard
+            title="Mouse events"
+            img={mouseeventsImage}
+            url="/showcase/mouseevents/run">
+          <p>
+            Table events
           </p>
         </ShowcaseCard>
       </div>
