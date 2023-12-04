@@ -4,7 +4,7 @@ import { TableCellUpdateEventIf } from "./data/common/event/input/table-cell-upd
 export declare class TableApi {
     private readonly tableScope;
     constructor(tableScope: TableScope);
-    updateCells(events: TableCellUpdateEventIf[]): void;
+    updateCells(events: TableCellUpdateEventIf[], repaintAll?: boolean): void;
     externalFilterChanged(): void;
     scrollToPixel(_px?: number, _py?: number): void;
     scrollToIndex(_indexX?: number, _indexY?: number): void;

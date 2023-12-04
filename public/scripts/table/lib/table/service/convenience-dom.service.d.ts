@@ -26,6 +26,7 @@ export declare class ConvenienceDomService {
     appendRelativeChildDiv(parent: HTMLDivElement): DivScope;
     appendText(parent: HTMLDivElement, text: string): HTMLElement;
     addClass(clazz: string, div: HTMLDivElement): HTMLDivElement;
+    removeClass(clazz: string, div: HTMLDivElement): HTMLDivElement;
     addClasses(classes: string[] | undefined, div: HTMLDivElement): HTMLDivElement;
     setAttribute(div: HTMLDivElement, key: string, value: string): HTMLDivElement;
     createAreaDivWithClass(clazz: string, parent: HTMLDivElement, areaIdent: AreaIdent, sideIdent: SideIdent): HTMLDivElement;

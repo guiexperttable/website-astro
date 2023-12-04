@@ -10,7 +10,7 @@ Model: [createTimeTableModel.ts](https://github.com/guiexperttable/ge-table/blob
 **Column- and rowspan**
 
 Merging table cells can be achieved by overriding the 
-[getRowspanAt()](https://gui.expert/api/interfaces/AreaModelIf.html#getRowspanAt) method of the 
+[getRowspanAt()](/api/interfaces/AreaModelIf.html#getRowspanAt) method of the 
 respective [AreaModels](/api/interfaces/AreaModelIf.html):
 
 
@@ -44,14 +44,14 @@ class TimeTableBodyModel extends AreaModelObjectArrayWithColumndefs<TeamDataIf> 
 **Updating table cells**
 
 Table cells (in both the header, body, and footer) can be updated by utilizing the method 
-[setValue()](https://gui.expert/api/interfaces/AreaModelIf.html#setValue).
+[setValue()](/api/interfaces/AreaModelIf.html#setValue).
 
 
 With numerous updates, it might be more efficient to pass the changes 
 as an array of 
-[TableCellUpdateEvent](https://gui.expert/api/interfaces/TableCellUpdateEventIf.html) to the method 
-[updateCells()](https://gui.expert/api/classes/TableApi.html#updateCells).
+[TableCellUpdateEvent](/api/interfaces/TableCellUpdateEventIf.html) to the method 
+[updateCells()](/api/classes/TableApi.html#updateCells).
 
 ```ts
-this.tableApi?.updateCells([new TableCellUpdateEvent("body", row, col, val)]);
+this.tableApi?.updateCells([new TableCellUpdateEvent("body", row, col, val, cssClasses)]);
 ```

@@ -50,7 +50,7 @@ export declare class RenderScope extends EleScope {
     repaint(): void;
     adjustAfterScrolling(): void;
     checkForScrollPosSaving(): void;
-    updateCells(events: TableCellUpdateEventIf[]): void;
+    updateCells(events: TableCellUpdateEventIf[], repaintAll?: boolean): void;
     protected getAreaAndSideIdentByAttr(srcElement: HTMLElement): [AreaIdent | undefined, SideIdent | undefined];
     protected getArea(rowIdent: AreaIdent, sideIdent: SideIdent): DivScope;
     protected adjustBody(): void;
@@ -72,6 +72,10 @@ export declare class RenderScope extends EleScope {
     protected adjustColumnsToRowParent({ areaIdent, sideIdent, areaModel, geo, parent, rowIndex, columnIndexStart, columnIndexEnd, verticalFixed, lastRowOfModel }: ArgsAdjustColumnsToRowParentParams): void;
     protected getTreeArrowColumnIndex(): 0 | 1;
     protected addAndRenderCellDiv({ areaModel, areaIdent, sideIdent, rowIndex, index, left, width, height, top, parent, lastRowOfModel }: ArgsRenderCellDiv): [HTMLDivElement, RendererCleanupFnType | undefined];
+    protected applyCssClasses(ele: HTMLDivElement, cssClasses?: {
+        [key: string]: boolean;
+    }): void;
+    rerenderCellContent({ area, rowIndex, columnIndex, value, cssClasses }: TableCellUpdateEventIf): void;
     protected getColumnWidths(startIndex: number, endIndex: number): number[];
     protected getRowHeights(startIndex: number, endIndex: number, areaModel: AreaModelIf): number[];
     protected adjustHoverRows(mouseMoveEvent: GeMouseEvent): void;

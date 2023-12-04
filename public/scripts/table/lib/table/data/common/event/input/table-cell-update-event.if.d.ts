@@ -4,4 +4,7 @@ export interface TableCellUpdateEventIf {
     rowIndex: number;
     columnIndex: number;
     value: any;
+    cssClasses: {
+        [key: string]: boolean;
+    };
 }

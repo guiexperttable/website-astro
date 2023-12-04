@@ -5,5 +5,10 @@ export declare class TableCellUpdateEvent implements TableCellUpdateEventIf {
     rowIndex: number;
     columnIndex: number;
     value: any;
-    constructor(area: AreaIdent, rowIndex: number, columnIndex: number, value: any);
+    cssClasses: {
+        [key: string]: boolean;
+    };
+    constructor(area: AreaIdent, rowIndex: number, columnIndex: number, value: any, cssClasses?: {
+        [key: string]: boolean;
+    });
 }
