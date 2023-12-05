@@ -203,7 +203,7 @@ import heatmapImage from "../assets/screens/heatmap.png";
     }
     zoom = Math.min(10, zoom);
     const headlinesIdx = Math.min(headlines.length - 1, Math.round(scrollTop / offsetHeight));
-    const opacity = scrollTop > (4.5 * offsetHeight) ? 0 : 1;
+    const opacity = (scrollTop - 0.3 * offsetHeight) > (4.5 * offsetHeight) ? 0 : 1;
     const displayHeroText = zoom > 2 ? "none" : "grid";
 
     const displayScrollDown = (scrollTop > scrollHeight - offsetHeight * 1.9) ? "none" : "block";
