@@ -7,9 +7,11 @@ Source of demo: [fps/run.astro](https://github.com/guiexperttable/website-astro/
 
 
 ```js title="TableModel"
+const rowCount = 10;
+const columnCount = 10;
 const bodyData =
-  Array.from(Array(10).keys()).map((r) =>
-    Array.from(Array(10).keys()).map((c) => 0)
+  Array.from(Array(rowCount).keys()).map((r) =>
+    Array.from(Array(columnCount).keys()).map((c) => 0)
   );
 const headerData = [Array.from(Array(columnCount).keys()).map((c) => String.fromCharCode(97 + c))];
 const footerData = [Array.from(Array(columnCount).keys()).map((c) => String.fromCharCode(97 + c))];
