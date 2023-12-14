@@ -6,7 +6,7 @@ import {marked} from "marked";
 
 export async function getStaticPaths() {
   const posts = await Astro.glob('../../../../content/docsmd/interfaces/*.md');
-  console.debug('posts', JSON.stringify(posts))
+  console.debug('post', JSON.stringify(posts))
   return posts.map((post) => {
     return {
       // params: {slug: post.frontmatter.slug},

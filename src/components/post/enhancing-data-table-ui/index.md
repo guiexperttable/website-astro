@@ -5,8 +5,8 @@ layout: ../ArticleLayout.astro
 # Enhancing Data Table UI
 Key Elements for Success
 
-##  &nbsp;
 
+##  &nbsp;
 
 - ![Marc](/marc.jpg)
 - *Marc Kronberg* 
@@ -30,9 +30,13 @@ frameworks, interaction models, and methodologies aimed at aiding the creation o
 Fixed header and footer maintain table structure during scroll, providing constant context and easy access to crucial
 information, improving user navigation and comprehension within large datasets displayed on the web.
 
+![Screen: Fixed Header](/post/enhancing-data-table-ui/ge_fixed_header.gif)
+
 ## Fixed Columns
 
 Fixed columns ensure key information remains visible while horizontal scrolling.
+
+![Screen: Fixed Columns](/post/enhancing-data-table-ui/ge_fixed_columns.gif)
 
 ## Resizable columns
 
@@ -40,17 +44,23 @@ Resizable columns grant users control over data presentation, optimizing readabi
 accommodates varying content lengths, allowing customization for clearer data visualization and streamlined navigation
 within tables or grids.
 
+![Screen: Resizable columns](/post/enhancing-data-table-ui/ge_resizable_columns.gif)
+
 ## Column sorting by mouse drag
 
 The customizable columns feature empowers users to select the specific columns they wish to view and arrange them
 according to their preferences. This functionality may encompass the option to save customized column arrangements as
 presets for future use.
 
+![Screen: Column sorting by mouse drag](/post/enhancing-data-table-ui/ge_column_sorting.gif)
+
 ## Row Style
 
 Zebra stripes, borders, and contextual colors aid visual organization, enhance readability, and provide clear data
 differentiation, facilitating easier scanning, reducing eye strain, and improving user comprehension within data-rich
 environments.
+
+![Screen: Row style](/post/enhancing-data-table-ui/ge_row_style.gif)
 
 ## Toggle Display Density
 
@@ -67,10 +77,14 @@ relationships within the data.
 
 This particular design pattern facilitates users in searching for and locating specific values within the large dataset.
 
+![Screen: Row Filtering](/post/enhancing-data-table-ui/ge_rows_filtering.gif)
+
 ## Sortable Columns
 
 Sortable columns enable users to arrange data for quick analysis, aiding in pattern recognition, decision-making, and
 efficient exploration within the web UI's data table, enhancing usability and information retrieval.
+
+![Screen: FSortable Columns](/post/enhancing-data-table-ui/ge_sortable_columns.gif)
 
 ## Hover Actions
 
@@ -81,10 +95,14 @@ Presenting additional action when a user hovers reduces visual clutter.
 Inline editing allows immediate data modification within the table, enhancing user interaction and workflow efficiency
 by enabling quick updates and minimizing navigation, fostering seamless data manipulation within the web UI.
 
+![Screen: Inline Editing](/post/enhancing-data-table-ui/ge_edit_cell.gif)
+
 ## Tree Tables
 
 Tree tables offer hierarchical data representation, aiding in visualizing complex relationships and nested structures,
 fostering easier navigation, comprehension, and organization of data within the web UI's table interface.
+
+![Screen: Tree Table](/post/enhancing-data-table-ui/ge_tree_table.gif)
 
 ## Add / Remove Columns
 
@@ -100,6 +118,8 @@ Copy actions enable swift data transfer, fostering seamless analysis or transfer
 functionalities streamline workflows, aiding in comprehensive data understanding and facilitating seamless data
 manipulation. Offering these capabilities enhances user control, expedites decision-making, and promotes a more
 intuitive, productive experience within the data table interface.
+
+![Screen: Multi Range Selection](/post/enhancing-data-table-ui/ge_range_selection.gif)
 
 ## Virtual Scrolling
 
@@ -121,6 +141,8 @@ vast amounts of data without sacrificing responsiveness or usability.
 Flashing cells and rapid cell updates are crucial in trading apps for real-time data visualization. They signify
 critical changes swiftly, aiding traders in immediate decision-making by highlighting dynamic market shifts or crucial
 information within the data table interface.
+
+![Screen: Rapid Cell Updates](/post/enhancing-data-table-ui/ge_rapid_updates.gif)
 
 ## Conclusion
 
