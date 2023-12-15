@@ -25,6 +25,30 @@ Effective data tables empower users to swiftly scan, analyze, juxtapose, refine,
 enabling them to extract valuable insights and take decisive actions. This article furnishes a compendium of design
 frameworks, interaction models, and methodologies aimed at aiding the creation of superior data tables.
 
+In this article, we'll explore the following pivotal aspects:
+
+
+- [Fixed Header](#fixed-header)
+- [Fixed Columns](#fixed-columns)
+- [Resizable columns](#resizable-columns)
+- [Column sorting by mouse drag](#column-sorting-by-mouse-drag)
+- [Row Style](#row-style)
+- [Colspan and Rowspan](#colspan-and-rowspan)
+- [Toggle Display Density](#toggle-display-density)
+- [Large data sets](#large-data-sets)
+- [Rows filtering (Search)](#rows-filtering-search)
+- [Sortable Columns](#sortable-columns)
+- [Hover Actions](#hover-actions)
+- [Inline Editing](#inline-editing)
+- [Tree Tables](#tree-tables)
+- [Add / Remove Columns](#add--remove-columns)
+- [Cell Selection and Copy Action](#cell-selection-and-copy-action)
+- [Virtual Scrolling](#virtual-scrolling)
+- [Chunk loading](#chunk-loading)
+- [Rapid Cell Updates](#rapid-cell-updates)
+
+
+
 ## Fixed Header
 
 Fixed header and footer maintain table structure during scroll, providing constant context and easy access to crucial
@@ -61,6 +85,13 @@ differentiation, facilitating easier scanning, reducing eye strain, and improvin
 environments.
 
 ![Screen: Row style](/post/enhancing-data-table-ui/ge_row_style.gif)
+
+## Colspan and Rowspan
+
+The **rowspan** and **colspan** attributes in a web UI's data table header, body, and footer are crucial for structuring complex data relationships. These attributes enable cells to span multiple rows or columns, allowing for clearer organization and representation of hierarchical or grouped information. In the header, they consolidate related categories; in the body, they group interconnected data; and in the footer, they summarize data comprehensively. These features enhance readability, streamline data comprehension, and offer a more intuitive visual representation, facilitating efficient analysis and understanding within the data table interface.
+
+![Screen: Colspan and Rowspan](/post/enhancing-data-table-ui/ge_row_and_colspan.gif)
+
 
 ## Toggle Display Density
 
@@ -158,4 +189,4 @@ creating a cycle that influences subsequent design choices. Subtly and often sub
 humans decide. What they see, where it's presented, and the nature of interactions all impact actions. It's vital that
 our design choices contribute to a better world, one step at a time, starting with the design of each data table.
 
-You can read more here: [gui.expert](https://gui.expert/post/enhancing-data-table-ui)
+[//]: # (You can read more here: [gui.expert]&#40;https://gui.expert/post/enhancing-data-table-ui&#41;)
