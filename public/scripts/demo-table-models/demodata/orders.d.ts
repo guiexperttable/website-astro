@@ -1,4 +1,4 @@
-import { OrderIf } from '../index.ts';
+import { OrderIf } from "../model/order.if";
 /**
  * https://app.json-generator.com/DdnuC-lobzBN
  *

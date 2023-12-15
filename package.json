@@ -4,8 +4,10 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
+    "i": "pnpm i",
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node copy_script_demo_table_models.js & node copy_script_table.js",
     "build": "astro build",
     "deploy": "node deploy.cjs",
     "preview": "astro preview",
@@ -24,7 +26,8 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "rimraf": "^5.0.5",
     "tailwindcss-fluid-type": "^2.0.3",
-    "svgo": "2.8.0"
+    "svgo": "2.8.0",
+    "fs-extra": "^11.2.0"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.3",

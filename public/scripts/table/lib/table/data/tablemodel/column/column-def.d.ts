@@ -7,6 +7,9 @@ import { BooleanFunction } from "../../common/boolean-function";
 import { SortState } from "../../common/sort-state.type";
 import { GetEditRenderer } from "../../../renderer/edit/edit-cell-renderer.type";
 import { editInputPipe } from "../../../renderer/edit/edit-input-pipe.if";
+/**
+ * Represents a column definition for one column of the table.
+ */
 export declare class ColumnDef implements ColumnDefIf {
     property: string;
     headerLabel: string;

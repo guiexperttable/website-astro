@@ -1,5 +1,8 @@
 import { TableScope } from "../table-scope";
 import { OnActionTriggeredIf } from "./on-action-triggered.if";
+/**
+ * Represents a service for managing shortcuts and triggering actions based on keyboard events.
+ */
 export declare class ShortcutService {
     protected tableScope: TableScope;
     private shortcutActionIdMapping;

@@ -5,6 +5,9 @@ import { SortItem } from "../../common/sort-item";
 import { FilterFunction } from "../../common/filter-function";
 import { CellRendererIf } from "../../../renderer/cell-render.if";
 import { CheckedType } from "../../common/checked-type";
+/**
+ * Represents the area model (header, body or footer) for the table.
+ */
 export declare class AreaModel implements AreaModelIf {
     areaIdent: AreaIdent;
     rowSelectionModel: CheckboxModelIf<any> | undefined;

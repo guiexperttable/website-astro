@@ -6,7 +6,7 @@ import { FilterFunction } from "../../common/filter-function";
 import { SortItem } from "../../common/sort-item";
 import { AreaIdent } from "../area-ident.type";
 /**
- * An unvisible model, which is used internally for hiding a header.
+ * An invisible model, which is used internally for hiding a header.
  */
 export declare class AreaModelHidden implements AreaModelIf {
     areaIdent: AreaIdent;

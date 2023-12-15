@@ -4,7 +4,7 @@ function O(h) {
 function N(h) {
   return h && h.type === "AreaModelTree";
 }
-function be(h) {
+function pe(h) {
   return h && h.type === "CheckboxColumnDef";
 }
 class X {
@@ -32,7 +32,7 @@ class F {
     this.content = e, this.style = t, this.classes = o;
   }
 }
-class ae {
+class de {
   constructor(e = new F(
     ">",
     "transform: rotate(90deg) translate(66%, -66%); transform-origin: 0 0;",
@@ -53,12 +53,12 @@ class ae {
     this.arrowExpanded = e, this.arrowCollapsed = t, this.arrowPlaceholder = o, this.arrowExpandCollapseAll = s;
   }
 }
-class de {
+class he {
   constructor(e = new F("↑", "", ["ge-header-sorted-asc"]), t = new F("↓", "", ["ge-header-sorted-desc"]), o = new F("↑", "color:transparent;", [])) {
     this.iconAsc = e, this.iconDesc = t, this.iconPlaceholder = o;
   }
 }
-class pe {
+class fe {
   constructor(e) {
     this.domService = e;
   }
@@ -178,7 +178,7 @@ class pe {
       }
     return this.domService.appendChild(e, l), l;
   }
-  addSortedIcon(e, t = "", o = new de(), s = -1) {
+  addSortedIcon(e, t = "", o = new he(), s = -1) {
     const i = this.domService.createElement("div");
     this.domService.addClass(i, "ge-table-sorted-icon-div"), this.domService.setStyle(i, "position", "absolute"), this.domService.setStyle(i, "top", "0"), this.domService.setStyle(i, "right", "0"), this.domService.setStyle(i, "width", "20px"), this.domService.setStyle(i, "background", "transparent"), this.domService.setStyle(i, "cursor", "pointer"), this.domService.setAttribute(i, "data-col-index", `${s}`), this.domService.setAttribute(i, "data-area", "header");
     let r;
@@ -189,7 +189,7 @@ class pe {
       this.domService.addClass(i, d);
     return this.domService.appendChild(e, i), i;
   }
-  addArrowDiv(e, t = "none", o = new ae(), s = -1, i = -1, r = "body") {
+  addArrowDiv(e, t = "none", o = new de(), s = -1, i = -1, r = "body") {
     const l = this.domService.createElement("div");
     this.domService.addClass(l, "ge-table-tree-arrow-div"), this.domService.setStyle(l, "display", "inline-block"), this.domService.setStyle(l, "position", ""), this.domService.setStyle(l, "width", "20px"), this.domService.setStyle(l, "background", "transparent"), this.domService.setStyle(l, "cursor", "pointer"), this.domService.setAttribute(l, "data-row-index", `${s}`), this.domService.setAttribute(l, "data-col-index", `${i}`), this.domService.setAttribute(l, "data-area", `${r}`);
     let n;
@@ -240,7 +240,7 @@ class pe {
   }
 }
 const Y = (h) => h === "header" ? "header" : h === "footer" ? "footer" : "body";
-class fe {
+class me {
   constructor(e, t) {
     if (this.rowIdx = -1, this.colIdx = -1, this.action = null, this.inputType = null, this.className = "", e !== null && (e instanceof HTMLDivElement || e instanceof HTMLSpanElement || e instanceof HTMLInputElement)) {
       this.className = e.className, this.action = e.getAttribute("data-ge-action"), this.inputType = e.getAttribute("data-input-type"), this.rowIdx = Number(e.getAttribute("data-row-index")), this.colIdx = Number(e.getAttribute("data-col-index"));
@@ -252,19 +252,33 @@ class fe {
     }
   }
 }
-class me {
+class we {
   constructor(e) {
     this.tableScope = e, this.expandedAll = !0, this.mouseDown = !1, this.dragging = !1, this.tableScope.hostElement.addEventListener("click", this.onHostElementClicked.bind(this)), this.tableScope.hostElement.addEventListener("dblclick", this.onHostElementDblClicked.bind(this)), this.tableScope.hostElement.addEventListener("mousedown", this.onMouseDown.bind(this)), this.tableScope.hostElement.addEventListener("mousemove", this.onMouseMove.bind(this)), this.tableScope.hostElement.addEventListener("mouseup", this.onMouseUp.bind(this)), this.tableScope.hostElement.addEventListener("contextmenu", this.onContextmenu.bind(this)), this.tableScope.hostElement._MouseHandler = "true", this.tableScope.scrollViewport.addEventListener("scroll", this.tableScope.adjustAfterScrolling.bind(this.tableScope)), [window, this.tableScope.hostElement].forEach(
       (t) => t.addEventListener("resize", this.tableScope.adjustContainersAndRows.bind(this.tableScope))
     );
   }
+  /**
+   * Handles the "contextmenu" event.
+   *
+   * @private
+   * @param {MouseEvent} evt - The mouse event object.
+   * @return {void}
+   */
   onContextmenu(e) {
     this.mouseEvent = e;
     const t = this.tableScope.createGeMouseEvent(this.mouseEvent);
     this.tableScope.contextmenu(t);
   }
+  /**
+   * Handles the click event on the host element.
+   *
+   * @param {MouseEvent} event - The click event.
+   *
+   * @return {void}
+   */
   onHostElementClicked(e) {
-    const t = new fe(e.target, this.tableScope);
+    const t = new me(e.target, this.tableScope);
     if (t.action === "toggleExpandCollapseAll")
       this.expandedAll = !this.expandedAll, this.tableScope.toggleExpandCollapseAll(this.expandedAll), e.preventDefault(), e.stopPropagation();
     else if (t.inputType === "checkbox" && t.areaIdent)
@@ -283,6 +297,12 @@ class me {
     }
     this.publishGeMouseEvent(e, 1);
   }
+  /**
+   * Handles the double click event on the host element.
+   * This method is private.
+   *
+   * @param {MouseEvent} event - The double click event.
+   */
   onHostElementDblClicked(e) {
     if (e.target instanceof HTMLElement) {
       const t = e.target, o = t.getAttribute("data-area"), s = Y(o), i = Number(t.getAttribute("data-row-index")), r = Number(t.getAttribute("data-col-index")), l = this.tableScope.tableModel.getAreaModel(s);
@@ -299,10 +319,24 @@ class me {
     }
     this.publishGeMouseEvent(e, 2);
   }
+  /**
+   * Publishes a GeMouseEvent.
+   *
+   * @param {MouseEvent} event - The MouseEvent to publish.
+   * @param {number} clickCount - The number of clicks for the GeMouseEvent.
+   *
+   * @return {void}
+   */
   publishGeMouseEvent(e, t) {
     var o;
     this.mouseEvent = e, this.geMouseEventOld = (o = this.geMouseEvent) == null ? void 0 : o.clone(), this.geMouseEvent = this.tableScope.createGeMouseEvent(e), this.geMouseEvent && (this.geMouseEvent.clickCount = t), this.tableScope.onMouseClicked(this.geMouseEvent, this.geMouseEventOld);
   }
+  /**
+   * Update the collapsed/expanded state of a tree row.
+   *
+   * @param {TreeRowIf<any>} tr - The tree row object.
+   * @returns {void}
+   */
   updateCollapsedExpandedState(e) {
     var o, s, i, r, l;
     const t = (s = (o = this.tableScope.tableOptions) == null ? void 0 : o.autoRestoreOptions) == null ? void 0 : s.getRowId;
@@ -344,35 +378,107 @@ class me {
     }
   }
 }
-class we {
+class Se {
   constructor(e) {
     this.tableScope = e;
   }
+  /**
+   * Updates the cells in the table based on the provided events.
+   *
+   * @param {TableCellUpdateEventIf[]} events - The array of events representing the updates to perform on the cells.
+   * @param {boolean} [repaintAll=false] - Optional parameter indicating whether to repaint all cells or not. Default value is false. If true, the full table will be rendered. If false, the table cell will be rendered immediately.
+   *
+   * @return {void} - This method doesn't return anything.
+   */
   updateCells(e, t = !1) {
     this.tableScope.updateCells(e, t);
   }
+  /**
+   * Notifies that the external filter has changed.
+   *
+   * @return {void}
+   */
   externalFilterChanged() {
     this.tableScope.externalFilterChanged();
   }
+  /**
+   * Scrolls the table body to the specified pixel coordinates.
+   *
+   * @param {number} _px - The horizontal pixel coordinate to scroll to. Defaults to 0.
+   * @param {number} _py - The vertical pixel coordinate to scroll to. Defaults to 0.
+   * @return {void}
+   */
   scrollToPixel(e = 0, t = 0) {
   }
+  /**
+   * Scrolls to the specified index in both horizontal and vertical directions.
+   *
+   * @param {number} _indexX - The index of the column to scroll to in the horizontal direction. Default is 0.
+   * @param {number} _indexY - The index of the row to scroll to in the vertical direction. Default is 0.
+   *
+   * @return undefined
+   */
   scrollToIndex(e = 0, t = 0) {
   }
+  /**
+   * Sets whether the header is visible or not.
+   *
+   * @param _visible - A boolean value indicating whether the header should be visible. Default value is true.
+   *
+   * @return undefined
+   */
   setHeaderVisible(e = !0) {
   }
+  /**
+   * Sets the visibility of a column in the table.
+   *
+   * @param {_column} - The column index or column definition to set visibility for.
+   * @param {_visible=true} - The flag to set visibility to. true for visible, false for hidden.
+   *
+   * @return {void} - There is no return value.
+   */
   setColumnVisible(e, t = !0) {
   }
+  /**
+   * Returns whether a column is visible or not.
+   *
+   * @param {number | ColumnDefIf} _column - The column index or the column definition.
+   * @return {boolean} - True if the column is visible, false otherwise.
+   */
   isColumnVisible(e) {
     return !0;
   }
+  /**
+   * Checks if the header is visible.
+   *
+   * @return {boolean} - Returns true if the header is visible, otherwise returns false.
+   */
   isHeaderVisible() {
     return !0;
   }
+  /**
+   * Sets the visibility of the footer.
+   *
+   * @param {boolean} _visible - Indicates whether the footer should be visible or not. Default value is true.
+   *
+   * @return {void} - This method does not return any value.
+   */
   setFooterVisible(e = !0) {
   }
+  /**
+   * Determines if the footer is visible.
+   *
+   * @returns {boolean} True if the footer is visible, false otherwise.
+   */
   isFooterVisible() {
     return !0;
   }
+  /**
+   * Repaints the table.
+   *
+   * This method calls the repaint method of the tableScope object
+   * to update and redraw the table based on the latest data.
+   */
   repaint() {
     this.tableScope.repaint();
   }
@@ -452,7 +558,7 @@ class K {
   //   }
   // }
 }
-class Se extends K {
+class xe extends K {
   constructor(e) {
     super(e), this.SCROLL_STATE = "scrollState", this.scrollOffset = [0, 0], this.load();
   }
@@ -474,14 +580,14 @@ class Se extends K {
     }
   }
 }
-class xe {
+class ye {
   constructor(e = "collapsed", t = [], o = !1, s = !1) {
     this.mode = e, this.rowIds = t, this.allCollapsed = o, this.allExpanded = s;
   }
 }
-class ye extends K {
+class Ce extends K {
   constructor(e) {
-    super(e), this.COLLAPSED_EXPANDED_STATE = "collapsedExpandedState", this.collapsedExpandedState = new xe(), this.load();
+    super(e), this.COLLAPSED_EXPANDED_STATE = "collapsedExpandedState", this.collapsedExpandedState = new ye(), this.load();
   }
   collapsedExpandedStateGet() {
     return this.collapsedExpandedState;
@@ -513,7 +619,7 @@ class ye extends K {
     this.checkAndPersistItem(this.COLLAPSED_EXPANDED_STATE, this.collapsedExpandedState);
   }
 }
-class Ce extends K {
+class ve extends K {
   constructor(e) {
     super(e), this.SORTING_STATE = "sortingState", this.sortItems = [], this.load();
   }
@@ -540,7 +646,7 @@ class $ {
     this.left = e, this.width = t, this.height = o, this.top = s, this.index = i;
   }
 }
-class ve {
+class Re {
   constructor(e, t, o, s) {
     this.hostElement = e, this.tableModel = t, this.dom = o, this.tableOptions = s, this.scrollTop = 0, this.areaBodyWestGeo = new $(), this.areaBodyCenterGeo = new $(), this.areaBodyEastGeo = new $();
     const i = this.hostElement;
@@ -691,12 +797,21 @@ class ve {
     this.dom.setStyle(this.contentWrapperDiv, "width", e), this.dom.setStyle(this.contentWrapperDiv, "height", t);
   }
 }
-class E {
+class M {
+  /**
+   * Represents a constructor for a class.
+   * @constructor
+   * @param {number} r1 - The value for r1.
+   * @param {number} c1 - The value for c1.
+   * @param {number} r2 - The value for r2.
+   * @param {number} c2 - The value for c2.
+   * @param {boolean} [gammaRange=false] - The value for gammaRange. Defaults to false. gammaRange will be used for AreaModelCellGroups, but it's not implemented yet!
+   */
   constructor(e, t, o, s, i = !1) {
     this.r1 = e, this.c1 = t, this.r2 = o, this.c2 = s, this.gammaRange = i;
   }
   static create(e) {
-    return e.gammaRange === void 0 && (e.gammaRange = !1), new E(
+    return e.gammaRange === void 0 && (e.gammaRange = !1), new M(
       e.rowIndex1,
       e.columnIndex1,
       e.rowIndex2,
@@ -705,19 +820,19 @@ class E {
     );
   }
   static singleCell(e, t) {
-    return new E(e, t, e, t);
+    return new M(e, t, e, t);
   }
   static singleRow(e) {
-    return new E(e, 0, e, Number.MAX_SAFE_INTEGER);
+    return new M(e, 0, e, Number.MAX_SAFE_INTEGER);
   }
   static singleColumn(e) {
-    return new E(0, e, Number.MAX_SAFE_INTEGER, e);
+    return new M(0, e, Number.MAX_SAFE_INTEGER, e);
   }
   isInRange(e, t) {
     return e >= this.r1 && e <= this.r2 && t >= this.c1 && t <= this.c2;
   }
 }
-class Re {
+class Ae {
   constructor(e, t) {
     this.tableModel = e, this.areaModel = t, this.colAndRowspanRanges = void 0;
   }
@@ -733,7 +848,7 @@ class Re {
           i === 0 && (i = 1), r === 0 && (r = 1);
           const l = this.areaModel.hasOwnProperty("gammaCells");
           this.colAndRowspanRanges.push(
-            new E(o, s, o + r - 1, s + i - 1, l)
+            new M(o, s, o + r - 1, s + i - 1, l)
           );
         }
       }
@@ -750,22 +865,22 @@ class Re {
     return !1;
   }
 }
-class I {
+class T {
   constructor(e, t, o) {
     this.header = e, this.body = t, this.footer = o;
   }
 }
-class Ae extends ve {
+class Ee extends Re {
   constructor(e, t, o, s) {
     var r, l;
     super(e, t, o, s), this.scrollLeft = 0, this.scrollViewportLeft = 0, this.scrollFactorY = 0, this.scrollFactorX = 0, this.cleanupFunctions = {
       header: [],
       body: [],
       footer: []
-    }, this.tree = !1, this.colAndRowspanModels = new I(), this.firstVisibleRowIndex = -1, this.draggingTargetColumnIndex = -1, this.removables = [], this.editing = !1, this.tableModel.getSelectionModel ? this.getSelectionModel = this.tableModel.getSelectionModel : (r = this.tableOptions) != null && r.getSelectionModel && (this.getSelectionModel = this.tableOptions.getSelectionModel), (l = this.tableOptions) != null && l.getFocusModel && (this.getFocusModel = this.tableOptions.getFocusModel), N(t.getAreaModel("body")) && (this.tree = !0), ["header", "body", "footer"].forEach(
+    }, this.tree = !1, this.colAndRowspanModels = new T(), this.firstVisibleRowIndex = -1, this.draggingTargetColumnIndex = -1, this.removables = [], this.editing = !1, this.tableModel.getSelectionModel ? this.getSelectionModel = this.tableModel.getSelectionModel : (r = this.tableOptions) != null && r.getSelectionModel && (this.getSelectionModel = this.tableOptions.getSelectionModel), (l = this.tableOptions) != null && l.getFocusModel && (this.getFocusModel = this.tableOptions.getFocusModel), N(t.getAreaModel("body")) && (this.tree = !0), ["header", "body", "footer"].forEach(
       (n) => {
         var d;
-        this.colAndRowspanModels[n] = new Re(t, t.getAreaModel(n)), (d = this.colAndRowspanModels[n]) == null || d.init();
+        this.colAndRowspanModels[n] = new Ae(t, t.getAreaModel(n)), (d = this.colAndRowspanModels[n]) == null || d.init();
       }
     );
   }
@@ -895,76 +1010,76 @@ class Ae extends ve {
     let u = t;
     const m = this.tableModel.getColumnCount(), b = this.tableModel.getFixedRightColumnCount(), w = this.tableModel.getFixedLeftColumnCount();
     for (let p = 0; p < c; p++) {
-      const C = u, v = p === c - 1, R = this.tableModel.getRowHeight(e, p);
-      if (C + R > 0) {
+      const R = u, C = p === c - 1, v = this.tableModel.getRowHeight(e, p);
+      if (R + v > 0) {
         this.firstVisibleRowIndex = p;
-        let y = { left: l, width: n, height: R, top: C, index: p }, S = this.dom.addRowDiv(s, y, p, e, "center");
-        const T = w;
+        let x = { left: l, width: n, height: v, top: R, index: p }, y = this.dom.addRowDiv(s, x, p, e, "center");
+        const A = w;
         if (this.adjustColumnsToRowParent({
           areaIdent: e,
           sideIdent: "center",
           areaModel: a,
-          geo: y,
-          parent: S,
+          geo: x,
+          parent: y,
           rowIndex: p,
-          columnIndexStart: T,
+          columnIndexStart: A,
           columnIndexEnd: m - b - 1,
           verticalFixed: !1,
-          lastRowOfModel: v
-        }), d.left > 0 && (y = { left: l, width: this.areaBodyWestGeo.width, height: R, top: C, index: p }, S = this.dom.addRowDiv(o, y, p, e, "west"), this.adjustColumnsToRowParent({
+          lastRowOfModel: C
+        }), d.left > 0 && (x = { left: l, width: this.areaBodyWestGeo.width, height: v, top: R, index: p }, y = this.dom.addRowDiv(o, x, p, e, "west"), this.adjustColumnsToRowParent({
           areaIdent: e,
           sideIdent: "west",
           areaModel: a,
-          geo: y,
-          parent: S,
+          geo: x,
+          parent: y,
           rowIndex: p,
           columnIndexStart: 0,
-          columnIndexEnd: T - 1,
+          columnIndexEnd: A - 1,
           verticalFixed: !0,
-          lastRowOfModel: v
-        })), d.right > 0 && (y = { left: l, width: this.areaBodyEastGeo.width, height: R, top: C, index: p }, S = this.dom.addRowDiv(i, y, p, e, "east"), this.adjustColumnsToRowParent({
+          lastRowOfModel: C
+        })), d.right > 0 && (x = { left: l, width: this.areaBodyEastGeo.width, height: v, top: R, index: p }, y = this.dom.addRowDiv(i, x, p, e, "east"), this.adjustColumnsToRowParent({
           areaIdent: e,
           sideIdent: "east",
           areaModel: a,
-          geo: y,
-          parent: S,
+          geo: x,
+          parent: y,
           rowIndex: p,
           columnIndexStart: m - b,
           columnIndexEnd: m - 1,
           verticalFixed: !0,
-          lastRowOfModel: v
+          lastRowOfModel: C
         })), e === "header" && this.tree && p === c - 1) {
-          const A = this.dom.applyStyle(
+          const E = this.dom.applyStyle(
             this.dom.setAttribute(
-              this.dom.addDiv(S, new $(16, 20, 20, 8)),
+              this.dom.addDiv(y, new $(16, 20, 20, 8)),
               "data-ge-action",
               "toggleExpandCollapseAll"
             ),
             { cursor: "pointer" }
-          ), M = this.tableOptions.treeOptions.arrowExpandCollapseAll;
-          if (M) {
-            const V = this.dom.domService.createText(M.content);
-            this.dom.domService.appendChild(A, V), M.style && this.dom.applyStyleString(A, M.style);
+          ), k = this.tableOptions.treeOptions.arrowExpandCollapseAll;
+          if (k) {
+            const V = this.dom.domService.createText(k.content);
+            this.dom.domService.appendChild(E, V), k.style && this.dom.applyStyleString(E, k.style);
           }
         }
       }
-      if (u = u + R, u > r)
+      if (u = u + v, u > r)
         break;
     }
     if (this.colAndRowspanModels && this.colAndRowspanModels[e]) {
       const p = ((g = this.colAndRowspanModels[e]) == null ? void 0 : g.getRanges()) ?? [];
       if (p.length)
-        for (const C of p) {
-          let v = 0, R = s.child, y = "center";
-          if (C.c1 < w)
-            R = o.child, y = "west";
-          else if (b > 0 && C.c1 >= m - b)
-            R = i.child, y = "east";
+        for (const R of p) {
+          let C = 0, v = s.child, x = "center";
+          if (R.c1 < w)
+            v = o.child, x = "west";
+          else if (b > 0 && R.c1 >= m - b)
+            v = i.child, x = "east";
           else {
-            const S = this.areaBodyCenterGeo.width - this.tableModel.getContentWidthInPixel();
-            v = this.scrollFactorX * S - this.areaBodyWestGeo.width, y = "center";
+            const y = this.areaBodyCenterGeo.width - this.tableModel.getContentWidthInPixel();
+            C = this.scrollFactorX * y - this.areaBodyWestGeo.width, x = "center";
           }
-          this.drawBigCell(C, v, t, a, R, y);
+          this.drawBigCell(R, C, t, a, v, x);
         }
     }
   }
@@ -1056,21 +1171,21 @@ class Ae extends ve {
     const u = 0, m = !!(e === "body" && t);
     let b = c;
     for (let g = l; g <= n; g++) {
-      const p = b, C = this.tableModel.getColumnWidth(g);
-      if (C > 0 && p + C > 0) {
-        let v = s.height;
-        const R = o.getRowspanAt(r, g), y = o.getColspanAt(r, g);
-        R > 1 && (v = this.getRowHeights(r, r + R - 1, o).reduce((A, M) => A + M, 0));
-        let S = C;
-        y > 1 && (S = this.getColumnWidths(g, g + y - 1).reduce((A, M) => A + M, 0));
-        let T = !1;
-        if (this.colAndRowspanModels && this.colAndRowspanModels[e] && (w = this.colAndRowspanModels[e]) != null && w.isInRange(r, g) && (T = !0), this.draggingTargetColumnIndex === g && e !== "header") {
-          this.renderDragTargetDiv(i, p, u, S, v);
-          const A = { left: p, top: u, width: S, height: v };
-          this.dom.addColumnBorderDivs(this.tableOptions, i, A, e, t);
+      const p = b, R = this.tableModel.getColumnWidth(g);
+      if (R > 0 && p + R > 0) {
+        let C = s.height;
+        const v = o.getRowspanAt(r, g), x = o.getColspanAt(r, g);
+        v > 1 && (C = this.getRowHeights(r, r + v - 1, o).reduce((E, k) => E + k, 0));
+        let y = R;
+        x > 1 && (y = this.getColumnWidths(g, g + x - 1).reduce((E, k) => E + k, 0));
+        let A = !1;
+        if (this.colAndRowspanModels && this.colAndRowspanModels[e] && (w = this.colAndRowspanModels[e]) != null && w.isInRange(r, g) && (A = !0), this.draggingTargetColumnIndex === g && e !== "header") {
+          this.renderDragTargetDiv(i, p, u, y, C);
+          const E = { left: p, top: u, width: y, height: C };
+          this.dom.addColumnBorderDivs(this.tableOptions, i, E, e, t);
         } else {
-          const A = this.renderSelectedBackgroundDiv(T, m, t, o, r, g, i, p, u, S, v);
-          T || this.renderCell({
+          const E = this.renderSelectedBackgroundDiv(A, m, t, o, r, g, i, p, u, y, C);
+          A || this.renderCell({
             areaModel: o,
             areaIdent: e,
             sideIdent: t,
@@ -1078,10 +1193,10 @@ class Ae extends ve {
             columnIndex: g,
             left: p,
             top: u,
-            width: S,
-            height: v,
+            width: y,
+            height: C,
             parent: i,
-            cellSelected: A,
+            cellSelected: E,
             lastRowOfModel: a,
             gammaRange: !0
           }), e === "header" && this.tableOptions.columnsResizable && this.renderHeaderCellResizeHandle({
@@ -1089,13 +1204,13 @@ class Ae extends ve {
             columnIndex: g,
             cellLeft: p,
             cellTop: u,
-            cellWidth: S,
-            cellHeight: v,
+            cellWidth: y,
+            cellHeight: C,
             parent: i
           });
         }
       }
-      if (b = b + C, b > this.areaBodyCenterGeo.width)
+      if (b = b + R, b > this.areaBodyCenterGeo.width)
         break;
     }
     this.tableOptions.verticalBorderVisible && this.dom.addVerticalBorder(new $(b - 1, 1, s.height, 0), i);
@@ -1114,49 +1229,50 @@ class Ae extends ve {
     height: n,
     top: d,
     parent: a,
-    lastRowOfModel: c
+    lastRowOfModel: c,
+    gammaRange: u
   }) {
-    var J;
-    const m = this.editorRenderer && this.editorRendererRow === s && this.editorRendererColumn === i ? this.editorRenderer : e.getCellRenderer(s, i), b = { left: r, width: l, height: n, top: d, index: i }, w = e.getRowByIndex(s);
-    let g = "none";
-    if (i === this.getTreeArrowColumnIndex() && O(w)) {
-      const x = w;
-      (J = x.children) != null && J.length ? x.expanded ? g = "expanded" : g = "collapsed" : g = "hidden";
+    var Q;
+    const b = this.editorRenderer && this.editorRendererRow === s && this.editorRendererColumn === i ? this.editorRenderer : e.getCellRenderer(s, i), w = { left: r, width: l, height: n, top: d, index: i }, g = e.getRowByIndex(s);
+    let p = "none";
+    if (i === this.getTreeArrowColumnIndex() && O(g)) {
+      const S = g;
+      (Q = S.children) != null && Q.length ? S.expanded ? p = "expanded" : p = "collapsed" : p = "hidden";
     }
     let C;
     if (t === "header") {
-      const x = this.tableModel.getColumnDef(i);
-      (!(x != null && x.sortIconVisible) || x != null && x.sortIconVisible()) && (C = x == null ? void 0 : x.sortState);
+      const S = this.tableModel.getColumnDef(i);
+      (!(S != null && S.sortIconVisible) || S != null && S.sortIconVisible()) && (C = S == null ? void 0 : S.sortState);
     }
-    const v = e.getValueAt(s, i), R = m ? "" : `${v}`, y = e.isRowChecked(s), S = this.dom.addColumnDiv(
+    const v = e.getValueAt(s, i), x = b ? "" : `${v}`, y = e.isRowChecked(s), A = this.dom.addColumnDiv(
       a,
-      b,
+      w,
       s,
       i,
       t,
       o,
-      R,
-      g,
+      x,
+      p,
       this.tableOptions,
       y,
       C
-    ), T = e.getTooltipAt(s, i);
-    T && this.dom.setAttribute(S, "title", T);
-    const A = this.tableModel.getColumnDef(i);
-    A && A.classes[t] && this.dom.addClasses(A.classes[t], S);
-    let M;
-    m && (M = m.render(S, s, i, t, e, v, this.dom.domService));
-    const V = e.getCustomClassesAt(s, i);
-    if (V.length && this.dom.addClasses(V, S), this.dom.addColumnBorderDivs(this.tableOptions, a, b, t, o), c && this.dom.addHorizontalBorder({ left: r, width: l, height: n, top: d + n }, a), this.getFocusModel && t === "body") {
-      const x = this.getFocusModel();
-      x != null && x.hasFocus(s, i) && this.dom.addFocusBorderDivs(a, b, {});
+    ), E = e.getTooltipAt(s, i);
+    E && this.dom.setAttribute(A, "title", E);
+    const k = this.tableModel.getColumnDef(i);
+    k && k.classes[t] && this.dom.addClasses(k.classes[t], A);
+    let V;
+    b && (V = b.render(A, s, i, t, e, v, this.dom.domService));
+    const J = e.getCustomClassesAt(s, i);
+    if (J.length && this.dom.addClasses(J, A), this.dom.addColumnBorderDivs(this.tableOptions, a, w, t, o), c && this.dom.addHorizontalBorder({ left: r, width: l, height: n, top: d + n }, a), this.getFocusModel && t === "body") {
+      const S = this.getFocusModel();
+      S != null && S.hasFocus(s, i) && this.dom.addFocusBorderDivs(a, w, {});
     }
-    t === "header" && this.dom.setAttribute(S, "data-ge-action", "drag-column");
+    t === "header" && this.dom.setAttribute(A, "data-ge-action", "drag-column");
     const W = e.getCustomStyleAt(s, i);
     if (W)
-      for (const x in W)
-        this.dom.setStyle(S, x, W[x]);
-    return [S, M];
+      for (const S in W)
+        this.dom.setStyle(A, S, W[S]);
+    return [A, V];
   }
   applyCssClasses(e, t = {}) {
     e && Object.entries(t).forEach(([o, s]) => {
@@ -1293,15 +1409,23 @@ class Ae extends ve {
     n.setAttribute(a, "data-col-index", `${t}`), n.setAttribute(a, "data-row-index", `${e}`), n.setAttribute(a, "data-area", "header"), n.setAttribute(a, "data-ge-action", "resize-column"), n.addClass(a, "ge-table-column-resize-handle"), n.setStyle(a, "display", "clip"), n.setStyle(a, "position", "absolute"), n.setStyle(a, "cursor", "col-resize"), n.setStyle(a, "left", `${o + i - d}px`), n.setStyle(a, "top", `${s}px`), n.setStyle(a, "width", `${d}px`), n.setStyle(a, "height", `${r}px`), n.appendChild(l, a);
   }
 }
-class Ee {
+class Me {
   constructor(e, t) {
     this.columnIndex = e, this.sortState = t;
   }
 }
-class Me {
+class ke {
   constructor(e) {
     this.tableScope = e, this.tableScope.hostElement.addEventListener("change", this.onHostElementChanged.bind(this));
   }
+  /**
+   * Handles the onHostElementChanged event.
+   * In case that the element is an input field, the tableScope.updateModelValueAfterEdit() method is triggered.
+   *
+   * @param {Event} event - The event object.
+   *
+   * @return {void}
+   */
   onHostElementChanged(e) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement || e.target instanceof HTMLTextAreaElement) {
       const t = e.target, o = t.getAttribute("data-area"), s = t.getAttribute("data-row-index"), i = t.getAttribute("data-col-index");
@@ -1312,7 +1436,7 @@ class Me {
     }
   }
 }
-class ke {
+class Ie {
   constructor(e = -1, t = -1) {
     this.rowIndex = e, this.columnIndex = t;
   }
@@ -1322,10 +1446,10 @@ class U {
     this.cells = e;
   }
   static createSingle(e, t) {
-    return new U([new ke(e, t)]);
+    return new U([new Ie(e, t)]);
   }
 }
-class Ie {
+class Te {
   constructor(e) {
     var t, o;
     this.tableScope = e, (t = this.tableScope.tableOptions) != null && t.getSelectionModel && (this.getSelectionModel = this.tableScope.tableOptions.getSelectionModel), (o = this.tableScope.tableOptions) != null && o.getFocusModel && (this.getFocusModel = this.tableScope.tableOptions.getFocusModel);
@@ -1335,7 +1459,7 @@ class Ie {
     let o = !1, s = !1;
     if (this.getSelectionModel && this.getFocusModel) {
       const u = this.getSelectionModel(), m = this.getFocusModel();
-      u && m && (m.hasFocus(e.rowIndex, e.columnIndex) || (m.setFocus(e.rowIndex, e.columnIndex), o = !0), (i = e.originalEvent) != null && i.shiftKey || u.hasSelection() && (u.clear(), o = !0), (r = e.originalEvent) != null && r.shiftKey && this.previousEvt ? (u.addSelection(this.createRangeByEvents(e, this.previousEvt)), s = !0, o = !0) : (l = e.originalEvent) != null && l.ctrlKey || (n = e.originalEvent) != null && n.metaKey ? (u.addSelection(E.singleCell(e.rowIndex, e.columnIndex)), s = !0, o = !0) : (d = e.originalEvent) != null && d.altKey && ((a = e.originalEvent) != null && a.ctrlKey || (c = e.originalEvent) != null && c.metaKey) && (u.removeSelection(E.singleCell(e.rowIndex, e.columnIndex)), s = !0, o = !0));
+      u && m && (m.hasFocus(e.rowIndex, e.columnIndex) || (m.setFocus(e.rowIndex, e.columnIndex), o = !0), (i = e.originalEvent) != null && i.shiftKey || u.hasSelection() && (u.clear(), o = !0), (r = e.originalEvent) != null && r.shiftKey && this.previousEvt ? (u.addSelection(this.createRangeByEvents(e, this.previousEvt)), s = !0, o = !0) : (l = e.originalEvent) != null && l.ctrlKey || (n = e.originalEvent) != null && n.metaKey ? (u.addSelection(M.singleCell(e.rowIndex, e.columnIndex)), s = !0, o = !0) : (d = e.originalEvent) != null && d.altKey && ((a = e.originalEvent) != null && a.ctrlKey || (c = e.originalEvent) != null && c.metaKey) && (u.removeSelection(M.singleCell(e.rowIndex, e.columnIndex)), s = !0, o = !0));
     }
     return s ? this.previousEvt = void 0 : this.previousEvt = e == null ? void 0 : e.clone(), o;
   }
@@ -1358,7 +1482,7 @@ class Ie {
   createRangeByEvents(e, t) {
     t || (t = e);
     const o = Math.min(e.rowIndex, t == null ? void 0 : t.rowIndex), s = Math.max(e.rowIndex, t == null ? void 0 : t.rowIndex), i = Math.min(e.columnIndex, t == null ? void 0 : t.columnIndex), r = Math.max(e.columnIndex, t == null ? void 0 : t.columnIndex);
-    return E.create({
+    return M.create({
       rowIndex1: o,
       columnIndex1: i,
       rowIndex2: s,
@@ -1366,7 +1490,7 @@ class Ie {
     });
   }
 }
-class Te {
+class _e {
   get() {
     return {
       f2: "START_EDITING",
@@ -1384,7 +1508,7 @@ class Te {
     };
   }
 }
-class _e {
+class De {
   get() {
     return {
       f2: "START_EDITING",
@@ -1404,7 +1528,7 @@ class _e {
     };
   }
 }
-class De {
+class $e {
   constructor(e) {
     this.tableScope = e, this.shortcutActionIdMapping = {}, this.listener = [], this.listener.push(e), this.init();
   }
@@ -1412,7 +1536,7 @@ class De {
     this.listener.includes(e) || this.listener.push(e);
   }
   init() {
-    this.isMacintosh() ? Object.assign(this.shortcutActionIdMapping, new _e().get()) : Object.assign(this.shortcutActionIdMapping, new Te().get()), Object.assign(this.shortcutActionIdMapping, this.tableScope.tableOptions.shortcutActionIdMapping), this.isDebug() && console.debug("ShortcutService", this.shortcutActionIdMapping), this.tableScope.hostElement.addEventListener("keydown", this.onKeyDown.bind(this));
+    this.isMacintosh() ? Object.assign(this.shortcutActionIdMapping, new De().get()) : Object.assign(this.shortcutActionIdMapping, new _e().get()), Object.assign(this.shortcutActionIdMapping, this.tableScope.tableOptions.shortcutActionIdMapping), this.isDebug() && console.debug("ShortcutService", this.shortcutActionIdMapping), this.tableScope.hostElement.addEventListener("keydown", this.onKeyDown.bind(this));
   }
   isMacintosh() {
     return navigator.platform.indexOf("Mac") > -1;
@@ -1456,7 +1580,7 @@ class De {
     return e.altKey && t.push("alt"), e.shiftKey && t.push("shift"), e.ctrlKey && t.push("ctrl"), e.metaKey && t.push("meta"), e.code && t.push(e.code.toLowerCase().replace(/key/g, "")), t.sort();
   }
 }
-class Q {
+class Z {
   onCheckboxChanged(e) {
   }
   onContextmenu(e) {
@@ -1472,7 +1596,7 @@ class Q {
   onMouseMoved(e) {
   }
 }
-class $e {
+class Fe {
   setStyle(e, t, o) {
     return e.style[t] = o, e;
   }
@@ -1499,7 +1623,7 @@ class $e {
     e.setAttribute(t, o);
   }
 }
-class Fe {
+class Le {
   render(e, t, o, s, i, r, l) {
     if (i.isEditable(t, o)) {
       l.addClass(e, "ge-table-row-input-div");
@@ -1520,7 +1644,7 @@ class Fe {
     }
   }
 }
-class Le {
+class Oe {
   constructor(e = "none", t = "single") {
     this.selectionType = e, this.selectionMode = t, this.ranges = [], this.negativeRanges = [], this.allSelected = !1;
   }
@@ -1555,16 +1679,16 @@ class Le {
     if (this.selectionType === "none")
       return;
     let t = e;
-    this.selectionType === "row" ? t = E.singleRow(e.r1) : this.selectionType === "column" && (t = E.singleColumn(e.c1)), this.negativeRanges.push(t);
+    this.selectionType === "row" ? t = M.singleRow(e.r1) : this.selectionType === "column" && (t = M.singleColumn(e.c1)), this.negativeRanges.push(t);
   }
   togglePoint(e, t) {
-    this.getSelectionCount(e, t) > 0 ? this.removeSelection(E.singleCell(e, t)) : this.addSelection(E.singleCell(e, t));
+    this.getSelectionCount(e, t) > 0 ? this.removeSelection(M.singleCell(e, t)) : this.addSelection(M.singleCell(e, t));
   }
   addRange(e) {
     this.selectionType !== "none" && (this.allSelected = !1, this.selectionMode === "single" && (this.ranges = []), this.selectionType === "row" ? (e.c1 = 0, e.c2 = Number.MAX_SAFE_INTEGER) : this.selectionType === "column" ? (e.r1 = 0, e.r2 = Number.MAX_SAFE_INTEGER) : this.selectionType === "cell" ? (e.r2 = e.r1, e.c2 = e.c1) : this.selectionType, this.ranges.push(e));
   }
 }
-class Oe {
+class Pe {
   constructor(e = "none") {
     this.selectionType = e, this.rowIndex = -1, this.columnIndex = -1, this.changed = !1;
   }
@@ -1587,32 +1711,43 @@ class Oe {
     return [this.rowIndex, this.columnIndex];
   }
 }
-const Pe = new Le(), He = new Oe("cell");
+const He = new Oe(), Ve = new Pe("cell");
 class z {
   constructor() {
     this.overflowX = "auto", this.overflowY = "auto", this.horizontalBorderVisible = !0, this.verticalBorderVisible = !0, this.footerSeparatorBorderVisible = !0, this.headerSeparatorBorderVisible = !0, this.fixedEastSeparatorBorderVisible = !0, this.fixedWestSeparatorBorderVisible = !0, this.tableTopBorderVisible = !0, this.tableBottomBorderVisible = !0, this.hoverRowVisible = !0, this.hoverColumnVisible = !0, this.columnsResizable = !0, this.columnsDraggable = !0, this.columnResizeHandleWidthInPx = 4, this.defaultRowHeights = {
       header: 34,
       body: 34,
       footer: 34
-    }, this.footerVerticalSeparator = !1, this.headerToggleExpandCollapseIcons = !1, this.headerVerticalSeparator = !1, this.treeOptions = new ae(), this.showCheckboxWihoutExtraColumn = !1, this.externalFilterFunction = void 0, this.sortedOptions = new de(), this.sortOrder = ["asc", "desc"], this.getEditRenderer = (e, t) => new Fe(), this.getSelectionModel = () => Pe, this.getFocusModel = () => He;
+    }, this.footerVerticalSeparator = !1, this.headerToggleExpandCollapseIcons = !1, this.headerVerticalSeparator = !1, this.treeOptions = new de(), this.showCheckboxWihoutExtraColumn = !1, this.externalFilterFunction = void 0, this.sortedOptions = new he(), this.sortOrder = ["asc", "desc"], this.getEditRenderer = (e, t) => new Le(), this.getSelectionModel = () => He, this.getFocusModel = () => Ve;
   }
 }
-class he extends Ae {
+class ce extends Ee {
   constructor(e, t, o, s, i) {
     var r;
     if (super(
       e,
       t,
-      new pe(o),
+      new fe(o),
       s
-    ), this.eventListener = i, this.selectionService = new Ie(this), this.api = new we(this), this.mouseStartAction = "", this.mouseStartWidth = -1, this.mouseStartColumnIndex = -1, this.dragFrom = -1, this.dragTo = -1, i || (this.eventListener = new Q()), (r = this.tableOptions) != null && r.autoRestoreOptions) {
+    ), this.eventListener = i, this.selectionService = new Te(this), this.api = new Se(this), this.mouseStartAction = "", this.mouseStartWidth = -1, this.mouseStartColumnIndex = -1, this.dragFrom = -1, this.dragTo = -1, i || (this.eventListener = new Z()), (r = this.tableOptions) != null && r.autoRestoreOptions) {
       const l = this.tableOptions.autoRestoreOptions, n = l.getStorageKeyFn;
-      n && (l.autoRestoreScrollPosition && (this.storeScrollPosStateService = new Se(n)), l.autoRestoreCollapsedExpandedState && (this.storeStateCollapsedExpandService = new ye(n)), l.autoRestoreSortingState && (this.storeSortingService = new Ce(n)));
+      n && (l.autoRestoreScrollPosition && (this.storeScrollPosStateService = new xe(n)), l.autoRestoreCollapsedExpandedState && (this.storeStateCollapsedExpandService = new Ce(n)), l.autoRestoreSortingState && (this.storeSortingService = new ve(n)));
     }
-    this.mouseHandler = new me(this), this.inputHandler = new Me(this), this.shortcutService = new De(this), this.shortcutService.addListener(this.selectionService);
+    this.mouseHandler = new we(this), this.inputHandler = new ke(this), this.shortcutService = new $e(this), this.shortcutService.addListener(this.selectionService);
   }
-  static create(e, t, o = new z(), s = new Q(), i = new $e()) {
-    return new he(
+  /**
+   * Creates a TableScope instance.
+   *
+   * @param {HTMLDivElement} hostElement - The HTML div element that will contain the table.
+   * @param {TableModelIf} tableModel - The table model object.
+   * @param {TableOptionsIf} [tableOptions=new TableOptions()] - The optional table options object.
+   * @param {EventListenerIf} [eventListener=new EventAdapter()] - The optional event listener object.
+   * @param {DomServiceIf} [domService=new SimpleDomService()] - The optional DOM service object.
+   *
+   * @return {TableScope} - The newly created TableScope instance.
+   */
+  static create(e, t, o = new z(), s = new Z(), i = new Fe()) {
+    return new ce(
       e,
       t,
       i,
@@ -1636,16 +1771,32 @@ class he extends Ae {
   updateModelValueAfterEdit(e, t, o, s) {
     e === "body" && this.tableModel.getAreaModel(e).setValue(t, o, s) && (this.resetEditorRenderer(), this.repaint(), this.eventListener.onModelChanged(U.createSingle(t, o)), this.hostElement.focus());
   }
+  /**
+   * Retrieves the TableApi object.
+   *
+   * @return {TableApi} The TableApi object.
+   */
   getApi() {
     return this.api;
   }
-  /*
-   * Called by the table component
+  /**
+   * Initializes the table. Called by the table component.
+   *
+   * @function firstInit
+   * @memberof TableScope
+   *
+   * @returns {TableScope} This instance of the table scope.
    */
   firstInit() {
     var e;
     return this.tableModel.init(), (e = this.tableOptions) != null && e.externalFilterFunction && this.externalFilterChanged(!1), this.autoRestoreCollapsedExpandedState(), this.autoRestoreSortingState(), this.resetSizeOfWrapperDiv(), this.adjustContainersAndRows(), this.autoRestoreScrollPosition(), this;
   }
+  /**
+   * Creates a GeMouseEvent object based on a MouseEvent.
+   *
+   * @param {MouseEvent} mouseEvent - The MouseEvent object to create the GeMouseEvent from.
+   * @return {GeMouseEvent} - The created GeMouseEvent object.
+   */
   createGeMouseEvent(e) {
     const t = new X();
     if (t.originalEvent = e, e) {
@@ -1661,26 +1812,72 @@ class he extends Ae {
     }
     return t;
   }
+  /**
+   * Handles the mouse down event.
+   *
+   * @param {GeMouseEvent} mouseEvent - The mouse event object.
+   * @return {void}
+   */
   onMouseDown(e) {
     e.columnIndex > -1 && e.action && ["resize-column", "drag-column"].includes(e.action) && (this.mouseStartWidth = this.tableModel.getColumnWidth(e.columnIndex), this.mouseStartAction = e.action, this.mouseStartColumnIndex = e.columnIndex, this.mouseStartAction === "drag-column" && (this.dragFrom = this.mouseStartColumnIndex));
   }
+  /**
+   * Handles mouse dragging on the frame.
+   *
+   * @param {GeMouseEvent} mouseEvent - The mouse event object.
+   */
   mouseDraggingOnFrame(e) {
     this.eventListener.onMouseDragging(e), this.mouseEvent = e, this.mouseStartColumnIndex > -1 && this.mouseStartAction === "resize-column" && this.tableOptions.columnsResizable ? this.resizeColumn(e) : this.mouseStartAction === "drag-column" && e.columnIndex > -1 && this.tableOptions.columnsDraggable && (this.draggingTargetColumnIndex = e.columnIndex, this.dragTo = this.draggingTargetColumnIndex, this.dragFrom > -1 && this.dragTo > -1 && this.dragFrom !== this.dragTo && (this.tableModel.changeColumnOrder(this.dragFrom, this.dragTo), this.dragFrom = this.dragTo, this.resetSizeOfWrapperDiv(), this.adjustContainersAndRows()), this.repaint());
   }
+  /**
+   * Handles the end of mouse dragging event on a frame.
+   *
+   * @param {GeMouseEvent} mouseEvent - The mouse event object.
+   *
+   * @returns {void}
+   */
   mouseDraggingEndOnFrame(e) {
     this.eventListener.onMouseDraggingEnd(e), this.draggingTargetColumnIndex = -1, this.mouseStartAction === "resize-column" ? this.resizeColumn(e) : this.mouseStartAction === "drag-column" && this.repaint(), this.mouseStartWidth = -1, this.mouseStartColumnIndex = -1, this.dragFrom = -1, this.dragTo = -1, this.mouseStartAction = "";
   }
+  /**
+   * Handles the mouse move event.
+   *
+   * @param {GeMouseEvent} mouseMoveEvent - The mouse move event object.
+   * @return {void}
+   */
   mouseMove(e) {
     this.eventListener.onMouseMoved(e), this.adjustHoverRows(e), this.adjustHoverColumns(e);
   }
+  /**
+   * Triggers the context menu event based on the mouse move event.
+   *
+   * @param {GeMouseEvent} mouseMoveEvent - The mouse move event object.
+   * @return {void}
+   */
   contextmenu(e) {
     this.eventListener.onContextmenu(e);
   }
+  /**
+   * Toggles the expand or collapse state of all items in the body area model.
+   *
+   * @param {boolean} [expand=true] - Whether to expand or collapse all items. Default is true.
+   *
+   * @return {void}
+   */
   toggleExpandCollapseAll(e = !0) {
     var o;
     const t = this.tableModel.getBodyModel();
     N(t) && (t.toggleExpandCollapseAll(e), this.repaint(), (o = this.storeStateCollapsedExpandService) == null || o.collapsedStateAll(e));
   }
+  /**
+   * Toggles the checkbox state of a specific row in a table.
+   *
+   * @param {number} rowIdx - The index of the row to toggle the checkbox state.
+   * @param {number} _colIdx - The index of the column. This parameter is unused.
+   * @param {AreaIdent} areaIdent - The identifier of the table area.
+   *
+   * @return {void} - This method does not return anything.
+   */
   toggleRowCheckbox(e, t, o) {
     var n;
     const s = this.tableModel.getAreaModel(o), i = s.isRowChecked(e), r = i === void 0 || i === "semi" || i === "none";
@@ -1688,6 +1885,13 @@ class he extends Ae {
     const l = (n = s.rowSelectionModel) == null ? void 0 : n.getCheckedRows();
     this.eventListener.onCheckboxChanged(l || []);
   }
+  /**
+   * Handle mouse click events.
+   *
+   * @param {GeMouseEvent} evt - The mouse click event.
+   * @param {GeMouseEvent | undefined} previousEvt - The previous mouse click event, if any.
+   * @returns {void}
+   */
   onMouseClicked(e, t) {
     let o = this.selectionService.onMouseClicked(e, t);
     if (!o && this.getFocusModel) {
@@ -1696,19 +1900,41 @@ class he extends Ae {
     }
     this.eventListener.onMouseClicked(e), o && this.debounce(this.repaint.bind(this), 10);
   }
+  /**
+   * Updates the table (repaint) when an external filter is changed.
+   *
+   * @param {boolean} clearSelection - Indicates whether to clear the selection model or not. Default value is true.
+   * @return {void}
+   */
   externalFilterChanged(e = !0) {
     const t = this.tableOptions.externalFilterFunction;
     t && (e && this.clearSelectionModel(), this.tableModel.externalFilterChanged(t), this.scrollViewport.scrollTo(0, 0), this.tableModel.recalcHeightAndPadding(), this.resetSizeOfWrapperDiv(), this.repaint());
   }
+  /**
+   * Handle the double click event on the table header.
+   *
+   * @param {MouseEvent} event - The mouse event that triggered the double click.
+   * @param {number} _rowIdx - The row index of the header.
+   * @param {number} colIdx - The column index of the header.
+   *
+   * @return {void}
+   */
   onHeaderDblClicked(e, t, o) {
     var i, r;
     const s = this.tableModel.getColumnDef(o);
     if (s != null && s.sortable && s.sortable()) {
       e.preventDefault(), e.stopPropagation();
-      const l = s.sortStatesOrder ? s.sortStatesOrder : this.tableOptions.sortOrder, n = s.sortState ?? "", d = l[(l.indexOf(n) + 1) % l.length], a = new Ee(o, d);
+      const l = s.sortStatesOrder ? s.sortStatesOrder : this.tableOptions.sortOrder, n = s.sortState ?? "", d = l[(l.indexOf(n) + 1) % l.length], a = new Me(o, d);
       this.tableModel.doSort([a]) && ((i = this.tableModel.getColumnDefs()) == null || i.forEach((u) => u.sortState = ""), s.sortState = d), this.repaint(), (r = this.storeSortingService) == null || r.setSortItems([a]);
     }
   }
+  /**
+   * Changes the focus cell using the specified deltas.
+   *
+   * @param {number} dx - The delta for the column index.
+   * @param {number} dy - The delta for the row index.
+   * @return {boolean} - True if the focus cell was changed, false otherwise.
+   */
   changeFocusCell(e, t) {
     if (!this.isEditing() && this.getFocusModel) {
       const o = this.getFocusModel();
@@ -1719,9 +1945,19 @@ class he extends Ae {
     }
     return !1;
   }
+  /**
+   * Resizes the column based on the mouse event.
+   *
+   * @param {GeMouseEvent} mouseEvent - The mouse event that triggered the resize.
+   */
   resizeColumn(e) {
     this.tableModel.setColumnWidth(this.mouseStartColumnIndex, this.mouseStartWidth + e.draggingX), this.tableModel.recalcPadding(), this.resetSizeOfWrapperDiv(), this.adjustContainersAndRows();
   }
+  /**
+   * Clears the selection model, if available.
+   *
+   * @return {void}
+   */
   clearSelectionModel() {
     var e;
     this.getSelectionModel && ((e = this.getSelectionModel()) == null || e.clear());
@@ -1730,6 +1966,14 @@ class he extends Ae {
     var o;
     console.clear(), console.info("this.hostElement.offsetTop", this.hostElement.offsetTop), console.info("this.hostElement.scrollHeight", this.hostElement.scrollHeight), console.info("this.scrollViewportTop", this.scrollTop), console.info("this.areaHeaderCenter.parent.clientHeight", this.areaHeaderCenter.parent.clientHeight), console.info("bodyY", t), console.info("bodyX", e), console.info("rows", this.firstVisibleRowIndex), console.info(""), console.info("this.tableModel", this.tableModel), console.info(""), console.info("this.mouseMoveEvent.clientX", (o = this.mouseHandler.mouseEvent) == null ? void 0 : o.clientX), console.info("this.hostElement.offsetLeft", this.hostElement.offsetLeft), console.info("this.areaBodyWestGeo.width", this.areaBodyWestGeo.width);
   }
+  /**
+   * Restores the scroll position of the table if auto restore options are enabled.
+   *
+   * @private
+   * @memberof ClassName
+   *
+   * @returns {void}
+   */
   autoRestoreScrollPosition() {
     var e;
     if ((e = this.tableOptions) != null && e.autoRestoreOptions && this.storeScrollPosStateService && this.tableOptions.autoRestoreOptions.autoRestoreScrollPosition) {
@@ -1737,6 +1981,20 @@ class he extends Ae {
       o && this.scrollViewport.scrollTo(...o);
     }
   }
+  /**
+   * Automatically restores the sorting state of the table.
+   *
+   * @private
+   * @function autoRestoreSortingState
+   * @memberof ClassName
+   *
+   * @description
+   * This method checks if the autoRestoreSortingState option is enabled in the tableOptions.
+   * If enabled, it uses the storeSortingService to retrieve the sort items array.
+   * If there are sort items present, it applies them to the table's body model using the doSort method.
+   *
+   * @returns {void}
+   */
   autoRestoreSortingState() {
     var e, t;
     if ((t = (e = this.tableOptions) == null ? void 0 : e.autoRestoreOptions) != null && t.autoRestoreSortingState && this.storeSortingService) {
@@ -1744,6 +2002,12 @@ class he extends Ae {
       o != null && o.length && this.tableModel.getBodyModel().doSort(o);
     }
   }
+  /**
+   * Restores the collapsed/expanded state of the rows in the table based on the autoRestoreOptions
+   * specified in the tableOptions. This method is private and should not be called directly.
+   *
+   * @private
+   */
   autoRestoreCollapsedExpandedState() {
     var e, t;
     if ((t = (e = this.tableOptions) == null ? void 0 : e.autoRestoreOptions) != null && t.getRowId && this.storeStateCollapsedExpandService) {
@@ -1770,10 +2034,10 @@ class he extends Ae {
     }
   }
 }
-class ce {
+class ue {
 }
-ce.themes = ["light", "combat", "paper", "blackboard"];
-ce.vars = {
+ue.themes = ["light", "combat", "paper", "blackboard"];
+ue.vars = {
   light: `html[data-theme="light"] {
   --ge-table-bg: rgba(255,255,255, 0.5);
   --ge-table-header-west-bg: rgba(233, 233, 233, 0.5);
@@ -2007,7 +2271,7 @@ ce.vars = {
   --ge-table-drop-zone-bg: #758129;
 }`
 };
-class Z {
+class ee {
   constructor(e, t = !0, o, s, i = 0, r = !1, l = !1) {
     this.data = e, this.expanded = t, this.children = o, this.parent = s, this.deep = i, this.checked = r, this.keep = l, this.type = "TreeRow";
   }
@@ -2019,14 +2283,14 @@ class j {
       s.push(j.buildTreeRow(i, t, void 0, 0, o));
     return s;
   }
-  static buildTreeRow(e, t = "children", o = new Z(e, !0, [], void 0, 0), s = 0, i = 12) {
+  static buildTreeRow(e, t = "children", o = new ee(e, !0, [], void 0, 0), s = 0, i = 12) {
     var l;
     if (s > i)
       return console.warn("Max deep limit reached: ", s), o;
     const r = e[t];
     if (r)
       for (const n of r) {
-        const d = new Z(n, !0, [], o, s + 1);
+        const d = new ee(n, !0, [], o, s + 1);
         if ((l = o.children) == null || l.push(d), j.buildTreeRow(
           n,
           t,
@@ -2048,28 +2312,28 @@ class f {
     this.value = e, this.unit = t;
   }
 }
-const Ve = () => !0, ee = () => !1;
+const Be = () => !0, te = () => !1;
 class H {
-  constructor(e, t, o = new f(100, "px"), s = new I(), i = new I(), r = new f(100, "px"), l = new f(100, "px"), n, d, a, c, u, m, b, w, g = () => this.visible) {
+  constructor(e, t, o = new f(100, "px"), s = new T(), i = new T(), r = new f(100, "px"), l = new f(100, "px"), n, d, a, c, u, m, b, w, g = () => this.visible) {
     this.property = e, this.headerLabel = t, this.width = o, this.classes = s, this.rendererMap = i, this.minWidth = r, this.maxWidth = l, this.sortable = n, this.sortComparator = d, this.sortState = a, this.sortStatesOrder = c, this.sortIconVisible = u, this.editable = m, this.getEditRenderer = b, this.editInputPipe = w, this.isVisible = g, this.visible = !0;
   }
   static bodyRenderer(e) {
-    return new I(
+    return new T(
       void 0,
       e,
       void 0
     );
   }
   static create(e) {
-    const t = new I(
+    const t = new T(
       e.headerRenderer,
       e.bodyRenderer,
       e.footerRenderer
-    ), o = new I(
+    ), o = new T(
       e.headerClasses,
       e.bodyClasses,
       e.footerClasses
-    ), s = e.sortIconVisible ?? e.sortable ?? ee, i = e.editable ?? e.editable ?? ee, r = e.isVisible ?? e.isVisible ?? Ve;
+    ), s = e.sortIconVisible ?? e.sortable ?? te, i = e.editable ?? e.editable ?? te, r = e.isVisible ?? e.isVisible ?? Be;
     return new H(
       e.property ?? "",
       e.headerLabel ?? "",
@@ -2090,7 +2354,7 @@ class H {
     );
   }
 }
-const Ke = new f(300, "px"), Ue = new f(290, "px"), qe = new f(280, "px"), Je = new f(270, "px"), Qe = new f(260, "px"), Ze = new f(250, "px"), et = new f(240, "px"), tt = new f(230, "px"), ot = new f(220, "px"), st = new f(210, "px"), te = new f(200, "px"), it = new f(190, "px"), rt = new f(180, "px"), lt = new f(170, "px"), nt = new f(160, "px"), at = new f(150, "px"), dt = new f(140, "px"), ht = new f(130, "px"), ct = new f(120, "px"), ut = new f(110, "px"), gt = new f(100, "px"), bt = new f(90, "px"), pt = new f(80, "px"), ft = new f(70, "px"), mt = new f(60, "px"), wt = new f(50, "px"), St = new f(40, "px"), xt = new f(30, "px"), yt = new f(20, "px"), Ct = new f(10, "px"), vt = new f(0, "px");
+const Ue = new f(300, "px"), qe = new f(290, "px"), Je = new f(280, "px"), Qe = new f(270, "px"), Ze = new f(260, "px"), et = new f(250, "px"), tt = new f(240, "px"), ot = new f(230, "px"), st = new f(220, "px"), it = new f(210, "px"), oe = new f(200, "px"), rt = new f(190, "px"), lt = new f(180, "px"), nt = new f(170, "px"), at = new f(160, "px"), dt = new f(150, "px"), ht = new f(140, "px"), ct = new f(130, "px"), ut = new f(120, "px"), gt = new f(110, "px"), bt = new f(100, "px"), pt = new f(90, "px"), ft = new f(80, "px"), mt = new f(70, "px"), wt = new f(60, "px"), St = new f(50, "px"), xt = new f(40, "px"), yt = new f(30, "px"), Ct = new f(20, "px"), vt = new f(10, "px"), Rt = new f(0, "px");
 class q {
   constructor(e, t = [], o = -1) {
     this.areaIdent = e, this.columnDefs = t, this.defaultRowHeight = o, this.rowSelectionModel = void 0, this.yPositions = [], this.cellRenderers = t.map((s) => s.rendererMap[e]);
@@ -2279,7 +2543,7 @@ class D {
   changeColumnOrder(e, t) {
   }
 }
-class Be {
+class We {
   flattenTree(e, t = []) {
     var o;
     for (const s of e)
@@ -2290,7 +2554,7 @@ class Be {
     return e.parent ? e.parent.expanded ? this.isVisible(e.parent) : !1 : !0;
   }
 }
-class ue {
+class ge {
   genericSortComparator(e, t, o) {
     if (typeof e == "number" && typeof t == "number")
       return o * (e - t);
@@ -2308,9 +2572,9 @@ class ue {
     return o * ("" + e).localeCompare("" + t);
   }
 }
-class oe extends q {
+class se extends q {
   constructor(e, t, o, s = []) {
-    super(e, s, o), this.areaIdent = e, this.rows = t, this.defaultRowHeight = o, this.columnDefs = s, this.type = "AreaModelTree", this.sorterService = new ue(), this.service = new Be(), this.properties = s.map((i) => i.property), this.flattenRows = this.service.flattenTree(t), this.filteredFlattenRows = [...this.flattenRows];
+    super(e, s, o), this.areaIdent = e, this.rows = t, this.defaultRowHeight = o, this.columnDefs = s, this.type = "AreaModelTree", this.sorterService = new ge(), this.service = new We(), this.properties = s.map((i) => i.property), this.flattenRows = this.service.flattenTree(t), this.filteredFlattenRows = [...this.flattenRows];
   }
   changeColumnOrder(e, t) {
     this.arrayMove(this.properties, e, t), super.changeColumnOrder(e, t);
@@ -2412,7 +2676,7 @@ class oe extends q {
       s.children && this.treeSort(s.children, t, o);
   }
 }
-class se {
+class ie {
   constructor(e = []) {
     this.allRootNodes = e;
   }
@@ -2472,12 +2736,12 @@ class se {
       o.checked && t.push(o), o.children && this.addSelectedRecursive(o.children, t);
   }
 }
-class ie {
+class re {
   constructor(e = 0, t = 0, o = 0, s = 0) {
     this.top = e, this.right = t, this.bottom = o, this.left = s;
   }
 }
-class We {
+class Ge {
   constructor() {
     this.checkedRows = [];
   }
@@ -2512,57 +2776,143 @@ class G {
   constructor(e, t, o, s = 0, i = 0, r = !1, l = new P(), n = [], d = [], a = -1, c = 0, u = 400, m = () => {
   }) {
     var b, w, g, p;
-    this.headerAreaModel = e, this.bodyAreaModel = t, this.footerAreaModel = o, this.fixedLeftColumnCount = s, this.fixedRightColumnCount = i, this.rowCheckboxVisible = r, this.defaultRowHeights = l, this.columnDefs = n, this.columnSizes = d, this.overridingColumnWidth = a, this.columnCount = c, this.parentSize = u, this.getSelectionModel = m, this.rowCount = 0, this.contentHeightInPx = 0, this.contentWidthInPx = 0, this.padding = new ie(0, 0, 0, 0), this.xPositions = [], e.areaIdent = "header", t.areaIdent = "body", o.areaIdent = "footer", this.columnCount || ((b = this.columnDefs) != null && b.length ? this.columnCount = this.columnDefs.length : (w = this.columnSizes) != null && w.length && (this.columnCount = (g = this.columnSizes) == null ? void 0 : g.length)), (p = this.columnDefs) != null && p.length && be(this.columnDefs[0]) && !t.rowSelectionModel && (t.rowSelectionModel = new We());
+    this.headerAreaModel = e, this.bodyAreaModel = t, this.footerAreaModel = o, this.fixedLeftColumnCount = s, this.fixedRightColumnCount = i, this.rowCheckboxVisible = r, this.defaultRowHeights = l, this.columnDefs = n, this.columnSizes = d, this.overridingColumnWidth = a, this.columnCount = c, this.parentSize = u, this.getSelectionModel = m, this.rowCount = 0, this.contentHeightInPx = 0, this.contentWidthInPx = 0, this.padding = new re(0, 0, 0, 0), this.xPositions = [], e.areaIdent = "header", t.areaIdent = "body", o.areaIdent = "footer", this.columnCount || ((b = this.columnDefs) != null && b.length ? this.columnCount = this.columnDefs.length : (w = this.columnSizes) != null && w.length && (this.columnCount = (g = this.columnSizes) == null ? void 0 : g.length)), (p = this.columnDefs) != null && p.length && pe(this.columnDefs[0]) && !t.rowSelectionModel && (t.rowSelectionModel = new Ge());
   }
   init() {
     this.recalcSize(this.parentSize), this.overridingColumnWidth === -1 && this.calcXPositions(), this.headerAreaModel && this.headerAreaModel.init(), this.bodyAreaModel && this.bodyAreaModel.init(), this.footerAreaModel && this.footerAreaModel.init();
   }
+  /**
+   * Retrieves the count of columns in the current instance.
+   *
+   * @return {number} The count of columns.
+   */
   getColumnCount() {
     return this.columnCount;
   }
+  /**
+   * Sets the width in pixel of a column (by columnIndex) in a table.
+   *
+   * @param {number} columnIndex - The index of the column.
+   * @param {number} width - The desired width of the column.
+   * @return {void}
+   */
   setColumnWidth(e, t) {
     var o;
     t = Math.max(0, t), this.overridingColumnWidth !== -1 && (this.overridingColumnWidth = t), e > -1 && e < ((o = this.columnSizes) == null ? void 0 : o.length) && (this.columnSizes[e] = t), this.recalcContentWidthInPx();
   }
+  /**
+   * Retrieves the width of a column specified by its index.
+   *
+   * @param {number} columnIndex - The index of the desired column.
+   * @return {number} - The width of the specified column.
+   */
   getColumnWidth(e) {
     var o;
     const t = this.getColumnDef(e);
     return t && t.isVisible && !t.isVisible() ? 0 : this.overridingColumnWidth !== -1 ? this.overridingColumnWidth : e > -1 && e < ((o = this.columnSizes) == null ? void 0 : o.length) ? this.columnSizes[e] : 0;
   }
+  /**
+   * Retrieves the x position for a given column index.
+   *
+   * @param {number} columnIndex - The index of the column.
+   * @return {number} - The x position of the column.
+   */
   getXPosByColumnIndex(e) {
     return e === 0 ? 0 : this.overridingColumnWidth > -1 ? this.overridingColumnWidth * e : this.xPositions[e];
   }
+  /**
+   * Recalculates the size (width, height, padding)  of the elements based on the client width.
+   *
+   * @param {number} clientWidth - The width of the client area.
+   *
+   * @return {void} - This method does not return a value.
+   */
   recalcSize(e) {
     this.recalcColumnWidthes(e), this.recalcHeightAndPadding();
   }
+  /**
+   * Recalculates the height and padding for the body area.
+   *
+   * This method retrieves the area model for the "body" area,
+   * and updates the rowCount property with the row count of the model.
+   *
+   * The contentHeightInPx property is then updated with the height of the "body" area.
+   *
+   * The method calls the recalcContentWidthInPx() method to recalculate the content width.
+   *
+   * Finally, the method calls the recalcPadding() method to recalculate the padding.
+   *
+   * @return {void}
+   */
   recalcHeightAndPadding() {
     const e = this.getAreaModel("body");
     this.rowCount = e.getRowCount(), this.contentHeightInPx = this.getAreaHeight("body"), this.recalcContentWidthInPx(), this.recalcPadding();
   }
+  /**
+   * Recalculates the padding of an element based on the width and height of its surrounding areas.
+   *
+   * @method recalcPadding
+   *
+   * @returns {void}
+   */
   recalcPadding() {
     const e = this.getSideAreaWidth("west"), t = this.getSideAreaWidth("east"), o = this.getAreaHeight("header"), s = this.getAreaHeight("footer");
-    this.padding = new ie(
+    this.padding = new re(
       o,
       t,
       s,
       e
     );
   }
+  /**
+   * Retrieves the padding value.
+   *
+   * @returns {Padding} The padding value.
+   */
   getPadding() {
     return this.padding;
   }
+  /**
+   * Returns the height of the content in pixels.
+   *
+   * @returns {number} The height of the content in pixels.
+   */
   getContentHeightInPixel() {
     return this.contentHeightInPx;
   }
+  /**
+   * Returns the width of the content in pixels.
+   *
+   * @returns {number} The width of the content in pixels.
+   */
   getContentWidthInPixel() {
     return this.contentWidthInPx;
   }
+  /**
+   * Returns the height of the specified row in the given row area identifier.
+   *
+   * @param {AreaIdent} rowAreaIdent - The row area identifier.
+   * @param {number} rowIndex - The index of the row.
+   * @return {number} - The height of the specified row.
+   */
   getRowHeight(e, t) {
     return this.getAreaModel(e).getRowHeight(t);
   }
+  /**
+   * Retrieves the model for the given row area identifier.
+   *
+   * @param {AreaIdent} rowAreaIdent - The identifier of the row area.
+   * @return {AreaModelIf} - The model of the specified row area.
+   */
   getModel(e) {
     return this.getAreaModel(e);
   }
+  /**
+   * Calculates the height of the area identified by the given area identifier.
+   *
+   * @param {AreaIdent} areaIdent - The identifier of the area.
+   * @return {number} - The height of the area.
+   */
   getAreaHeight(e) {
     const t = this.getModel(e), o = t.getRowCount();
     if (this.defaultRowHeights[e])
@@ -2572,6 +2922,12 @@ class G {
       s = s + t.getRowHeight(i);
     return s;
   }
+  /**
+   * Returns the total width of the side area identified by sideIdent.
+   *
+   * @param {SideIdent} sideIdent - The identifier of the side area ("west" | "center" | "east").
+   * @return {number} - The total width in pixels of the side area.
+   */
   getSideAreaWidth(e) {
     const [t, o] = this.getSideStartAndEndColumnIndex(e);
     let s = 0;
@@ -2579,21 +2935,50 @@ class G {
       s = s + this.getColumnWidth(i);
     return s;
   }
+  /**
+   * Retrieves the start and end column indices based on the given side identifier.
+   *
+   * @param {SideIdent} sideIdent - The side identifier, which can be "west", "east", or "center".
+   * @return {[number, number]} - An array containing the start and end column indices.
+   */
   getSideStartAndEndColumnIndex(e) {
     const t = this.getFixedLeftColumnCount(), o = this.getFixedRightColumnCount();
     let s = 0, i = this.columnCount - 1;
     return e === "west" ? i = t - 1 : e === "east" ? s = this.columnCount - o : (s = t, i = this.columnCount - o - 1), [s, i];
   }
+  /**
+   * Returns the column definition at the specified index.
+   *
+   * @param {number} index - The index of the column definition to retrieve.
+   * @returns {ColumnDefIf | undefined} - The column definition at the specified index, or undefined if no ColumnDef is specified for the given column
+   */
   getColumnDef(e) {
     if (e < this.columnDefs.length)
       return this.columnDefs[e];
   }
+  /**
+   * Retrieves the count of fixed left columns.
+   *
+   * @returns {number} The count of fixed left columns.
+   */
   getFixedLeftColumnCount() {
     return this.fixedLeftColumnCount;
   }
+  /**
+   * Returns the number of fixed right columns.
+   *
+   * @returns {number} The number of fixed right columns.
+   */
   getFixedRightColumnCount() {
     return this.fixedRightColumnCount;
   }
+  /**
+   * Retrieves the area model (header, body or footer) based on the area identification.
+   *
+   * @param {AreaIdent} area - The identifier of the area.
+   * @return {AreaModelIf} The area model corresponding to the given area identification.
+   * @throws {Error} If the area identification is invalid.
+   */
   getAreaModel(e) {
     if (e === "header")
       return this.headerAreaModel;
@@ -2603,38 +2988,103 @@ class G {
       return this.footerAreaModel;
     throw new Error("Wrong ident.");
   }
+  /**
+   * Returns the body area model.
+   *
+   * @returns {AreaModelIf} The body area model.
+   */
   getBodyModel() {
     return this.bodyAreaModel;
   }
+  /**
+   * Checks if the footer is visible.
+   *
+   * @returns {boolean} True if the footer is visible, false otherwise.
+   */
   isFooterVisibe() {
     var e;
     return (((e = this.footerAreaModel) == null ? void 0 : e.getRowCount()) ?? 0) > 0;
   }
+  /**
+   * Checks if the header area is visible.
+   * @return {boolean} Returns true if the header area is visible, otherwise false.
+   */
   isHeaderVisibe() {
     var e;
     return (((e = this.headerAreaModel) == null ? void 0 : e.getRowCount()) ?? 0) > 0;
   }
+  /**
+   * Checks whether the row checkbox is visible.
+   *
+   * @returns {boolean} True if the row checkbox is visible, otherwise false.
+   */
   isRowCheckboxVisible() {
     return this.rowCheckboxVisible;
   }
+  /**
+   * This method is called when an external filter is changed.
+   *
+   * @param {FilterFunction<T>} predictFn - The function used to predict whether an element should be filtered or not.
+   * @return {void}
+   */
   externalFilterChanged(e) {
     this.getAreaModel("body").externalFilterChanged(e);
   }
+  /**
+   * Sorts the items using the given sortItems array.
+   *
+   * @param {SortItem[]} sortItems - An array of sort items to sort the items.
+   * @return {boolean} - Returns true if the sorting is successful, otherwise false.
+   */
   doSort(e) {
     return this.getAreaModel("body").doSort(e);
   }
+  /**
+   * Returns an array of ColumnDefIf objects or undefined.
+   *
+   * @return {ColumnDefIf[] | undefined} An array of ColumnDefIf objects or undefined.
+   */
   getColumnDefs() {
     return this.columnDefs;
   }
+  /**
+   * Retrieves the property key of the table row business object associated with the specified column index.
+   * It's only available when columnDefs are specified.
+   *
+   * @param {number} columnIndex - The index of the column to retrieve the property from.
+   * @return {string} The property associated with the specified column index.
+   */
   getColumnProperty(e) {
-    return this.columnDefs[e].property;
+    return this.columnDefs ? this.columnDefs[e].property : "";
   }
+  /**
+   * Retrieves the row object from the body model at the specified index.
+   *
+   * @param {number} rowIndex - The index of the row to retrieve.
+   *
+   * @return {any} The row object at the specified index.
+   */
   getBodyRowByIndex(e) {
     return this.getBodyModel().getRowByIndex(e);
   }
+  /**
+   * Checks if a column at the given index is sortable.
+   *
+   * @param {number} columnIndex - The index of the column to check.
+   *
+   * @returns {boolean} - `true` if the column is sortable, `false` otherwise.
+   */
   isSortable(e) {
     return this.columnDefs && e < this.columnDefs.length && this.columnDefs[e].sortable ? this.columnDefs[e].sortable() : !1;
   }
+  /**
+   * Moves a column in the column order.
+   *
+   * @param {number} sourceColumnIndex - The index of the column to be moved.
+   * @param {number} targetColumnIndex - The index where the column should be moved to.
+   *
+   * @returns {void}
+   */
   changeColumnOrder(e, t) {
     var o, s, i;
     this.arrayMove(this.columnDefs, e, t), this.arrayMove(this.columnSizes, e, t), (o = this.headerAreaModel) == null || o.changeColumnOrder(e, t), (s = this.bodyAreaModel) == null || s.changeColumnOrder(e, t), (i = this.footerAreaModel) == null || i.changeColumnOrder(e, t), this.calcXPositions();
@@ -2671,9 +3121,9 @@ class G {
       this.xPositions[t + 1] = this.getColumnWidth(t) + this.xPositions[t];
   }
 }
-class Ge extends q {
+class Ne extends q {
   constructor(e, t, o, s = []) {
-    super(e, s, o), this.areaIdent = e, this.rows = t, this.defaultRowHeight = o, this.columnDefs = s, this.sorterService = new ue(), this.filteredRows = [...t], this.properties = s.map((i) => i.property);
+    super(e, s, o), this.areaIdent = e, this.rows = t, this.defaultRowHeight = o, this.columnDefs = s, this.sorterService = new ge(), this.filteredRows = [...t], this.properties = s.map((i) => i.property);
   }
   getRowCount() {
     var e;
@@ -2724,7 +3174,7 @@ class Ge extends q {
     return s && t.length ? this.getPropertyValue(s, t) : s;
   }
 }
-class re extends Ge {
+class le extends Ne {
   constructor(e, t, o, s) {
     super(
       e,
@@ -2754,7 +3204,7 @@ class L {
           g > -1 && (e.defaultRowHeights.footer = g);
         }
       }
-    if (e.columnDefs === void 0 && ((o = e.properties) != null && o.length ? e.columnDefs = e.properties.map((g) => new H(g, g.toUpperCase(), te)) : (s = e.rows) != null && s.length ? e.columnDefs = Object.keys(e.rows[0]).map((g) => new H(g, g.toUpperCase(), te)) : e.columnDefs = []), e.columnCount === void 0 && ((i = e.columnDefs) != null && i.length ? e.columnCount = e.columnDefs.length : (r = e.headerData) != null && r.length ? e.columnCount = e.headerData[0].length : (l = e.columnSizes) != null && l.length ? e.columnCount = (n = e.columnSizes) == null ? void 0 : n.length : console.warn('Property "columnCount" is missing and cannot be derived from other properties.')), e.headerAreaModel || ((d = e.headerData) != null && d.length ? e.headerAreaModel = new _(
+    if (e.columnDefs === void 0 && ((o = e.properties) != null && o.length ? e.columnDefs = e.properties.map((g) => new H(g, g.toUpperCase(), oe)) : (s = e.rows) != null && s.length ? e.columnDefs = Object.keys(e.rows[0]).map((g) => new H(g, g.toUpperCase(), oe)) : e.columnDefs = []), e.columnCount === void 0 && ((i = e.columnDefs) != null && i.length ? e.columnCount = e.columnDefs.length : (r = e.headerData) != null && r.length ? e.columnCount = e.headerData[0].length : (l = e.columnSizes) != null && l.length ? e.columnCount = (n = e.columnSizes) == null ? void 0 : n.length : console.warn('Property "columnCount" is missing and cannot be derived from other properties.')), e.headerAreaModel || ((d = e.headerData) != null && d.length ? e.headerAreaModel = new _(
       "header",
       e.headerData,
       e.defaultRowHeights.header,
@@ -2773,14 +3223,14 @@ class L {
       if (e.rows)
         if ((u = e.rows) != null && u.length && O(e.rows[0])) {
           const g = e.rows;
-          e.bodyAreaModel = new oe(
+          e.bodyAreaModel = new se(
             "body",
             g,
             e.defaultRowHeights.body,
             e.columnDefs
-          ), (e.columnDefs[0].property === "CheckboxColumn" || (m = e.tableOptions) != null && m.showCheckboxWihoutExtraColumn) && (e.bodyAreaModel.rowSelectionModel = new se(g));
+          ), (e.columnDefs[0].property === "CheckboxColumn" || (m = e.tableOptions) != null && m.showCheckboxWihoutExtraColumn) && (e.bodyAreaModel.rowSelectionModel = new ie(g));
         } else
-          e.bodyAreaModel = new re(
+          e.bodyAreaModel = new le(
             "body",
             e.rows,
             e.columnDefs,
@@ -2820,13 +3270,13 @@ class L {
   static buildByTypedRows(e, t, o = new z(), s = 0, i = 0) {
     const r = o.defaultRowHeights, l = t[0].property === "CheckboxColumn";
     if (e != null && e.length && O(e[0])) {
-      const n = e, d = new oe(
+      const n = e, d = new se(
         "body",
         n,
         r.body,
         t
       );
-      return (l || o.showCheckboxWihoutExtraColumn) && (d.rowSelectionModel = new se(n)), L.createByAreaModelsParam({
+      return (l || o.showCheckboxWihoutExtraColumn) && (d.rowSelectionModel = new ie(n)), L.createByAreaModelsParam({
         headerAreaModel: new _("header", [t.map((a) => a.headerLabel)], r.header),
         bodyAreaModel: d,
         footerAreaModel: new _("footer", [], r.footer),
@@ -2895,7 +3345,7 @@ class L {
   static createByObjectArray(e, t = [], o = [], s = 0, i = 0, r = !1, l = new P(), n, d = []) {
     let a;
     t != null && t.length ? a = new _("header", t, l.header, n) : n != null && n.length ? a = new _("header", [n.map((m) => m.headerLabel)], l.header, n) : a = new D();
-    const c = o ? new _("footer", o, l.footer, n) : new D(), u = new re("body", e, n, l.body);
+    const c = o ? new _("footer", o, l.footer, n) : new D(), u = new le("body", e, n, l.body);
     return new G(
       a,
       u,
@@ -2909,7 +3359,7 @@ class L {
     );
   }
 }
-const Rt = [
+const At = [
   //"COPY_2_CLIPBOARD",
   "START_EDITING",
   "TOGGLE_SELECTION",
@@ -2927,17 +3377,17 @@ const Rt = [
   // "PAGEUP_PRESSED",
   // "PAGEDOWN_PRESSED"
 ];
-class At {
+class Et {
   constructor(e, t) {
     this.tableModel = e, this.tableOptions = t;
   }
 }
-class Ne {
+class ze {
   constructor(e, t, o, s, i, r, l) {
     this.emmitDataKey = e, this.emmitCancelKey = t, this.queryId = o, this.filter = s, this.sorting = i, this.startIndex = r, this.endIndex = l;
   }
 }
-class Et extends Ne {
+class Mt extends ze {
   constructor(e, t, o, s, i, r, l, n) {
     super(
       e,
@@ -2950,30 +3400,30 @@ class Et extends Ne {
     ), this.rows = n;
   }
 }
-class ze {
+class je {
   constructor(e, t) {
     this.value = e, this.label = t;
   }
 }
-class Mt {
+class kt {
   constructor(e, t) {
     this.index = e, this.px = t;
   }
 }
-const kt = { body: ["ge-table-text-align-left"] }, It = { body: ["ge-table-text-align-center"] }, Tt = { body: ["ge-table-text-align-right"] }, _t = {
+const It = { body: ["ge-table-text-align-left"] }, Tt = { body: ["ge-table-text-align-center"] }, _t = { body: ["ge-table-text-align-right"] }, Dt = {
   header: ["ge-table-text-align-left"],
   body: ["ge-table-text-align-left"],
   footer: ["ge-table-text-align-left"]
-}, Dt = {
+}, $t = {
   header: ["ge-table-text-align-center"],
   body: ["ge-table-text-align-center"],
   footer: ["ge-table-text-align-center"]
-}, $t = {
+}, Ft = {
   header: ["ge-table-text-align-right"],
   body: ["ge-table-text-align-right"],
   footer: ["ge-table-text-align-right"]
 };
-class le {
+class ne {
   render(e, t, o, s, i, r, l) {
     if (i.isRowCheckable(t)) {
       l.addClass(e, "ge-table-row-checkbox-div");
@@ -2991,35 +3441,41 @@ class le {
     }
   }
 }
-class Ft {
+class Lt {
   constructor() {
-    this.type = "CheckboxColumnDef", this.property = "CheckboxColumn", this.headerLabel = "", this.width = new f(50, "px"), this.minWidth = new f(50, "px"), this.maxWidth = new f(100, "px"), this.rendererMap = new I(new le(), new le(), void 0), this.classes = new I(
+    this.type = "CheckboxColumnDef", this.property = "CheckboxColumn", this.headerLabel = "", this.width = new f(50, "px"), this.minWidth = new f(50, "px"), this.maxWidth = new f(100, "px"), this.rendererMap = new T(new ne(), new ne(), void 0), this.classes = new T(
       [],
       ["ge-table-text-align-left"],
       []
     );
   }
 }
-class Lt {
+class Ot {
+  /**
+   * A factory that creates a new AreaObjectMap with the given body renderer.
+   *
+   * @param {CellRendererIf} bodyRenderer - The renderer for the body of the map.
+   * @returns {AreaObjectMap<CellRendererIf>} The newly created AreaObjectMap.
+   */
   static body(e) {
-    return new I(
+    return new T(
       void 0,
       e,
       void 0
     );
   }
 }
-class Ot {
+class Pt {
   constructor(e = "down", t) {
     this.status = e, this.originalEvent = t;
   }
 }
-class Pt {
+class Ht {
   constructor(e, t, o, s, i = {}) {
     this.area = e, this.rowIndex = t, this.columnIndex = o, this.value = s, this.cssClasses = i;
   }
 }
-class Ht {
+class Vt {
   constructor() {
     this.autoRestoreSortingState = !1, this.autoRestoreCollapsedExpandedState = !1, this.autoRestoreScrollPosition = !1, this.autoRestoreCheckedState = !1, this.autoRestoreSelectedState = !1, this.getStorageKeyFn = void 0, this.isSame = (e, t, o) => {
       if (e && t && o.getRowId) {
@@ -3044,12 +3500,12 @@ class Ht {
     };
   }
 }
-class je {
+class Xe {
   constructor(e, t, o, s = !1, i = "normal", r = void 0) {
     this.data = e, this.property = t, this.toggle = o, this.closed = s, this.visibility = i, this.children = r, this.impl = "CellGroup";
   }
 }
-class Xe extends je {
+class Ye extends Xe {
   constructor(e, t = 0, o = 0, s) {
     super(
       e.data,
@@ -3139,7 +3595,7 @@ class Xe extends je {
         l.log(e);
   }
 }
-class k {
+class I {
   static buildColumnDefs(e, t = []) {
     for (const o of e)
       o.property && t.push(
@@ -3148,7 +3604,7 @@ class k {
           headerLabel: o.data ? o.data : o.property,
           isVisible: () => typeof o.isVisible == "function" ? o.isVisible() : !0
         })
-      ), o.children && k.buildColumnDefs(o.children, t);
+      ), o.children && I.buildColumnDefs(o.children, t);
     return t;
   }
   /*
@@ -3172,14 +3628,14 @@ class k {
   static buildGroupExts(e, t = [], o = 0, s) {
     let i;
     for (let r = 0; r < e.length; r++) {
-      const l = e[r], n = new Xe(l, o, r, s);
-      i && (n.leftNeighbour = i, i.rightNeighbour = n), t.push(n), l.children && (n.children = k.buildGroupExts(l.children, [], o + 1, n)), i = n;
+      const l = e[r], n = new Ye(l, o, r, s);
+      i && (n.leftNeighbour = i, i.rightNeighbour = n), t.push(n), l.children && (n.children = I.buildGroupExts(l.children, [], o + 1, n)), i = n;
     }
     return t;
   }
   static flattenGroupExts(e, t = []) {
     for (const o of e)
-      t.push(o), o.children && k.flattenGroupExts(o.children, t);
+      t.push(o), o.children && I.flattenGroupExts(o.children, t);
     return t;
   }
   /*
@@ -3211,10 +3667,10 @@ class k {
   static iterateThrowColumns(e = [], t) {
     var o;
     for (const s of t)
-      e.push(s.data + "    rowIndex:" + s.rowIndex), (o = s.children) != null && o.length && k.iterateThrowColumns(e, s.children);
+      e.push(s.data + "    rowIndex:" + s.rowIndex), (o = s.children) != null && o.length && I.iterateThrowColumns(e, s.children);
   }
 }
-class Vt {
+class Bt {
   constructor() {
     this.areaIdent = "body", this.rowSelectionModel = void 0;
   }
@@ -3281,22 +3737,22 @@ class Vt {
     return !1;
   }
 }
-class Ye {
+class Ke {
   render(e, t, o, s, i, r, l) {
     const n = r != null && r.data ? r.data : "";
     e.innerHTML = `${n}`;
   }
 }
-class Bt {
+class Wt {
   constructor(e = "header", t, o = [], s) {
     var i;
-    this.areaIdent = e, this.groups = t, this.columnDefs = o, this.defaultRowHeight = s, this.gammaCells = !0, this.groupExts = [], this.cellGroupExtCellRenderer = new Ye(), this.groupExts = k.buildGroupExts(t), console.info(this.groupExts), console.info(this.getAllLeafs()), console.info(this.getMaxRowCount());
+    this.areaIdent = e, this.groups = t, this.columnDefs = o, this.defaultRowHeight = s, this.gammaCells = !0, this.groupExts = [], this.cellGroupExtCellRenderer = new Ke(), this.groupExts = I.buildGroupExts(t), console.info(this.groupExts), console.info(this.getAllLeafs()), console.info(this.getMaxRowCount());
     for (const r of this.groupExts)
       r.log(this.getMaxRowCount());
-    this.arr = this.buildArray(), !((i = this.columnDefs) != null && i.length) && e === "header" && (this.columnDefs = k.buildColumnDefs(t)), console.info("this.columnDefs", this.columnDefs), console.info("this.arr", this.arr);
+    this.arr = this.buildArray(), !((i = this.columnDefs) != null && i.length) && e === "header" && (this.columnDefs = I.buildColumnDefs(t)), console.info("this.columnDefs", this.columnDefs), console.info("this.arr", this.arr);
   }
   getAllLeafs() {
-    return k.flattenGroupExts(this.groupExts).filter((t) => !t.children);
+    return I.flattenGroupExts(this.groupExts).filter((t) => !t.children);
   }
   getMaxRowCount() {
     const e = this.getAllLeafs();
@@ -3304,13 +3760,13 @@ class Bt {
   }
   buildArray() {
     console.info("");
-    let e = k.flattenGroupExts(this.groupExts);
+    let e = I.flattenGroupExts(this.groupExts);
     const t = e.length, o = 1 + Math.max(...e.map((l) => l.rowIndex));
     console.info("max  row/col:", o + "/" + t);
     const s = [];
-    k.iterateThrowColumns(s, this.groupExts), console.info(s);
+    I.iterateThrowColumns(s, this.groupExts), console.info(s);
     const i = Array.from(Array(o).keys()).map((l) => []);
-    let r = k.buildArrayOfArrays(e, i);
+    let r = I.buildArrayOfArrays(e, i);
     return console.table(r), r;
   }
   changeColumnOrder(e, t) {
@@ -3385,7 +3841,7 @@ class Bt {
     return !1;
   }
 }
-class Wt {
+class Gt {
   filterPredict(e, t, o = this.objectToString.bind(this)) {
     if (!e)
       return !1;
@@ -3439,12 +3895,12 @@ class Wt {
     return t.join(" ").toLowerCase();
   }
 }
-class Gt {
+class Nt {
   static bodyRenderer(e) {
-    return new I(void 0, e, void 0);
+    return new T(void 0, e, void 0);
   }
 }
-class Nt {
+class zt {
   constructor(e, t = !0, o = !1) {
     this.property = e, this.skipCheckableCheck = t, this.readonly = o;
   }
@@ -3469,12 +3925,12 @@ class Nt {
     }
   }
 }
-class zt {
+class jt {
   render(e, t, o, s, i, r, l) {
     r && (e.innerText = new Date(r).toISOString());
   }
 }
-class jt {
+class Xt {
   constructor() {
     this.formatter = new Intl.DateTimeFormat("de-DE", {
       year: "numeric",
@@ -3497,27 +3953,27 @@ class jt {
     }
   }
 }
-class Xt {
+class Yt {
   render(e, t, o, s, i, r, l) {
     r && (e.innerText = new Date(r).toLocaleDateString());
   }
 }
-class Yt {
+class Kt {
   render(e, t, o, s, i, r, l) {
     r === "male" || r === "m" ? e.innerText = "♂" : (r === "female" || r === "f") && (e.innerText = "♀");
   }
 }
-class Kt {
+class Ut {
   render(e, t, o, s, i, r, l) {
     r === "true" || r === !0 ? e.innerHTML = '<span class="ge-true-text-color">✅</span>' : r === "false" || r === !1 ? e.innerHTML = '<span class="ge-false-text-color">❌</span>' : e.innerText = "";
   }
 }
-class Ut {
+class qt {
   render(e, t, o, s, i, r, l) {
     r && (e.innerText = new Date(r).toISOString().replace(/T/g, " ").replace(/\..*/g, ""));
   }
 }
-class qt {
+class Jt {
   constructor(e = Number.MIN_SAFE_INTEGER, t = Number.MAX_SAFE_INTEGER) {
     this.min = e, this.max = t;
   }
@@ -3525,7 +3981,7 @@ class qt {
     r && (e.innerText = r, (typeof r == "string" || isNaN(r) || r < this.min || r > this.max) && l.addClass(e, "ge-cell-error"));
   }
 }
-class Jt {
+class Qt {
   constructor(e) {
     this.property = e;
   }
@@ -3544,7 +4000,7 @@ class Jt {
     }
   }
 }
-class Qt {
+class Zt {
   constructor(e, t = 100, o = !1) {
     this.property = e, this.maxValue = t, this.labelVisible = o;
   }
@@ -3576,16 +4032,16 @@ class Qt {
     }
   }
 }
-const Zt = function(h, e, t) {
+const eo = function(h, e, t) {
   return h ? Number(h) : "";
 };
-class ge {
+class be {
   constructor(e) {
     this.options = e;
   }
   static create(e) {
-    return new ge(
-      e.map((t) => new ze(t, t))
+    return new be(
+      e.map((t) => new je(t, t))
     );
   }
   render(e, t, o, s, i, r, l) {
@@ -3613,12 +4069,12 @@ class ge {
     }
   }
 }
-class eo {
+class to {
   constructor(e, t, o) {
     this.r = e, this.g = t, this.b = o;
   }
 }
-class ne {
+class ae {
   constructor(e, t, o, s) {
     this.minValue = e, this.minColor = t, this.maxValue = o, this.maxColor = s;
   }
@@ -3632,143 +4088,143 @@ class B {
     return `rgb(${Math.round(l)}, ${Math.round(n)}, ${Math.round(d)})`;
   }
   static getThreeColorGradientRGB(e, t) {
-    return e < t.middleValue ? B.getTwoColorGradientRGB(e, new ne(t.minValue, t.minColor, t.middleValue, t.middleColor)) : e > t.middleValue ? B.getTwoColorGradientRGB(e, new ne(t.middleValue, t.middleColor, t.maxValue, t.maxColor)) : `rgb(${t.middleColor.r}, ${t.middleColor.g}, ${t.middleColor.b})`;
+    return e < t.middleValue ? B.getTwoColorGradientRGB(e, new ae(t.minValue, t.minColor, t.middleValue, t.middleColor)) : e > t.middleValue ? B.getTwoColorGradientRGB(e, new ae(t.middleValue, t.middleColor, t.maxValue, t.maxColor)) : `rgb(${t.middleColor.r}, ${t.middleColor.g}, ${t.middleColor.b})`;
   }
 }
-class to {
+class oo {
   constructor(e, t, o, s, i, r) {
     this.minValue = e, this.minColor = t, this.middleValue = o, this.middleColor = s, this.maxValue = i, this.maxColor = r;
   }
 }
 export {
   q as AbstractAreaModel,
-  Lt as AreaMapFactory,
-  Vt as AreaModel,
+  Ot as AreaMapFactory,
+  Bt as AreaModel,
   _ as AreaModelArrayOfArrays,
-  Bt as AreaModelCellGroups,
+  Wt as AreaModelCellGroups,
   D as AreaModelHidden,
-  re as AreaModelObjectArrayWithColumndefs,
-  Ge as AreaModelObjectyArray,
-  oe as AreaModelTree,
-  I as AreaObjectMap,
-  Ht as AutoRestoreOptions,
-  je as CellGroup,
-  Xe as CellGroupExt,
-  Ye as CellGroupExtCellRenderer,
-  E as CellRange,
-  k as CellgroupFactory,
-  Nt as CheckboxBooleanPropertyCellRenderer,
-  le as CheckboxCellRenderer,
-  Ft as CheckboxColumnDef,
-  We as CheckboxModel,
-  Et as ChunkData,
-  Re as ColAndRowspanModel,
-  xe as CollapsedExpandedData,
-  eo as ColorRgb,
+  le as AreaModelObjectArrayWithColumndefs,
+  Ne as AreaModelObjectyArray,
+  se as AreaModelTree,
+  T as AreaObjectMap,
+  Vt as AutoRestoreOptions,
+  Xe as CellGroup,
+  Ye as CellGroupExt,
+  Ke as CellGroupExtCellRenderer,
+  M as CellRange,
+  I as CellgroupFactory,
+  zt as CheckboxBooleanPropertyCellRenderer,
+  ne as CheckboxCellRenderer,
+  Lt as CheckboxColumnDef,
+  Ge as CheckboxModel,
+  Mt as ChunkData,
+  Ae as ColAndRowspanModel,
+  ye as CollapsedExpandedData,
+  to as ColorRgb,
   H as ColumnDef,
-  pe as ConvenienceDomService,
-  ce as CssVars,
-  jt as DateToIntlDDMMYYYYCellRenderer,
-  zt as DateToIsoCellRenderer,
-  Xt as DateToLocaleDateCellRenderer,
-  Ut as DateToTecCellRenderer,
+  fe as ConvenienceDomService,
+  ue as CssVars,
+  Xt as DateToIntlDDMMYYYYCellRenderer,
+  jt as DateToIsoCellRenderer,
+  Yt as DateToLocaleDateCellRenderer,
+  qt as DateToTecCellRenderer,
   P as DefaultRowHeights,
-  ve as EleScope,
-  Q as EventAdapter,
-  ee as FalseFn,
-  Oe as FocusModel,
-  ke as GeCellIndices,
+  Re as EleScope,
+  Z as EventAdapter,
+  te as FalseFn,
+  Pe as FocusModel,
+  Ie as GeCellIndices,
   B as GeCssColorUtil,
-  Wt as GeFilterService,
-  Ot as GeKeyEvent,
+  Gt as GeFilterService,
+  Pt as GeKeyEvent,
   U as GeModelChangeEvent,
   X as GeMouseEvent,
   $ as GeoData,
   F as Icon,
-  Mt as IndexAndPx,
-  Fe as InputCellRenderer,
-  Me as InputHandler,
-  Yt as MaleFemaleToIconCellRenderer,
-  me as MouseHandler,
-  fe as MouseTargetData,
-  qt as NumberCellRenderer,
-  _e as OsxShortcutActionIdMapping,
-  ie as Padding,
-  Qt as ProgressBarCellRenderer,
-  Ae as RenderScope,
-  Gt as Renderer,
-  Ne as RequestChunk,
-  ge as SelectCellRenderer,
-  Le as SelectionModel,
-  Ie as SelectionService,
-  De as ShortcutService,
-  $e as SimpleDomService,
+  kt as IndexAndPx,
+  Le as InputCellRenderer,
+  ke as InputHandler,
+  Kt as MaleFemaleToIconCellRenderer,
+  we as MouseHandler,
+  me as MouseTargetData,
+  Jt as NumberCellRenderer,
+  De as OsxShortcutActionIdMapping,
+  re as Padding,
+  Zt as ProgressBarCellRenderer,
+  Ee as RenderScope,
+  Nt as Renderer,
+  ze as RequestChunk,
+  be as SelectCellRenderer,
+  Oe as SelectionModel,
+  Te as SelectionService,
+  $e as ShortcutService,
+  Fe as SimpleDomService,
   f as Size,
-  Ee as SortItem,
-  de as SortedOptions,
-  Jt as StarRatingCellRenderer,
-  ye as StoreStateCollapsedExpandService,
-  Se as StoreStateScrollPosService,
-  Ce as StoreStateSortingService,
-  we as TableApi,
-  Pt as TableCellUpdateEvent,
+  Me as SortItem,
+  he as SortedOptions,
+  Qt as StarRatingCellRenderer,
+  Ce as StoreStateCollapsedExpandService,
+  xe as StoreStateScrollPosService,
+  ve as StoreStateSortingService,
+  Se as TableApi,
+  Ht as TableCellUpdateEvent,
   L as TableFactory,
   G as TableModel,
-  At as TableModelAndOptions,
+  Et as TableModelAndOptions,
   z as TableOptions,
-  he as TableScope,
-  to as ThreeColorGradientArg,
-  se as TreeCheckboxModel,
+  ce as TableScope,
+  oo as ThreeColorGradientArg,
+  ie as TreeCheckboxModel,
   j as TreeFactory,
-  ae as TreeOptions,
-  Z as TreeRow,
-  Be as TreeRowService,
-  Kt as TrueFalseCellRenderer,
-  Ve as TrueFn,
-  ne as TwoColorGradientArg,
-  ze as ValueLabel,
-  Te as WindowsShortcutActionIdMapping,
-  Rt as actionIds,
-  Dt as allCenter,
-  _t as allLeft,
-  $t as allRight,
-  It as bodyCenter,
-  kt as bodyLeft,
-  Tt as bodyRight,
-  Zt as editInputPipeForNumber,
+  de as TreeOptions,
+  ee as TreeRow,
+  We as TreeRowService,
+  Ut as TrueFalseCellRenderer,
+  Be as TrueFn,
+  ae as TwoColorGradientArg,
+  je as ValueLabel,
+  _e as WindowsShortcutActionIdMapping,
+  At as actionIds,
+  $t as allCenter,
+  Dt as allLeft,
+  Ft as allRight,
+  Tt as bodyCenter,
+  It as bodyLeft,
+  _t as bodyRight,
+  eo as editInputPipeForNumber,
   Y as getAreaIdentByString,
   N as isAreaModelTree,
-  be as isCheckboxColumnDef,
+  pe as isCheckboxColumnDef,
   O as isTreeRow,
-  vt as px0,
-  Ct as px10,
-  gt as px100,
-  ut as px110,
-  ct as px120,
-  ht as px130,
-  dt as px140,
-  at as px150,
-  nt as px160,
-  lt as px170,
-  rt as px180,
-  it as px190,
-  yt as px20,
-  te as px200,
-  st as px210,
-  ot as px220,
-  tt as px230,
-  et as px240,
-  Ze as px250,
-  Qe as px260,
-  Je as px270,
-  qe as px280,
-  Ue as px290,
-  xt as px30,
-  Ke as px300,
-  St as px40,
-  wt as px50,
-  mt as px60,
-  ft as px70,
-  pt as px80,
-  bt as px90
+  Rt as px0,
+  vt as px10,
+  bt as px100,
+  gt as px110,
+  ut as px120,
+  ct as px130,
+  ht as px140,
+  dt as px150,
+  at as px160,
+  nt as px170,
+  lt as px180,
+  rt as px190,
+  Ct as px20,
+  oe as px200,
+  it as px210,
+  st as px220,
+  ot as px230,
+  tt as px240,
+  et as px250,
+  Ze as px260,
+  Qe as px270,
+  Je as px280,
+  qe as px290,
+  yt as px30,
+  Ue as px300,
+  xt as px40,
+  St as px50,
+  wt as px60,
+  mt as px70,
+  ft as px80,
+  pt as px90
 };

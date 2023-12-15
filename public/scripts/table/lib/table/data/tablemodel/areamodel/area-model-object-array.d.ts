@@ -4,6 +4,10 @@ import { AreaIdent } from "../area-ident.type";
 import { FilterFunction } from "../../common/filter-function";
 import { SorterService } from "../../../service/sorter.service";
 import { SortItem } from "../../common/sort-item";
+/**
+ * Represents an area model defined by an object array.
+ * @template T - The type of objects in the array
+ */
 export declare class AreaModelObjectyArray<T> extends AbstractAreaModel<T> {
     areaIdent: AreaIdent;
     protected readonly rows: T[];
