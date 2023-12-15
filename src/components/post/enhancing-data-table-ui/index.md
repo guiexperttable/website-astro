@@ -35,7 +35,6 @@ In this article, we'll explore the following pivotal aspects:
 - [Row Style](#row-style)
 - [Colspan and Rowspan](#colspan-and-rowspan)
 - [Toggle Display Density](#toggle-display-density)
-- [Large data sets](#large-data-sets)
 - [Rows filtering (Search)](#rows-filtering-search)
 - [Sortable Columns](#sortable-columns)
 - [Hover Actions](#hover-actions)
@@ -43,6 +42,7 @@ In this article, we'll explore the following pivotal aspects:
 - [Tree Tables](#tree-tables)
 - [Add / Remove Columns](#add--remove-columns)
 - [Cell Selection and Copy Action](#cell-selection-and-copy-action)
+- [Large data sets](#large-data-sets)
 - [Virtual Scrolling](#virtual-scrolling)
 - [Chunk loading](#chunk-loading)
 - [Rapid Cell Updates](#rapid-cell-updates)
@@ -98,11 +98,7 @@ The **rowspan** and **colspan** attributes in a web UI's data table header, body
 Adjusting the display density of a data grid is vital for accommodating varied user preferences, optimizing screen
 space, enhancing readability, and providing a tailored viewing experience for efficient data absorption and analysis.
 
-## Large data sets
 
-Displaying large datasets in a web UI is crucial for comprehensive information access, enabling efficient analysis,
-informed decision-making, and ensuring users grasp insights swiftly for better problem-solving and understanding complex
-relationships within the data.
 
 ## Rows filtering (Search)
 
@@ -151,6 +147,12 @@ manipulation. Offering these capabilities enhances user control, expedites decis
 intuitive, productive experience within the data table interface.
 
 ![Screen: Multi Range Selection](/post/enhancing-data-table-ui/ge_range_selection.gif)
+
+## Large data sets
+
+Displaying large datasets in a web UI is crucial for comprehensive information access, enabling efficient analysis,
+informed decision-making, and ensuring users grasp insights swiftly for better problem-solving and understanding complex
+relationships within the data.
 
 ## Virtual Scrolling
 
