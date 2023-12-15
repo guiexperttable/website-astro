@@ -4,7 +4,7 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
 
 <div class="px-8">
   <div
-      style="height: calc(100vh - 300px); width: 340px;"
+      style="height: calc(100vh - 140px); width: 540px;"
       class:list={[id, 'large-demo']}></div>
 </div>
 
@@ -22,15 +22,20 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
   import {createLargeModelAndOptions} from "/scripts/demo-table-models/index.js";
 
   const tableEle = document.querySelector('.' + id);
-  const {tableModel, tableOptions}  = createLargeModelAndOptions(2*1000*1000);
+  const maxRowCount = 2*1000*1000;
+  const {tableModel, tableOptions}  = createLargeModelAndOptions(maxRowCount);
 
-  new TableScope(
+  const tableScope = new TableScope(
     tableEle,
     tableModel,
     new SimpleDomService(),
     tableOptions,
     new EventAdapter()
-  ).firstInit();
+  );
+  tableScope.firstInit();
+
+  const tableApi = tableScope.getApi();
+  tableApi.scrollToIndex(0, maxRowCount/2);
 
 
 </script>
@@ -38,5 +43,14 @@ const id = 'div' + Math.random().toString(36).slice(2, 11);
 <style>
     div {
         font-size: 14px;
+    }
+</style>
+
+<style is:global>
+    div.large-demo .ge-table-progress-container {
+        background-color: #888;
+    }
+    div.large-demo .ge-table-progress-bar {
+        background-color: #36BB6C;
     }
 </style>

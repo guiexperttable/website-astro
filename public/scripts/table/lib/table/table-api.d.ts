@@ -22,20 +22,20 @@ export declare class TableApi {
     /**
      * Scrolls the table body to the specified pixel coordinates.
      *
-     * @param {number} _px - The horizontal pixel coordinate to scroll to. Defaults to 0.
-     * @param {number} _py - The vertical pixel coordinate to scroll to. Defaults to 0.
+     * @param {number} px - The horizontal pixel coordinate to scroll to. Defaults to 0.
+     * @param {number} py - The vertical pixel coordinate to scroll to. Defaults to 0.
      * @return {void}
      */
-    scrollToPixel(_px?: number, _py?: number): void;
+    scrollToPixel(px?: number, py?: number): void;
     /**
      * Scrolls to the specified index in both horizontal and vertical directions.
      *
-     * @param {number} _indexX - The index of the column to scroll to in the horizontal direction. Default is 0.
-     * @param {number} _indexY - The index of the row to scroll to in the vertical direction. Default is 0.
+     * @param {number} indexX - The index of the column to scroll to in the horizontal direction. Default is 0.
+     * @param {number} indexY - The index of the row to scroll to in the vertical direction. Default is 0.
      *
      * @return undefined
      */
-    scrollToIndex(_indexX?: number, _indexY?: number): void;
+    scrollToIndex(indexX?: number, indexY?: number): void;
     /**
      * Sets whether the header is visible or not.
      *

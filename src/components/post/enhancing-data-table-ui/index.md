@@ -154,6 +154,8 @@ Displaying large datasets in a web UI is crucial for comprehensive information a
 informed decision-making, and ensuring users grasp insights swiftly for better problem-solving and understanding complex
 relationships within the data.
 
+![Screen: Large Dataset](/post/enhancing-data-table-ui/ge_large_dataset.gif)
+
 ## Virtual Scrolling
 
 Implementing virtual scrolling in a web UI's data table is crucial for swift rendering of extensive data. It optimizes

@@ -202,4 +202,21 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      * @private
      */
     private autoRestoreCollapsedExpandedState;
+    /**
+     * Scrolls the viewport to the specified pixel coordinates.
+     *
+     * @param {number} px - The horizontal pixel coordinate to scroll to.
+     * @param {number} py - The vertical pixel coordinate to scroll to.
+     *
+     * @return {void}
+     */
+    scrollToPixel(px: number, py: number): void;
+    /**
+     * Scrolls to the specified index in the table.
+     *
+     * @param {number} _indexX - The horizontal index of the table where scrolling is needed.
+     * @param {number} indexY - The vertical index of the table where scrolling is needed.
+     * @return {void}
+     */
+    scrollToIndex(_indexX: number, indexY: number): void;
 }
