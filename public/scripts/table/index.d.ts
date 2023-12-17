@@ -1,3 +1,4 @@
+export * from './lib/table/license-manager';
 export * from './lib/table/instanceof-workaround';
 export * from './lib/table/table-scope';
 export * from './lib/table/table-api';

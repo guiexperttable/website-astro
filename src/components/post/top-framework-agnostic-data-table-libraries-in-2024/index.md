@@ -2,7 +2,7 @@
 layout: ../ArticleLayout.astro
 ---
 
-# Top Framework Agnostic Data Tables in 2024
+# Top Framework&nbsp;Agnostic Data&nbsp;Tables in 2024
 
 A short comparison
 
@@ -10,60 +10,136 @@ A short comparison
 
 - ![Marc](/marc.jpg)
 - *Marc Kronberg*
-- ***Jan 06, 2024***
+- ***WIP***
 
 ---
 
 ## &nbsp;
 
-W....
+## Overview
 
-A short comparison of some of the top framework agnostic data tables in 2024. Here are some of the criteria that I used
-to compare them:
+The following table provides an overview of the considered framework-agnostic table libraries.
 
-- **Features:** The number and quality of features that the data table offers, such as sorting, filtering, pagination,
-  editing, exporting, etc.
-- **Performance:** The speed and efficiency of the data table, especially when handling large or complex data sets.
-- **Documentation:** The availability and clarity of the documentation and examples for the data table.
-- **Community:** The popularity and activity of the data table among developers and users, as well as the support and
-  feedback channels.
+| Library                                      | Web                            | Version    | Price   | Comment               |
+|----------------------------------------------|--------------------------------|------------|---------|-----------------------|
+| [Handsontable](#summary-handsontable)        | [1](https://handsontable.com/) | Community  | Free    |                       |
+|                                              | [1](https://handsontable.com/) | Commercial | **I**   |                       |
+| [AG Grid](#summary-ag-grid)  Free            | [2](https://ag-grid.com/)      | Community  | Free    | Reduced functionality |
+|                                              | [2](https://ag-grid.com/)      | Enterprice | **II**  |                       |
+| [GuiExpert Table](#summary-gui-expert-table) | [3](https://gui.expert/)       | Private    | Free    |                       |
+|                                              | [3](https://gui.expert/)       | Commercial | **III** |                       |
+| [Tabulator](#summary-tabulator)              | [4](https://tabulator.info/)   | MIT        | Free    |                       | 
+| [Grid.js](#summary-gridjs)                   | [5](https://gridjs.io/)        | MIT        | Free    |                       |     
+| [FancyGrid](#summary-fancygrid)              | [6](https://fancygrid.com/)    |            | **IV**  |                       |
 
-Based on these criteria, I have selected four data table libraries that I think are among the top choices in 2024:
-Tabulator, DataTables, Grid.js, and SlickGrid. Here is a brief comparison of them:
+[1)&nbsp;handsontable.com](https://handsontable.com/),
+[2)&nbsp;ag-grid.com](https://ag-grid.com/),
+[3)&nbsp;gui.expert](https://gui.expert/),
+[4)&nbsp;tabulator.info](https://tabulator.info/),
+[5)&nbsp;gridjs.io](https://gridjs.io/),
+[6)&nbsp;fancygrid.com](https://fancygrid.com/)
 
-| Library    | Features                                                                                                                                                                                                                                      | Performance                                                                                                                                                                                              | Documentation                                                                                                                                                                              | Community                                                                                                                                                                                                                                        |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tabulator  | High. Tabulator offers a rich set of features, such as responsive layouts, virtual DOM, custom formatters, editors, and validators, keyboard navigation, clipboard support, and more1.                                                        | High. Tabulator uses a virtual DOM to render only the visible rows, which improves the performance and memory usage1. It also supports lazy loading, progressive rendering, and server-side processing1. | High. Tabulator has a comprehensive and well-organized documentation, with detailed explanations, examples, and demos for each feature1.                                                   | High. Tabulator is one of the most popular and widely used data table libraries, with over 10k stars on GitHub and a large community of developers and users2. It also has an active forum and a GitHub issue tracker for support and feedback2. |
-| DataTables | High. DataTables is a flexible and feature-rich data table library, with support for sorting, filtering, searching, pagination, editing, exporting, and more3. It also has a powerful API and a large collection of extensions and plug-ins3. | Medium. DataTables can handle large data sets, but it may suffer from performance issues when rendering complex or nested data. It also does not use a virtual DOM, which may affect the memory usage.   | High. DataTables has a thorough and clear documentation, with guides, examples, and references for each feature and option3.                                                               | High. DataTables is one of the oldest and most established data table libraries, with over 20k stars on GitHub and a huge community of developers and users. It also has a forum, a blog, and a GitHub issue tracker for support and feedback.   |
-| Grid.js    | Medium. Grid.js is a simple and lightweight data table library, with support for basic features such as sorting, filtering, pagination, and exporting. It also has a plugin system to extend its functionality.                               | High. Grid.js uses a virtual DOM to render the data, which improves the performance and memory usage. It also supports server-side rendering and processing.                                             | Medium. Grid.js has a decent documentation, with explanations and examples for each feature and option. However, it could be more detailed and organized.                                  | Medium. Grid.js is a relatively new and growing data table library, with over 3k stars on GitHub and a moderate community of developers and users. It also has a GitHub issue tracker and a Discord channel for support and feedback.            |
-| SlickGrid  | High. SlickGrid is a fast and powerful data table library, with support for advanced features such as grouping, aggregation, frozen columns, editing, exporting, and more. It also has a flexible and extensible API and a plugin system.     | High. SlickGrid uses a virtual DOM and adaptive rendering to handle large and dynamic data sets, which enhances the performance and memory usage. It also supports server-side processing and streaming. | Low. SlickGrid has a sparse and outdated documentation, with only a few examples and demos for some features. It lacks guides, references, and explanations for most features and options. | Low. SlickGrid is an old and unmaintained data table library, with only about 2k stars on GitHub and a small community of developers and users. It also has no official support or feedback channels.                                            |
--------
+**I)** The pricing for Handsontable, a JavaScript data grid with spreadsheet features, starts at $790.00 for the
+Developer plan. They also offer a free plan for personal and non-commercial use, as well as an enterprise plan with more
+features. For startups, there’s a special program that provides a 50% discount for up to 2 years. If your team has 5 or
+more members, you may qualify for additional discounts. For perpetual license holders needing to renew maintenance or
+upgrade support levels, Handsontable encourages reaching out directly.
 
-Ag-Grid: Known for its versatility and extensive feature set, Ag-Grid offers rich functionalities and excellent
-performance. It supports various frameworks and allows customization at a granular level.
+**II)** The pricing for AG Grid licenses varies depending on the type of license you need. Here’s a brief overview:
 
-Handsontable: Focused on spreadsheet-like functionality, Handsontable is a reliable choice for applications requiring
-data manipulation and editing. It's adaptable to various frameworks and offers a range of customization options.
+- AG Grid Enterprise: Starts at $999 per developer for a perpetual license, which includes 1 year of support and
+  updates1.
+- AG Charts Enterprise: Has a limited-time launch price of $199 per developer, standard price being $399, also for a
+  perpetual license with 1 year of support and updates1.
+- Combination of AG Grid and AG Charts: The ultimate combination starts at $1,198 per developer for a perpetual license
+  with 1 year of support and updates1.
+  The Community versions of AG Grid and AG Charts are free and open source, distributed under the MIT License, and can
+  be used in production environments at no cost1.
 
-GUI Expert Table:
+For more detailed information or specific pricing based on your needs, it’s best to contact AG Grid directly through
+their sales team1.
 
-Not Framework Agnostic, but nennenswert:
+**III)** The “GUI Expert Table” offers dual licensing options, with prices ranging from free to $999. Here’s a brief
+overview of the pricing and licensing:
 
-React Table: Despite its name suggesting a React-centric focus, React Table is framework-agnostic and offers flexibility
-in managing and displaying data. It's known for its simplicity and ease of use.
+- Non-commercial License: Free for individuals and non-commercial use, allowing full functionality under open-source
+  terms.
+- Commercial License: For commercial use, with pricing up to $999, depending on the requirements.
+  For more details, you can visit their [pricing page](https://gui.expert/pricing/).
 
-Vue Table Component: Vue Table Component provides a clean API for sorting, filtering, and displaying data in Vue.js
-applications. Its simplicity and ease of integration with Vue projects make it a preferred choice.
+**IV)** FancyGrid has different license options
+| Developer | Saas | Team | Company | ОЕМ |
+|------------|------------|-----------|------------|-------------|
+| $549.00 | $1,149.00 | $1,249.00 | $1,649.00 | $1,949.00 |
 
-Tabulator: Offering a wide array of features and extensive documentation, Tabulator is known for its simplicity and ease
-of use across different frameworks.
+## Summary Handsontable
 
-In this article, we'll explore the following pivotal aspects:
+**Handsontable** is a JavaScript data grid component that brings the well-known look and feel of spreadsheets to your
+application. It is available for React, Angular, and Vue, and works with plain JavaScript as well. It provides data
+binding, data validation, filtering, sorting, and CRUD operations. Handsontable is easy to implement, flexible, and
+super customizable. You can extend it with custom plugins and edit the source code to adjust it to your product. Plus,
+you get access to a comprehensive API, useful tutorials, and both community and commercial support. It is designed to
+perform and can handle large volumes of data without worrying about performance issues. Large companies and startups
+across industries use Handsontable to build applications critical to their business123
 
-- [Fixed Header](#fixed-header)
-- [Fixed Columns](#fixed-columns)
+## Summary AG Grid
 
-## AG-Grid
+**AG Grid** is a high-performance, feature-rich data grid designed for major JavaScript frameworks like React, Angular,
+Vue,
+and plain JavaScript. It’s known for its speed, being highly customizable and extensible. AG Grid allows developers to
+display large amounts of data efficiently, and it’s trusted by most Fortune 500 companies. The grid integrates
+seamlessly with your chosen framework, leveraging its strengths for rendering and extensibility. Additionally, AG Grid
+offers an open-source Community version and an enterprise-grade version with more advanced features. It also includes AG
+Charts, a powerful charting library that works standalone or integrated with the grid
+
+## Summary GUI Expert Table
+
+The versatile **GUI Expert Table** that can seamlessly integrate with
+various frameworks such as Angular, JavaScript, React, Preact, Vue.js, Svelte, and Solid. The **GUI Expert Table**
+boasts a
+highly flexible underlying UI model, allowing for the creation of diverse table types including flat tables, tree
+tables, columns with rowspan cells, and more. It is optimized for performance, making it suitable for handling large
+datasets and real-time updates with impressive rendering capabilities.
+
+Key features of the **GUI Expert Table** include excellent performance with virtual scrolling, row and column spanning,
+fixed columns, custom filters, row sorting, selection capabilities, column interactions, in-place cell editing, keyboard
+shortcuts, customizable look and feel, state persistence, and full control over the HTML structure and style. It is also
+designed with extensive customizability, including user-defined key and mouse events and customizable cell contents via
+renderer for header, body, and footer.
+
+By combining a framework-agnostic approach with high performance and extensive customizability, **GUI Expert Table**
+aims to
+provide a powerful solution for managing and displaying complex data within various web development frameworks.
+
+## Summary Tabulator
+
+**Tabulator** is a versatile and feature-rich JavaScript library for creating interactive tables and data grids. It’s
+designed to be easy to use and highly customizable, allowing developers to quickly generate dynamic tables with a
+variety of features such as sorting, filtering, and editing. Tabulator supports all major browsers and integrates
+seamlessly with various JavaScript frameworks. With its comprehensive documentation and community support, Tabulator is
+suitable for projects of any scale, enabling the creation of complex data-driven applications. It’s a free, open-source
+solution that provides developers with the tools needed to build responsive and accessible data tables for web
+applications.
+
+## Summary Grid.js
+
+**Grid.js** is an advanced, open-source JavaScript table plugin that’s lightweight and works seamlessly with most
+JavaScript frameworks, including React, Angular, Vue, and VanillaJs. It’s designed to be easy to use, with a simple API
+that allows for the creation of sophisticated tables quickly. Grid.js features an internal pipeline that efficiently
+handles data caching and processing, ensuring fast performance even with large datasets. The plugin is small, only 12kb
+gzipped, and is MIT licensed, making it free for use in any project. With Grid.js, developers can enhance their
+applications with powerful table functionalities that are both extensible and compatible with modern web browsers
+
+## Summary FancyGrid
+
+**FancyGrid** is a comprehensive JavaScript grid library designed for enterprise applications. It supports integration
+with
+popular frameworks like Angular, React, and Vue, as well as jQuery. FancyGrid offers a wide array of features including
+paging, sorting, filtering, validation, and CRUD operations. It’s also equipped with chart integration for data
+visualization, including HighCharts and sparklines. The library is modular, allowing for intelligent auto-detection and
+loading of necessary modules. FancyGrid provides extensive documentation, an elegant API, numerous samples, and
+professional support to facilitate development. It’s suitable for projects that require handling large amounts of data
+and offers a variety of data sources such as JSON, Ajax, and file data
 
 ## Conclusion
 

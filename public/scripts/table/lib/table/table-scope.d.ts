@@ -15,13 +15,18 @@ import { GeKeyEvent } from "./data/common/event/ge-key-event";
 import { OnActionTriggeredIf } from "./action/on-action-triggered.if";
 import { ActionId } from "./action/action-id.type";
 import { ShortcutService } from "./action/shortcut.service";
+import { LicenseManager } from './license-manager';
 /**
- * Class representing a TableScope.
- * @extends RenderScope
- * @implements OnActionTriggeredIf
+ * Creates a TableScope instance.
+ * @param {HTMLDivElement} hostElement - The host element.
+ * @param {TableModelIf} tableModel - The table model object.
+ * @param {TableOptionsIf} [tableOptions=new TableOptions()] - Optional table options object.
+ * @param {EventListenerIf} [eventListener=new EventAdapter()] - Optional event listener object.
+ * @param {DomServiceIf} [domService=new SimpleDomService()] - Optional DOM service object.
  */
 export declare class TableScope extends RenderScope implements OnActionTriggeredIf {
     protected readonly eventListener: EventListenerIf;
+    licenseManager: LicenseManager;
     mouseHandler: MouseHandler;
     inputHandler: InputHandler;
     shortcutService: ShortcutService;
