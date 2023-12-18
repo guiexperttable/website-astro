@@ -10,6 +10,7 @@
     "prebuild": "node copy_script_demo_table_models.js & node copy_script_table.js",
     "build": "astro build",
     "deploy": "node deploy.cjs",
+    "deploy-but-no-img": "node deploy-but-no-img.cjs",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write **/*.astro .",

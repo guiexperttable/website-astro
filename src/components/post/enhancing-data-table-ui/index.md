@@ -10,7 +10,7 @@ Key Elements for Success
 
 - ![Marc](/marc.jpg)
 - *Marc Kronberg*
-- ***Dec 20, 2023***
+- ***Dec 17, 2023***
 
 ---
 
