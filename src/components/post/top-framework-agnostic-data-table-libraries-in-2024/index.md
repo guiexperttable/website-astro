@@ -170,17 +170,17 @@ comparisons between these versatile tools.
 
 A formal comparison of individual features seems futile, as all libraries support common features comprehensively.
 
-| Feature           | Hands on table | ag-Grid | GuiExpert Table | Tabulator | Grid.js | FancyGrid  |
-|-------------------|----------------|---------|------------------|-----------|---------|------------|
-| Licensing         | Dual           | Dual    | Dual             | MIT       | MIT     | Commercial |
-| Sorting           | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Filtering         | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Pagination        | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Grouping          | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Virtual Scrolling | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Export to Excel   | Yes            | Yes     | Yes              | Yes       | Yes     | Yes        |
-| Customization     | High           | High    | High             | High      | High    | High       |
-| Community Support | Medium         | High    | Low*             | High      | High    | Medium     |
+| Feature           | Hands on table | ag-Grid | GuiExpert Table   | Tabulator | Grid.js | FancyGrid  |
+|-------------------|----------------|---------|-------------------|-----------|---------|------------|
+| Licensing         | Dual           | Dual    | Dual              | MIT       | MIT     | Commercial |
+| Sorting           | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Filtering         | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Pagination        | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Grouping          | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Virtual Scrolling | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Export to Excel   | Yes            | Yes     | Yes               | Yes       | Yes     | Yes        |
+| Customization     | High           | High    | High              | High      | High    | High       |
+| Community Support | Medium         | High    | Low*              | High      | High    | Medium     |
 
 Dual: Commercial (Paid) & Community (Free)
 
