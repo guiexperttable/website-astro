@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+import developerImage from "~/assets/developer_with_table.png";
+import GitHubCorner from "./github-corner.astro";
+
+const sizes = "(min-width: 240px) 240px, 300px";
+---
+
+<section class="relative h-full ge-linear-gradient-bg">
+  <GitHubCorner />
+
+  <div class="relative grid h-full place-items-center sm:grid-cols-2">
+    <h2 class="hero flex flex-col gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end items-center">
+      <div class="text-white text-center font-extrabold tracking-tighter text-8xl">
+        Build fancy
+        <br /> data grids,
+        <br /> faster.
+      </div>
+    </h2>
+    <div
+      id="hero"
+      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start ">
+      <Image
+        class="ml-6"
+        src={developerImage}
+        height="600"
+        loading="eager"
+        alt="A happy developer in a suit"
+      />
+    </div>
+  </div>
+</section>
+
+<noscript>
+  <style>
+    #splash-bg-fallback {
+      display: block;
+    }
+  </style>
+</noscript>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  #hero {
+    animation: float linear 25s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #hero {
+      @apply animate-none;
+    }
+
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
+</style>
