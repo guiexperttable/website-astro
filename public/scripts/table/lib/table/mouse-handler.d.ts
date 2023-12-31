@@ -6,6 +6,12 @@ import { GeMouseEvent } from "./data/common/event/ge-mouse-event";
  */
 export declare class MouseHandler {
     protected tableScope: TableScope;
+    /**
+     * Represents the delay in milliseconds between two consecutive double clicks.
+     *
+     * @type {number}
+     */
+    doubleClickDelay: number;
     mouseEvent?: MouseEvent;
     startMouseEvent?: GeMouseEvent;
     geMouseEvent?: GeMouseEvent;
@@ -22,6 +28,7 @@ export declare class MouseHandler {
      * @return {void}
      */
     private onContextmenu;
+    private lastClicked;
     /**
      * Handles the click event on the host element.
      *

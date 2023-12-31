@@ -17,5 +17,5 @@ export declare class CellGroupExt extends CellGroup {
     getColumnCount(cg?: CellGroupExt, ret?: number): number;
     getRowSpan(cg: CellGroupExt | undefined, maxRowCount: number): number;
     getParentCount(cg?: CellGroupExt, ret?: number): number;
-    log(maxRowCount: number): void;
+    log(maxRowCount?: number): string;
 }

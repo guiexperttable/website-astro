@@ -16,7 +16,6 @@ import { SideIdent } from "../side-ident.type";
  * @property {number} top - The top position of the cell.
  * @property {HTMLDivElement} parent - The parent element of the cell.
  * @property {boolean} lastRowOfModel - Indicates if the cell is in the last row of the model.
- * @property {boolean} gammaRange - Indicates if the gamma range is enabled.
  */
 export interface ArgsRenderCellDiv {
     areaModel: AreaModelIf;
@@ -30,5 +29,4 @@ export interface ArgsRenderCellDiv {
     top: number;
     parent: HTMLDivElement;
     lastRowOfModel: boolean;
-    gammaRange: boolean;
 }

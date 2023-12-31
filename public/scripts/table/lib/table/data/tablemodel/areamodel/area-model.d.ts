@@ -28,6 +28,7 @@ export declare class AreaModel implements AreaModelIf {
     getRowspanAt(_rowIndex: number, _columnIndex: number): number;
     getTooltipAt(_rowIndex: number, _columnIndex: number): any;
     getValueAt(_rowIndex: number, _columnIndex: number): any;
+    getTextValueAt(_rowIndex: number, _columnIndex: number): string;
     getYPosByRowIndex(_rowIndex: number): number;
     init(): void;
     isEditable(_rowIndex: number, _columnIndex: number): boolean;

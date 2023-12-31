@@ -7,8 +7,8 @@ import { OnActionTriggeredIf } from "../action/on-action-triggered.if";
 import { ActionId } from "../action/action-id.type";
 export declare class SelectionService implements OnActionTriggeredIf {
     protected readonly tableScope: TableScope;
-    protected getSelectionModel?: GetT<SelectionModelIf>;
-    protected getFocusModel?: GetT<FocusModelIf>;
+    getSelectionModel?: GetT<SelectionModelIf>;
+    getFocusModel?: GetT<FocusModelIf>;
     protected previousEvt?: GeMouseEvent;
     constructor(tableScope: TableScope);
     onMouseClicked(evt: GeMouseEvent, _previousEvt: GeMouseEvent | undefined): boolean;

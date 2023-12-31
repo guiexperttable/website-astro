@@ -14,6 +14,7 @@ export declare class AreaModelHidden implements AreaModelIf {
     constructor(areaIdent?: AreaIdent);
     getRowCount(): number;
     getValueAt(_rowIndex: number, _columnIndex: number): any;
+    getTextValueAt(_rowIndex: number, _columnIndex: number): string;
     getCellRenderer(_rowIndex: number, _columnIndex: number): CellRendererIf | undefined;
     getRowHeight(_rowIndex: number): number;
     getColspanAt(_rowIndex: number, _columnIndex: number): number;

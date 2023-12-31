@@ -38,6 +38,7 @@ export declare const tableOptions: {
     headerToggleExpandCollapseIcons: boolean;
     headerVerticalSeparator: boolean;
     treeOptions: import('../../../table/src/index.ts').TreeOptions;
+    headerGroupOptions: import("libs/table/src/lib/table/data/options/header-group-options").HeaderGroupOptions;
     showCheckboxWihoutExtraColumn: boolean;
     externalFilterFunction: import('../../../table/src/index.ts').FilterFunction<any> | undefined;
     sortedOptions: import('../../../table/src/index.ts').SortedOptions;

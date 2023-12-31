@@ -17,6 +17,7 @@ export declare abstract class AbstractAreaModel<T> implements AreaModelIf, HasDe
     constructor(areaIdent: AreaIdent, columnDefs?: ColumnDefIf[], defaultRowHeight?: number);
     abstract getRowCount(): number;
     abstract getValueAt(rowIndex: number, columnIndex: number): any;
+    getTextValueAt(rowIndex: number, columnIndex: number): string;
     getTooltipAt(_rowIndex: number, _columnIndex: number): any;
     abstract getRowHeight(rowIndex: number): number;
     getCellRenderer(_rowIndex: number, columnIndex: number): CellRendererIf | undefined;

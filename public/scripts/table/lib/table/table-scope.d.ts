@@ -16,6 +16,9 @@ import { OnActionTriggeredIf } from "./action/on-action-triggered.if";
 import { ActionId } from "./action/action-id.type";
 import { ShortcutService } from "./action/shortcut.service";
 import { LicenseManager } from './license-manager';
+import { SelectionModel } from './selection/selection-model';
+import { CopyServiceIf } from './service/copy-service.if';
+import { MouseTargetData } from './data/event/mouse-target-data';
 /**
  * Creates a TableScope instance.
  * @param {HTMLDivElement} hostElement - The host element.
@@ -26,6 +29,7 @@ import { LicenseManager } from './license-manager';
  */
 export declare class TableScope extends RenderScope implements OnActionTriggeredIf {
     protected readonly eventListener: EventListenerIf;
+    protected readonly copyService: CopyServiceIf;
     licenseManager: LicenseManager;
     mouseHandler: MouseHandler;
     inputHandler: InputHandler;
@@ -51,8 +55,16 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      *
      * @return {TableScope} - The newly created TableScope instance.
      */
-    static create(hostElement: HTMLDivElement, tableModel: TableModelIf, tableOptions?: TableOptionsIf, eventListener?: EventListenerIf, domService?: DomServiceIf): TableScope;
-    constructor(hostElement: HTMLDivElement, tableModel: TableModelIf, domService: DomServiceIf, tableOptions: TableOptionsIf, eventListener: EventListenerIf);
+    static create(hostElement: HTMLDivElement, tableModel: TableModelIf, tableOptions?: TableOptionsIf, eventListener?: EventListenerIf, domService?: DomServiceIf, copyService?: CopyServiceIf): TableScope;
+    constructor(hostElement: HTMLDivElement, tableModel: TableModelIf, domService: DomServiceIf, tableOptions: TableOptionsIf, eventListener: EventListenerIf, copyService?: CopyServiceIf);
+    /**
+     * Triggers an action based on the provided actionId.
+     *
+     * This function can be invoked manually via the table API or by keyboard shortcuts.
+     *
+     * @param {ActionId} actionId - The identifier of the action to be triggered.
+     * @return {boolean} - Returns true if the action was triggered successfully, false otherwise.
+     */
     onActionTriggered(actionId: ActionId): boolean;
     updateModelValueAfterEdit(areaIdent: AreaIdent, rowIndex: number, columnIndex: number, value: string): void;
     /**
@@ -137,7 +149,9 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      * @param {GeMouseEvent | undefined} previousEvt - The previous mouse click event, if any.
      * @returns {void}
      */
-    onMouseClicked(evt: GeMouseEvent, previousEvt: GeMouseEvent | undefined): void;
+    onMouseClicked(evt: GeMouseEvent, previousEvt: GeMouseEvent | undefined): boolean;
+    debounceRepaint(): void;
+    publishGeMouseEvent(evt: GeMouseEvent): void;
     /**
      * Updates the table (repaint) when an external filter is changed.
      *
@@ -179,8 +193,6 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
     /**
      * Restores the scroll position of the table if auto restore options are enabled.
      *
-     * @private
-     * @memberof ClassName
      *
      * @returns {void}
      */
@@ -224,4 +236,14 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      * @return {void}
      */
     scrollToIndex(_indexX: number, indexY: number): void;
+    /**
+     * Sets the selection model for the table.
+     *
+     * @param {SelectionModel} sm - The selection model to be set.
+     * @param {boolean} rerender - Optional parameter indicating whether to rerender the table after setting the selection model. Default value is false.
+     *
+     * @return {void} - This method does not return any value.
+     */
+    setSelectionModel(sm: SelectionModel, rerender?: boolean): void;
+    toggleHeaderGroup(mouseTargetData: MouseTargetData): void;
 }

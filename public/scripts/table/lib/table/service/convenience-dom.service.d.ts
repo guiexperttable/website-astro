@@ -10,6 +10,19 @@ import { SideIdent } from "../data/side-ident.type";
 import { SortState } from "../data/common/sort-state.type";
 import { SortedOptionsIf } from "../data/options/sorted-options.if";
 import { HtmlStyle } from "./data/html-style.type";
+interface AddColumnDivPara {
+    parent: HTMLDivElement;
+    geo: GeoData;
+    rowIndex: number;
+    columnIndex: number;
+    areaIdent: AreaIdent;
+    sideIdent: SideIdent;
+    text?: string;
+    treeArrow?: TreeArrowType;
+    tableOptions?: TableOptionsIf;
+    checkedType?: CheckedType | undefined;
+    sortState?: SortState;
+}
 export declare class ConvenienceDomService {
     readonly domService: DomServiceIf;
     constructor(domService: DomServiceIf);
@@ -32,7 +45,7 @@ export declare class ConvenienceDomService {
     createAreaDivWithClass(clazz: string, parent: HTMLDivElement, areaIdent: AreaIdent, sideIdent: SideIdent): HTMLDivElement;
     createDivWithClass(clazz: string, parent: HTMLDivElement): HTMLDivElement;
     addRowDiv(divScope: DivScope, geo: GeoData, rowIndex: number | undefined, areaIdent: AreaIdent, sideIdent: SideIdent, text?: string): HTMLDivElement;
-    addColumnDiv(parent: HTMLDivElement, geo: GeoData, rowIndex: number | undefined, columnIndex: number | undefined, areaIdent: AreaIdent, sideIdent: SideIdent, text?: string, treeArrow?: TreeArrowType, tableOptions?: TableOptionsIf, checkedType?: CheckedType | undefined, sortState?: SortState): HTMLDivElement;
+    addColumnDiv(para: AddColumnDivPara): HTMLDivElement;
     addCheckboxToDiv(parent: HTMLDivElement, checkedType: CheckedType, areaIdent: AreaIdent, rowIndex: number): HTMLDivElement;
     addLabelDiv(parent: HTMLDivElement, text?: string, firstTreeColumn?: boolean, rowIndex?: number, columnIndex?: number, areaIdent?: AreaIdent): HTMLDivElement;
     addSortedIcon(parent: HTMLDivElement, sorted?: SortState, sortedOptions?: SortedOptionsIf, columnIndex?: number): HTMLDivElement;
@@ -45,3 +58,4 @@ export declare class ConvenienceDomService {
     applyStyleString(div: HTMLDivElement, style: string): void;
     private getDivOrCreateDiv;
 }
+export {};

@@ -37,6 +37,7 @@ export declare function createTreePeopleTableOptions(addDemoSelection?: boolean)
     headerToggleExpandCollapseIcons: boolean;
     headerVerticalSeparator: boolean;
     treeOptions: import('../../../../table/src/index.ts').TreeOptions;
+    headerGroupOptions: import("libs/table/src/lib/table/data/options/header-group-options").HeaderGroupOptions;
     showCheckboxWihoutExtraColumn: boolean;
     sortedOptions: import('../../../../table/src/index.ts').SortedOptions;
     sortOrder: import('../../../../table/src/index.ts').SortState[];

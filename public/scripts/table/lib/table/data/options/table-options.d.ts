@@ -9,6 +9,7 @@ import { SelectionModelIf } from "../../selection/selection-model.if";
 import { GetT } from "../common/get-t";
 import { FocusModelIf } from "../../focus/focus-model.if";
 import { ShortcutActionIdMapping } from "../../action/shortcut-actionid-mapping.type";
+import { HeaderGroupOptions } from './header-group-options';
 export declare class TableOptions implements TableOptionsIf {
     overflowX: "auto" | "scroll";
     overflowY: "auto" | "scroll";
@@ -30,6 +31,7 @@ export declare class TableOptions implements TableOptionsIf {
     headerToggleExpandCollapseIcons: boolean;
     headerVerticalSeparator: boolean;
     treeOptions: TreeOptions;
+    headerGroupOptions: HeaderGroupOptions;
     showCheckboxWihoutExtraColumn: boolean;
     externalFilterFunction: FilterFunction<any> | undefined;
     sortedOptions: SortedOptions;

@@ -1,24 +1,26 @@
-import { AreaIdent } from "../area-ident.type";
-import { ColumnDefIf } from "../column/column-def.if";
-import { AreaModelIf } from "./area-model.if";
-import { CellGroupIf } from "../cellgroup/cell-group.if";
-import { CheckboxModelIf } from "../../../checkbox/checkbox-model.if";
-import { SortItem } from "../../common/sort-item";
-import { FilterFunction } from "../../common/filter-function";
-import { CellRendererIf } from "../../../renderer/cell-render.if";
-import { CheckedType } from "../../common/checked-type";
-import { CellGroupExt } from "../cellgroup/cell-group-ext";
+import { AreaIdent } from '../area-ident.type';
+import { ColumnDefIf } from '../column/column-def.if';
+import { AreaModelIf } from './area-model.if';
+import { CellGroupIf } from '../cellgroup/cell-group.if';
+import { CheckboxModelIf } from '../../../checkbox/checkbox-model.if';
+import { SortItem } from '../../common/sort-item';
+import { FilterFunction } from '../../common/filter-function';
+import { CellRendererIf } from '../../../renderer/cell-render.if';
+import { CheckedType } from '../../common/checked-type';
+import { CellGroupExt } from '../cellgroup/cell-group-ext';
+import { MouseTargetData } from '../../event/mouse-target-data';
+import { HeaderGroupOptionsIf } from '../../options/header-group-options.if';
 export declare class AreaModelCellGroups implements AreaModelIf {
     readonly areaIdent: AreaIdent;
     readonly groups: CellGroupIf[];
-    readonly columnDefs: ColumnDefIf[];
+    columnDefs: ColumnDefIf[];
     readonly defaultRowHeight: number;
     gammaCells: boolean;
     rowSelectionModel: CheckboxModelIf<any> | undefined;
-    readonly arr: (CellGroupExt | null | undefined)[][];
+    arr: (CellGroupExt | null | undefined)[][];
     private groupExts;
     private cellGroupExtCellRenderer;
-    constructor(areaIdent: AreaIdent, groups: CellGroupIf[], columnDefs: ColumnDefIf[], defaultRowHeight: number);
+    constructor(areaIdent: AreaIdent, groups: CellGroupIf[], columnDefs: ColumnDefIf[], defaultRowHeight: number, headerGroupOptions?: HeaderGroupOptionsIf);
     getAllLeafs(): CellGroupExt[];
     getMaxRowCount(): number;
     buildArray(): (CellGroupExt | null | undefined)[][];
@@ -38,6 +40,7 @@ export declare class AreaModelCellGroups implements AreaModelIf {
     getRowspanAt(rowIndex: number, columnIndex: number): number;
     getTooltipAt(_rowIndex: number, _columnIndex: number): any;
     getValueAt(rowIndex: number, columnIndex: number): any;
+    getTextValueAt(rowIndex: number, columnIndex: number): string;
     getYPosByRowIndex(_rowIndex: number): number;
     init(): void;
     getRowHeight(_rowIndex: number): number;
@@ -48,4 +51,5 @@ export declare class AreaModelCellGroups implements AreaModelIf {
     isSelectable(_rowIndex: number, _columnIndex: number): boolean;
     setRowChecked(_rowIndex: number, _checked: boolean): void;
     setValue(_rowIndex: number, _columnIndex: number, _value: any): boolean;
+    toggleHeaderGroup(mouseTargetData: MouseTargetData): void;
 }

@@ -45,7 +45,14 @@ export declare class RenderScope extends EleScope {
     protected editing: boolean;
     isEditing(): boolean;
     resetEditorRenderer(): void;
-    clearSelection(): void;
+    /**
+     * Clears the selection in the component.
+     *
+     * @param {boolean} rerender - Indicates whether to rerender the component after clearing the selection. Default value is false.
+     *
+     * @return {void}
+     */
+    clearSelection(rerender?: boolean): void;
     initRenderEditor(rowIdx: number, colIdx: number): void;
     repaint(): void;
     adjustAfterScrolling(): void;
@@ -71,7 +78,7 @@ export declare class RenderScope extends EleScope {
     protected findRowOfImportantRowspanCell(areaModel: AreaModelIf, rowIndex: number, colIndex: number): number;
     protected adjustColumnsToRowParent({ areaIdent, sideIdent, areaModel, geo, parent, rowIndex, columnIndexStart, columnIndexEnd, verticalFixed, lastRowOfModel }: ArgsAdjustColumnsToRowParentParams): void;
     protected getTreeArrowColumnIndex(): 0 | 1;
-    protected addAndRenderCellDiv({ areaModel, areaIdent, sideIdent, rowIndex, index, left, width, height, top, parent, lastRowOfModel, gammaRange }: ArgsRenderCellDiv): [HTMLDivElement, RendererCleanupFnType | undefined];
+    protected addAndRenderCellDiv({ areaModel, areaIdent, sideIdent, rowIndex, index, left, width, height, top, parent, lastRowOfModel }: ArgsRenderCellDiv): [HTMLDivElement, RendererCleanupFnType | undefined];
     protected applyCssClasses(ele: HTMLDivElement, cssClasses?: {
         [key: string]: boolean;
     }): void;

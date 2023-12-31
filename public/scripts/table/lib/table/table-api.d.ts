@@ -1,6 +1,9 @@
 import { TableScope } from "./table-scope";
 import { ColumnDefIf } from "./data/tablemodel/column/column-def.if";
 import { TableCellUpdateEventIf } from "./data/common/event/input/table-cell-update-event.if";
+import { SelectionModel } from './selection/selection-model';
+import { ActionId } from './action/action-id.type';
+import { ShortcutActionIdMapping } from './action/shortcut-actionid-mapping.type';
 export declare class TableApi {
     private readonly tableScope;
     constructor(tableScope: TableScope);
@@ -87,4 +90,34 @@ export declare class TableApi {
      * to update and redraw the table based on the latest data.
      */
     repaint(): void;
+    /**
+     * Clears the current selection of the table.
+     * The table will be rendered automatically.
+     *
+     * @returns {void}
+     */
+    clearSelection(): void;
+    /**
+     * Sets the selection model for the table scope.
+     *
+     * @param {SelectionModel} sm - The selection model to be set.
+     * @param {boolean} [repaint=true] - Indicates whether the table should be repainted after setting the selection model. Default value is true.
+     *
+     * @return {void}
+     */
+    setSelectionModel(sm: SelectionModel, repaint?: boolean): void;
+    /**
+     * Triggers the action with the given action ID.
+     * This function can be invoked programmatically.
+     *
+     * @param {ActionId} actionId - The ID of the action to trigger.
+     * @return {void}
+     */
+    triggerAction(actionId: ActionId): void;
+    /**
+     * Retrieves the mapping of shortcuts to corresponding action in the current table scope.
+     *
+     * @return {ShortcutActionIdMapping} The mapping of shortcuts to corresponding action.
+     */
+    getShortcutActionMapping(): ShortcutActionIdMapping;
 }
