@@ -170,3 +170,4 @@ My other articles:
 
 - [enhancing-data-table-ui](https://gui.expert/post/enhancing-data-table-ui/)
 - [top-framework-agnostic-data-table-libraries-in-2024](https://gui.expert/post/top-framework-agnostic-data-table-libraries-in-2024/)
+
