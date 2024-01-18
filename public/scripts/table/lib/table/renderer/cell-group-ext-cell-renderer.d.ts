@@ -7,6 +7,7 @@ import { CellGroupExt } from '../data/tablemodel/cellgroup/cell-group-ext';
 import { HeaderGroupOptionsIf } from '../data/options/header-group-options.if';
 export declare class CellGroupExtCellRenderer implements CellRendererIf {
     private headerGroupOptions;
+    private static toggleHeaderGroup;
     constructor(headerGroupOptions?: HeaderGroupOptionsIf);
     render(cellDiv: HTMLDivElement, rowIndex: number, columnIndex: number, areaIdent: AreaIdent, _areaModel: AreaModelIf, cellValue: CellGroupExt | undefined | null, domService: DomServiceIf): RendererCleanupFnType | undefined;
     private addText;

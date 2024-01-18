@@ -15,12 +15,14 @@ export declare class AreaModelCellGroups implements AreaModelIf {
     readonly groups: CellGroupIf[];
     columnDefs: ColumnDefIf[];
     readonly defaultRowHeight: number;
+    private headerGroupOptions;
     gammaCells: boolean;
     rowSelectionModel: CheckboxModelIf<any> | undefined;
     arr: (CellGroupExt | null | undefined)[][];
     private groupExts;
     private cellGroupExtCellRenderer;
     constructor(areaIdent: AreaIdent, groups: CellGroupIf[], columnDefs: ColumnDefIf[], defaultRowHeight: number, headerGroupOptions?: HeaderGroupOptionsIf);
+    init(): void;
     getAllLeafs(): CellGroupExt[];
     getMaxRowCount(): number;
     buildArray(): (CellGroupExt | null | undefined)[][];
@@ -42,7 +44,6 @@ export declare class AreaModelCellGroups implements AreaModelIf {
     getValueAt(rowIndex: number, columnIndex: number): any;
     getTextValueAt(rowIndex: number, columnIndex: number): string;
     getYPosByRowIndex(_rowIndex: number): number;
-    init(): void;
     getRowHeight(_rowIndex: number): number;
     isEditable(_rowIndex: number, _columnIndex: number): boolean;
     isFilterable(): boolean;
@@ -51,5 +52,5 @@ export declare class AreaModelCellGroups implements AreaModelIf {
     isSelectable(_rowIndex: number, _columnIndex: number): boolean;
     setRowChecked(_rowIndex: number, _checked: boolean): void;
     setValue(_rowIndex: number, _columnIndex: number, _value: any): boolean;
-    toggleHeaderGroup(mouseTargetData: MouseTargetData): void;
+    toggleHeaderGroup(mouseTargetData: MouseTargetData): ColumnDefIf[];
 }

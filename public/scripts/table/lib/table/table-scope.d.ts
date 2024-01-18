@@ -1,24 +1,26 @@
-import { TableModelIf } from "./data/tablemodel/table-model.if";
-import { AreaIdent } from "./data/tablemodel/area-ident.type";
-import { GeMouseEvent } from "./data/common/event/ge-mouse-event";
-import { DomServiceIf } from "./service/dom-service.if";
-import { TableOptionsIf } from "./data/options/table-options.if";
-import { MouseHandler } from "./mouse-handler";
-import { EventListenerIf } from "./event-listener.if";
-import { TableApi } from "./table-api";
-import { StoreStateCollapsedExpandService } from "./service/store-state-collapsed-expand.service";
-import { StoreStateSortingService } from "./service/store-state-sorting.service";
-import { RenderScope } from "./render-scope";
-import { InputHandler } from "./input-handler";
-import { SelectionService } from "./selection/selection-service";
-import { GeKeyEvent } from "./data/common/event/ge-key-event";
-import { OnActionTriggeredIf } from "./action/on-action-triggered.if";
-import { ActionId } from "./action/action-id.type";
-import { ShortcutService } from "./action/shortcut.service";
+import { TableModelIf } from './data/tablemodel/table-model.if';
+import { AreaIdent } from './data/tablemodel/area-ident.type';
+import { GeMouseEvent } from './data/common/event/ge-mouse-event';
+import { DomServiceIf } from './service/dom-service.if';
+import { TableOptionsIf } from './data/options/table-options.if';
+import { MouseHandler } from './mouse-handler';
+import { EventListenerIf } from './event-listener.if';
+import { TableApi } from './table-api';
+import { StoreStateCollapsedExpandService } from './service/store-state-collapsed-expand.service';
+import { StoreStateSortingService } from './service/store-state-sorting.service';
+import { RenderScope } from './render-scope';
+import { InputHandler } from './input-handler';
+import { SelectionService } from './selection/selection-service';
+import { GeKeyEvent } from './data/common/event/ge-key-event';
+import { OnActionTriggeredIf } from './action/on-action-triggered.if';
+import { ActionId } from './action/action-id.type';
+import { ShortcutService } from './action/shortcut.service';
 import { LicenseManager } from './license-manager';
 import { SelectionModel } from './selection/selection-model';
 import { CopyServiceIf } from './service/copy-service.if';
 import { MouseTargetData } from './data/event/mouse-target-data';
+import { SelectionModelIf } from './selection/selection-model.if';
+import { FocusModelIf } from './focus/focus-model.if';
 /**
  * Creates a TableScope instance.
  * @param {HTMLDivElement} hostElement - The host element.
@@ -29,7 +31,7 @@ import { MouseTargetData } from './data/event/mouse-target-data';
  */
 export declare class TableScope extends RenderScope implements OnActionTriggeredIf {
     protected readonly eventListener: EventListenerIf;
-    protected readonly copyService: CopyServiceIf;
+    readonly copyService: CopyServiceIf;
     licenseManager: LicenseManager;
     mouseHandler: MouseHandler;
     inputHandler: InputHandler;
@@ -44,6 +46,7 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
     private mouseStartColumnIndex;
     private dragFrom;
     private dragTo;
+    constructor(hostElement: HTMLDivElement, tableModel: TableModelIf, domService: DomServiceIf, tableOptions: TableOptionsIf, eventListener: EventListenerIf, copyService?: CopyServiceIf);
     /**
      * Creates a TableScope instance.
      *
@@ -56,7 +59,6 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      * @return {TableScope} - The newly created TableScope instance.
      */
     static create(hostElement: HTMLDivElement, tableModel: TableModelIf, tableOptions?: TableOptionsIf, eventListener?: EventListenerIf, domService?: DomServiceIf, copyService?: CopyServiceIf): TableScope;
-    constructor(hostElement: HTMLDivElement, tableModel: TableModelIf, domService: DomServiceIf, tableOptions: TableOptionsIf, eventListener: EventListenerIf, copyService?: CopyServiceIf);
     /**
      * Triggers an action based on the provided actionId.
      *
@@ -170,6 +172,44 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      */
     onHeaderDblClicked(event: MouseEvent, _rowIdx: number, colIdx: number): void;
     /**
+     * Scrolls the viewport to the specified pixel coordinates.
+     *
+     * @param {number} px - The horizontal pixel coordinate to scroll to.
+     * @param {number} py - The vertical pixel coordinate to scroll to.
+     *
+     * @return {void}
+     */
+    scrollToPixel(px: number, py: number): void;
+    /**
+     * Scrolls to the specified index in the table.
+     *
+     * @param {number} _indexX - The horizontal index of the table where scrolling is needed.
+     * @param {number} indexY - The vertical index of the table where scrolling is needed.
+     * @return {void}
+     */
+    scrollToIndex(_indexX: number, indexY: number): void;
+    /**
+     * Sets the selection model for the table.
+     *
+     * @param {SelectionModel} sm - The selection model to be set.
+     * @param {boolean} rerender - Optional parameter indicating whether to rerender the table after setting the selection model. Default value is false.
+     *
+     * @return {void} - This method does not return any value.
+     */
+    setSelectionModel(sm: SelectionModel, rerender?: boolean): void;
+    toggleHeaderGroup(mouseTargetData: MouseTargetData): void;
+    /**
+     * Retrieves the selection model.
+     * @returns {SelectionModelIf | undefined} The selection model if available, otherwise undefined.
+     */
+    selectionModel(): SelectionModelIf | undefined;
+    /**
+     * Retrieves the focus model.
+     *
+     * @returns {FocusModelIf | undefined} The focus model if it exists, or undefined otherwise.
+     */
+    focusModel(): FocusModelIf | undefined;
+    /**
      * Changes the focus cell using the specified deltas.
      *
      * @param {number} dx - The delta for the column index.
@@ -219,31 +259,4 @@ export declare class TableScope extends RenderScope implements OnActionTriggered
      * @private
      */
     private autoRestoreCollapsedExpandedState;
-    /**
-     * Scrolls the viewport to the specified pixel coordinates.
-     *
-     * @param {number} px - The horizontal pixel coordinate to scroll to.
-     * @param {number} py - The vertical pixel coordinate to scroll to.
-     *
-     * @return {void}
-     */
-    scrollToPixel(px: number, py: number): void;
-    /**
-     * Scrolls to the specified index in the table.
-     *
-     * @param {number} _indexX - The horizontal index of the table where scrolling is needed.
-     * @param {number} indexY - The vertical index of the table where scrolling is needed.
-     * @return {void}
-     */
-    scrollToIndex(_indexX: number, indexY: number): void;
-    /**
-     * Sets the selection model for the table.
-     *
-     * @param {SelectionModel} sm - The selection model to be set.
-     * @param {boolean} rerender - Optional parameter indicating whether to rerender the table after setting the selection model. Default value is false.
-     *
-     * @return {void} - This method does not return any value.
-     */
-    setSelectionModel(sm: SelectionModel, rerender?: boolean): void;
-    toggleHeaderGroup(mouseTargetData: MouseTargetData): void;
 }

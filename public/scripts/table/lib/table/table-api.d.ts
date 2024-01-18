@@ -120,4 +120,10 @@ export declare class TableApi {
      * @return {ShortcutActionIdMapping} The mapping of shortcuts to corresponding action.
      */
     getShortcutActionMapping(): ShortcutActionIdMapping;
+    /**
+     * Copies the selected data from the table to the clipboard.
+     *
+     * @return {Promise<string>} - A promise that resolves with the copied data as a string.
+     */
+    copyToClipboard(): Promise<string>;
 }
